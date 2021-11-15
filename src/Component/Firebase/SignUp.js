@@ -37,7 +37,7 @@ const SignUp = () => {
             })
     }
     return (
-        <div>
+        <div className="m-3 md:m-3">
             <form className={form} onSubmit={handleSubmit(onSubmit)}>
                 <input className={input} {...register("name", { required: true })} placeholder="Enter your name" />
                 <input className={input} type="email" {...register("email", { required: true })} placeholder="Enter your email" />

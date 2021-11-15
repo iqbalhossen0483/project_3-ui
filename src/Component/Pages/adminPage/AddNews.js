@@ -24,7 +24,7 @@ const AddNews = () => {
             })
     }
     return (
-        <div>
+        <div className="mx-3 md:mx-0">
             <form className={form} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={formHeader}>Add news</h3>
                 <input className={input} {...register("img", { required: true })} placeholder="Enter a img url" />

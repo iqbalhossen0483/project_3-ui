@@ -22,7 +22,7 @@ const MakeAdmin = () => {
             })
     }
     return (
-        <div>
+        <div className="mx-3 md:mx-0">
             <form className={form} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={formHeader}>Make an admin</h3>
                 <input type="email" className={input} {...register("email", { required: true })} placeholder="Enter email address" />

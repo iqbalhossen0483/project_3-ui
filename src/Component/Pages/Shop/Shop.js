@@ -9,7 +9,7 @@ const Shop = () => {
             .then(data => setProduct(data))
     }, []);
     return (
-        <div className="grid grid-cols-4 gap-5 px-5 my-10">
+        <div className="md:grid grid-cols-4 gap-5 md:px-5 my-10">
             {
                 products.map(product => <Product key={product._id} product={product} />)
             }

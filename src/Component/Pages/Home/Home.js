@@ -45,25 +45,25 @@ const Home = () => {
             {/* product */}
             <div className="mt-10">
                 <h3 className={SectionHeader}>Our Leatest Products</h3>
-                <div className="grid grid-cols-4 gap-4 m-5">
+                <div className="md:grid grid-cols-4 gap-4 md:m-5">
                     {
                         products.map(product => <Product key={product._id} product={product} />)
                     }
                 </div>
             </div>
             {/* reviews */}
-            <div className="my-16 px-5">
+            <div className="my-16 md:px-5">
                 <h3 className={SectionHeader}>Our Customer Reviews</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="md:grid grid-cols-3 gap-4">
                     {
                         reviews.map(review => <Reviews key={review._id} review={review} />)
                     }
                 </div>
             </div>
             {/* news */}
-            <div className="my-16 px-5">
+            <div className="my-16 md:px-5">
                 <h3 className={SectionHeader}>Leatest News</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="md:grid grid-cols-3 gap-4">
                     {
                         news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
                     }

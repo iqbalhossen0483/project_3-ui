@@ -7,7 +7,7 @@ const Desboard = () => {
     const { link, button } = useTailwind();
     const { isAdmin, lognOut } = useAuth();
     return (
-        <div className="grid grid-cols-6">
+        <div className="md:grid grid-cols-6">
             <div className="bg-white flex flex-col">
                 {
                     isAdmin && <>

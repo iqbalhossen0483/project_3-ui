@@ -34,7 +34,7 @@ const MyOrder = () => {
     return (
         <div>
             {orders.length ? <>
-                <div className="mx-5 bg-white my-10 text-center rounded-md">
+                <div className="mx-3 md:mx-5 bg-white my-10 text-center rounded-md">
                     <div className="grid grid-cols-4 gap-3 border-b py-3">
                         <p>Product Id</p>
                         <p>Images</p>

@@ -39,7 +39,7 @@ const AddReviews = () => {
             })
     }
     return (
-        <div>
+        <div className="mx-3 md:mx-0">
             <form className={form} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={formHeader}>Your valuable comment</h3>
                 <input className={input} disabled {...register("name", { required: true })} placeholder="Enter the name" />

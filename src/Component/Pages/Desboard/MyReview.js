@@ -17,7 +17,7 @@ const MyReview = () => {
     return (
         <div>
             {reviews.length ?
-                <div className="grid grid-cols-3 gap-4 m-10">
+                <div className="md:grid grid-cols-3 gap-4 md:m-10">
                     {
                         reviews.map(review => <Rviews review={review} />)
                     }

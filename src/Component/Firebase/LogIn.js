@@ -35,7 +35,7 @@ const LogIn = () => {
             })
     }
     return (
-        <div>
+        <div className="m-3 md:m-3">
             <form className={form} onSubmit={handleSubmit(onSubmit)}>
                 <input className={input} type="email" {...register("email", { required: true })} placeholder="Enter your email" />
                 <input className={input} type="password" {...register("password", { required: true })} placeholder="Give the password" />

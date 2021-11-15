@@ -10,7 +10,7 @@ const Product = (props) => {
             <img style={{ borderRadius: "5px" }} src={img} alt="" />
             <p className="text-2xl text-center font-semibold mb-2">{name}</p>
             <p className="text-justify px-3">{description.slice(0, 150)}</p>
-            <div className="flex justify-center my-3">
+            <div className="flex justify-center mt-3">
                 <Link to={`/place-order/${_id}`}>
                     <button className={button}>Buy now</button>
                 </Link>

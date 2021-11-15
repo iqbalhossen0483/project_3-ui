@@ -6,7 +6,7 @@ import useTailwind from '../TailwindCss/useTailwind';
 const Header = () => {
     const { link } = useTailwind();
     const { user, lognOut } = useAuth();
-    const style = "flex justify-between bg-green-400 py-4 px-8";
+    const style = "md:flex justify-between bg-green-400 py-4 px-8";
     return (
         <div className={style}>
             <div className="flex items-center">
