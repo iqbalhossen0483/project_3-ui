@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import useTailwind from '../../TailwindCss/useTailwind';
@@ -12,7 +12,7 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
         fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
-    }, [id]);
+    }, [id, setProduct]);
 
     const onSubmit = newProduct => {
         newProduct.id = product._id;

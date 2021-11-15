@@ -8,7 +8,6 @@ const News = () => {
             .then(res => res.json())
             .then(data => setNews(data))
     }, [])
-    console.log(news)
     return (
         <div className="my-16 md:px-5">
             <div className="md:grid grid-cols-3 gap-4">
