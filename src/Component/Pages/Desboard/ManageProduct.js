@@ -10,7 +10,7 @@ const ManageProduct = () => {
     const { button } = useTailwind();
     // get data 
     useEffect(() => {
-        fetch("http://localhost:5000/products")
+        fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [singleProduct]);
@@ -18,7 +18,7 @@ const ManageProduct = () => {
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
         if (confirm) {
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://cycle-mart.herokuapp.com/products/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

@@ -12,18 +12,18 @@ const Home = () => {
     const { bannerHeader, button, SectionHeader } = useTailwind();
 
     useEffect(() => {
-        fetch("http://localhost:5000/products/home")
+        fetch("https://cycle-mart.herokuapp.com/products/home")
             .then(res => res.json())
             .then(data => setProduct(data))
     }, []);
 
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
+        fetch("https://cycle-mart.herokuapp.com/reviews")
             .then(res => res.json())
             .then(data => setReviews(data))
     }, []);
     useEffect(() => {
-        fetch("http://localhost:5000/news")
+        fetch("https://cycle-mart.herokuapp.com/news")
             .then(res => res.json())
             .then(data => setNews(data))
     }, [])

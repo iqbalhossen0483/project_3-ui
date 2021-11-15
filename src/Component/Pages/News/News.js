@@ -4,7 +4,7 @@ import SingleNews from './singleNews';
 const News = () => {
     const [news, setNews] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/news")
+        fetch("https://cycle-mart.herokuapp.com/news")
             .then(res => res.json())
             .then(data => setNews(data))
     }, [])

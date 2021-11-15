@@ -7,7 +7,7 @@ const Profile = () => {
     const [customer, setCustomer] = useState({});
     const { button } = useTailwind();
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://cycle-mart.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setCustomer(data))
     }, [user.email]);

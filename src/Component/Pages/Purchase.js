@@ -24,7 +24,7 @@ const Purchase = () => {
         order.img = product.img;
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
-        fetch("http://localhost:5000/orders", {
+        fetch("https://cycle-mart.herokuapp.com/orders", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -40,7 +40,7 @@ const Purchase = () => {
             })
     }
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id]);

@@ -5,7 +5,7 @@ const AddProduct = () => {
     const { button, formHeader, form, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = product => {
-        fetch("http://localhost:5000/products", {
+        fetch("https://cycle-mart.herokuapp.com/products", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

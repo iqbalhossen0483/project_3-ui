@@ -9,7 +9,7 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
     const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id]);
@@ -20,7 +20,7 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
         newProduct.name = newProduct.name || product.name;
         newProduct.price = newProduct.price || product.price;
         newProduct.stock = newProduct.stock || product.stock;
-        fetch("http://localhost:5000/products", {
+        fetch("https://cycle-mart.herokuapp.com/products", {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

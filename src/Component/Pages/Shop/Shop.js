@@ -4,7 +4,7 @@ import Product from '../../ShareComponent/Product';
 const Shop = () => {
     const [products, setProduct] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/products")
+        fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
             .then(data => setProduct(data))
     }, []);

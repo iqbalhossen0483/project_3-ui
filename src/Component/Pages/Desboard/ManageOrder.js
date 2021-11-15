@@ -5,7 +5,7 @@ const ManageOrder = () => {
     const [orders, setOrder] = useState([]);
     const { button } = useTailwind();
     useEffect(() => {
-        fetch("http://localhost:5000/orders")
+        fetch("https://cycle-mart.herokuapp.com/orders")
             .then(res => res.json())
             .then(data => setOrder(data))
     }, []);
@@ -14,7 +14,7 @@ const ManageOrder = () => {
             status: "Approved",
             id: id
         }
-        fetch(`http://localhost:5000/orders`, {
+        fetch(`https://cycle-mart.herokuapp.com/orders`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -31,7 +31,7 @@ const ManageOrder = () => {
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
         if (confirm) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://cycle-mart.herokuapp.com/orders/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

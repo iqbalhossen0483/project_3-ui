@@ -7,7 +7,7 @@ const MyOrder = () => {
     const { user } = useAuth();
     const { button } = useTailwind();
     useEffect(() => {
-        fetch("http://localhost:5000/orders")
+        fetch("https://cycle-mart.herokuapp.com/orders")
             .then(res => res.json())
             .then(data => {
                 const find = data.filter(order => order.email === user.email);
@@ -18,7 +18,7 @@ const MyOrder = () => {
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
         if (confirm) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://cycle-mart.herokuapp.com/orders/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

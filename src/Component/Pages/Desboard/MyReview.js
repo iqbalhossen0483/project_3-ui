@@ -7,7 +7,7 @@ const MyReview = () => {
     const [reviews, setReview] = useState([]);
     const { user } = useAuth();
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
+        fetch("https://cycle-mart.herokuapp.com/reviews")
             .then(res => res.json())
             .then(data => {
                 const find = data.filter(review => review.email === user.email);

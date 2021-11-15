@@ -8,7 +8,7 @@ const AddNews = () => {
     const onSubmit = news => {
         const date = new Date().toLocaleDateString("en-US")
         news.date = date;
-        fetch("http://localhost:5000/news", {
+        fetch("https://cycle-mart.herokuapp.com/news", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

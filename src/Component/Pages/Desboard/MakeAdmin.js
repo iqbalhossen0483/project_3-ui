@@ -6,7 +6,7 @@ const MakeAdmin = () => {
     const { button, formHeader, form, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = email => {
-        fetch("http://localhost:5000/admin", {
+        fetch("https://cycle-mart.herokuapp.com/admin", {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

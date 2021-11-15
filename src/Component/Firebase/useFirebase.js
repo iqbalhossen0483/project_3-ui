@@ -61,7 +61,7 @@ const useFirebase = () => {
             displayName: name,
             email: email
         }
-        fetch("http://localhost:5000/users", {
+        fetch("https://cycle-mart.herokuapp.com/users", {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -73,7 +73,7 @@ const useFirebase = () => {
     };
     // chect user 
     const checkUser = (email) => {
-        fetch(`http://localhost:5000/users/${email}`)
+        fetch(`https://cycle-mart.herokuapp.com/users/${email}`)
             .then(res => res.json())
             .then(data => {
                 if (data?.roll === "admin") {
