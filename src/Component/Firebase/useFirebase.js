@@ -1,0 +1,100 @@
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth"
+import { useEffect, useState } from "react";
+import Authentication from "./Authentication";
+
+const useFirebase = () => {
+    Authentication();
+    const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const googleProvider = new GoogleAuthProvider();
+    const auth = getAuth();
+
+    //google log in
+    const logInWithGoogle = () => {
+        return signInWithPopup(auth, googleProvider)
+    }
+    //observe user
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+                checkUser(user.email);
+                console.log(isAdmin);
+            }
+            else {
+                setUser({});;
+            }
+            setIsLoading(false)
+        })
+    }, [auth, isAdmin]);
+
+
+    //email pass
+    const singUPWithEmail = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+    const userName = (name) => {
+        updateProfile(auth.currentUser, {
+            displayName: name
+        })
+    }
+    //log in
+    const logInWithEmail = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    //sign out
+    const lognOut = () => {
+        signOut(auth)
+            .then(result => {
+
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    };
+
+    //create user to database
+    const makeUser = (name, email) => {
+        const userIfo = {
+            displayName: name,
+            email: email
+        }
+        fetch("http://localhost:5000/users", {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(userIfo)
+        })
+            .then(res => res.json())
+            .then(data => { })
+    };
+    // chect user 
+    const checkUser = (email) => {
+        fetch(`http://localhost:5000/users/${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data?.roll === "admin") {
+                    return setIsAdmin(true)
+                }
+                else {
+                    return setIsAdmin(false)
+                }
+            })
+    }
+    return {
+        logInWithGoogle,
+        user,
+        lognOut,
+        singUPWithEmail,
+        userName,
+        logInWithEmail,
+        isLoading,
+        makeUser,
+        isAdmin
+    }
+};
+
+export default useFirebase;
