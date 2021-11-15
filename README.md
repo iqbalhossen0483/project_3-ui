@@ -1,10 +1,14 @@
-# Getting Started with Create React App
+# Cycle Mart
+Demo https://cycle-mart-3ff64.web.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview 
 
-## Available Scripts
-
-In the project directory, you can run:
+* I named this site is Cycle mart
+* It is created by react, react router, node js etc
+* It is responsive for mobile divice I will make responsive for all later
+* I used here react hook form for better performance
+* I organized this site as per as i could
+* I will update it later
 
 ### `yarn start`
 
