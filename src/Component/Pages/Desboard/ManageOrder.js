@@ -47,9 +47,9 @@ const ManageOrder = () => {
     return (
         <div className="mx-5 bg-white my-10 text-center rounded-md">
             <div className="grid grid-cols-4 gap-3 border-b py-3">
-                <p>Product Id</p>
-                <p>Images</p>
-                <p>Details</p>
+                <p>Product details</p>
+                <p>Product images</p>
+                <p>Customer details</p>
                 <p></p>
             </div>
             <div>
@@ -57,18 +57,21 @@ const ManageOrder = () => {
                     orders.map(order => <div
                         key={order._id}
                         className="grid grid-cols-4 gap-3 border-b py-3 items-center">
-                        <p>{order.productId}</p>
+                        <div>
+                            <p>ID: {order.productId}</p>
+                            <p>Price: {order.price}</p>
+                        </div>
                         <img className="w-full h-32" src={order.img} alt="" />
                         <p>{`${order.name},
                         ${order.email}, 
                         ${order.division}, 
-                        ${order.distric}, 
+                        ${order.district}, 
                         ${order.ps}, 
                         ${order.road}, 
                         ${order.date}`}</p>
                         <div>
                             <button onClick={() => handleDelete(order._id)} className={button}>Delete</button>
-                            <button onClick={() => { handleApprove(order._id) }} className={button}>Appreve</button>
+                            <button onClick={() => { handleApprove(order._id) }} className={button}>Approve</button>
                             <p className="text-green-500 mr-2">
                                 {order.status}
                             </p>

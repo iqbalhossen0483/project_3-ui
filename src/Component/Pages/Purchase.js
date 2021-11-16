@@ -22,6 +22,7 @@ const Purchase = () => {
     const onSubmit = order => {
         order.productId = product._id;
         order.img = product.img;
+        order.price = product.price;
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
         fetch("https://cycle-mart.herokuapp.com/orders", {
