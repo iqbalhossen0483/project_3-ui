@@ -13,23 +13,6 @@ const MyOrder = () => {
                 setOrder(find);
             })
     }, [user.email]);
-
-    const handleDelete = (id) => {
-        const confirm = window.confirm("Are you sure to delete");
-        if (confirm) {
-            fetch(`https://cycle-mart.herokuapp.com/orders/${id}`, {
-                method: "DELETE"
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        alert("Order delete successfully");
-                        const remain = orders.filter(order => order._id !== id);
-                        setOrder(remain);
-                    }
-                })
-        }
-    }
     return (
         <div>
             {orders.length ? <>
@@ -42,7 +25,7 @@ const MyOrder = () => {
                     </div>
                     <div>
                         {
-                            orders.map(order => <Orders key={order._id} order={order} handleDelete={handleDelete} />)
+                            orders.map(order => <Orders key={order._id} order={order} />)
                         }
                     </div>
                 </div>

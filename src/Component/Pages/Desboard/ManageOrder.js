@@ -37,22 +37,7 @@ const ManageOrder = () => {
                 }
             })
     }
-    const handleDelete = (id) => {
-        const confirm = window.confirm("Are you sure to delete");
-        if (confirm) {
-            fetch(`https://cycle-mart.herokuapp.com/orders/${id}`, {
-                method: "DELETE"
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        alert("Order delete successfully");
-                        const remain = orders.filter(order => order._id !== id);
-                        setOrder(remain);
-                    }
-                })
-        }
-    }
+
     return (
         <div className="mx-5 bg-white my-10 text-center rounded-md">
             <div className="grid grid-cols-4 gap-3 border-b py-3">
@@ -63,7 +48,7 @@ const ManageOrder = () => {
             </div>
             <div>
                 {
-                    orders.map(order => <Orders key={order._id} order={order} handleDelete={handleDelete} >
+                    orders.map(order => <Orders key={order._id} order={order} orders={orders} setOrder={setOrder}>
                         <button onClick={() => { handleApprove(order._id) }} className={button}>Approve</button>
                     </Orders>)
                 }

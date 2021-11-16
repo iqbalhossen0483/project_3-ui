@@ -20,7 +20,6 @@ const useFirebase = () => {
             if (user) {
                 setUser(user);
                 checkUser(user.email);
-                console.log(isAdmin);
             }
             else {
                 setUser({});;
@@ -76,11 +75,14 @@ const useFirebase = () => {
         fetch(`https://cycle-mart.herokuapp.com/users/${email}`)
             .then(res => res.json())
             .then(data => {
+                setIsLoading(true);
                 if (data?.roll === "admin") {
-                    return setIsAdmin(true)
+                    setIsAdmin(true);
+                    setIsLoading(false);
                 }
                 else {
-                    return setIsAdmin(false)
+                    setIsAdmin(false);
+                    setIsLoading(false);
                 }
             })
     }
