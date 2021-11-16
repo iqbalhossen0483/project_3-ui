@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../Hook/useAuth';
-import useTailwind from '../../TailwindCss/useTailwind';
+import Orders from './Orders';
 
 const MyOrder = () => {
     const [orders, setOrder] = useState([]);
     const { user } = useAuth();
-    const { button } = useTailwind();
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/orders")
             .then(res => res.json())
@@ -43,29 +42,7 @@ const MyOrder = () => {
                     </div>
                     <div>
                         {
-                            orders.map(order => <div
-                                key={order._id}
-                                className="grid grid-cols-4 gap-3 border-b py-3 items-center">
-                                <div>
-                                    <p>ID: {order.productId}</p>
-                                    <p>Price: {order.price}</p>
-                                </div>
-                                <img className="w-full h-32" src={order.img} alt="" />
-                                <p>{`${order.name},
-                                    ${order.email}, 
-                                    ${order.division}, 
-                                    ${order.district}, 
-                                    ${order.ps}, 
-                                    ${order.road}, 
-                                    ${order.date}`}
-                                </p>
-                                <div>
-                                    <button onClick={() => handleDelete(order._id)} className={button}>Delete</button>
-                                    <p className="text-green-500 mr-2">
-                                        {order.status}
-                                    </p>
-                                </div>
-                            </div>)
+                            orders.map(order => <Orders key={order._id} order={order} handleDelete={handleDelete} />)
                         }
                     </div>
                 </div>
