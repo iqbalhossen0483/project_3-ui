@@ -59,7 +59,7 @@ const useFirebase = () => {
         const userIfo = {
             displayName: name,
             email: email
-        }
+        };
         fetch("https://cycle-mart.herokuapp.com/users", {
             method: "PUT",
             headers: {
