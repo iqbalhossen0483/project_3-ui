@@ -16,7 +16,7 @@ const Product = (props) => {
             } else {
                 cart = [...addedProduct, id]
             }
-            fetch(`http://localhost:5000/users/carts/${user.email}`, {
+            fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json"
