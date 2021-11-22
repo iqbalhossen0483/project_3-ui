@@ -8,7 +8,7 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
     const [addedProduct, setAddedProduct] = useState([]);
-    const [products, setProduct] = useState([]);
+    const [showCart, setShowCart] = useState(false);
     const [hideUserInfo, setHideUserInfo] = useState(false);
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -108,8 +108,8 @@ const useFirebase = () => {
         setHideUserInfo,
         addedProduct,
         setAddedProduct,
-        products,
-        setProduct
+        showCart,
+        setShowCart
     }
 };
 

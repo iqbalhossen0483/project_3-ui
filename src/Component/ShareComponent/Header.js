@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
+import CartProduct from './CartProduct';
 import UserInfo from './UserInfo';
 
 const Header = () => {
     const { link } = useTailwind();
-    const { user, hideUserInfo, setHideUserInfo, addedProduct } = useAuth();
+    const { user, hideUserInfo, setHideUserInfo, addedProduct, showCart, setShowCart } = useAuth();
     const style = "md:flex justify-between bg-green-400 py-4 px-8 relative";
     const toggleShow = () => {
         if (hideUserInfo) {
@@ -27,7 +28,13 @@ const Header = () => {
                 <NavLink className={link} to='/my-account'>My-Account</NavLink>
                 {
                     user.email && <div className="text-xl mx-2">
-                        <i className="fas fa-shopping-cart"></i><span className="text-purple-900 font-semibold ml-1">{addedProduct?.length}</span>
+                        <i
+                            onMouseEnter={() => { setShowCart(true) }}
+                            className="fas fa-shopping-cart">
+                        </i>
+                        <span
+                            className="text-purple-900 font-semibold ml-1">{addedProduct?.length}
+                        </span>
                     </div>
                 }
                 {
@@ -43,6 +50,7 @@ const Header = () => {
             </div>
             {/* user info  */}
             {hideUserInfo && <UserInfo />}
+            {showCart && <CartProduct />}
         </div>
     );
 };
