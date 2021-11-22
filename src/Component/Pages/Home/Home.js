@@ -10,6 +10,7 @@ const Home = () => {
     const [reviews, setReviews] = useState([]);
     const [news, setNews] = useState([]);
     const [products, setProduct] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { bannerHeader, button, SectionHeader } = useTailwind();
     const { setHideUserInfo } = useAuth();
 
@@ -27,8 +28,17 @@ const Home = () => {
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/news")
             .then(res => res.json())
-            .then(data => setNews(data))
-    }, [])
+            .then(data => {
+                setNews(data);
+                setIsLoading(false)
+            })
+    }, []);
+
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
+    }
     return (
         <div onClick={() => { setHideUserInfo(false) }}>
             {/* banner */}

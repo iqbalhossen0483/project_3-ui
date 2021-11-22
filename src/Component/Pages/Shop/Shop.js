@@ -2,12 +2,22 @@ import React, { useEffect, useState } from 'react';
 import Product from '../../ShareComponent/Product';
 
 const Shop = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const [products, setProduct] = useState([]);
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
-            .then(data => setProduct(data))
+            .then(data => {
+                setProduct(data);
+                setIsLoading(false);
+            })
     }, []);
+
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
+    }
     return (
         <div className="md:grid grid-cols-4 gap-5 md:px-5 my-10">
             {

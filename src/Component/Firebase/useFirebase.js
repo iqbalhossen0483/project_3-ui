@@ -71,7 +71,7 @@ const useFirebase = () => {
             .then(res => res.json())
             .then(data => { })
     };
-    // chect user 
+    // chect user is admin
     const checkUser = (email) => {
         fetch(`https://cycle-mart.herokuapp.com/users/${email}`)
             .then(res => res.json())
