@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import useAuth from '../../Hook/useAuth';
 import Product from '../../ShareComponent/Product';
 
 const Shop = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [products, setProduct] = useState([]);
+    const { products, setProduct } = useAuth();
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())

@@ -7,9 +7,48 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [addedProduct, setAddedProduct] = useState([]);
+    const [products, setProduct] = useState([]);
     const [hideUserInfo, setHideUserInfo] = useState(false);
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
+
+
+    //create user to database
+    const makeUser = (name, email) => {
+        const userInfo = {
+            displayName: name,
+            email: email
+        };
+        fetch("https://cycle-mart.herokuapp.com/users", {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => { })
+    };
+    // chect user is admin
+    const checkUser = (email) => {
+        fetch(`https://cycle-mart.herokuapp.com/users/${email}`)
+            .then(res => res.json())
+            .then(data => {
+                setIsLoading(true);
+                if (data.cart) {
+                    setAddedProduct(data.cart);
+                }
+                if (data?.roll === "admin") {
+                    setIsAdmin(true);
+                    setIsLoading(false);
+                }
+                else {
+                    setIsAdmin(false);
+                    setIsLoading(false);
+                }
+            })
+    }
 
     //google log in
     const logInWithGoogle = () => {
@@ -55,38 +94,6 @@ const useFirebase = () => {
             })
     };
 
-    //create user to database
-    const makeUser = (name, email) => {
-        const userIfo = {
-            displayName: name,
-            email: email
-        };
-        fetch("https://cycle-mart.herokuapp.com/users", {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(userIfo)
-        })
-            .then(res => res.json())
-            .then(data => { })
-    };
-    // chect user is admin
-    const checkUser = (email) => {
-        fetch(`https://cycle-mart.herokuapp.com/users/${email}`)
-            .then(res => res.json())
-            .then(data => {
-                setIsLoading(true);
-                if (data?.roll === "admin") {
-                    setIsAdmin(true);
-                    setIsLoading(false);
-                }
-                else {
-                    setIsAdmin(false);
-                    setIsLoading(false);
-                }
-            })
-    }
     return {
         logInWithGoogle,
         user,
@@ -98,7 +105,11 @@ const useFirebase = () => {
         makeUser,
         isAdmin,
         hideUserInfo,
-        setHideUserInfo
+        setHideUserInfo,
+        addedProduct,
+        setAddedProduct,
+        products,
+        setProduct
     }
 };
 

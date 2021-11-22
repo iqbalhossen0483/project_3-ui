@@ -6,7 +6,7 @@ import UserInfo from './UserInfo';
 
 const Header = () => {
     const { link } = useTailwind();
-    const { user, hideUserInfo, setHideUserInfo } = useAuth();
+    const { user, hideUserInfo, setHideUserInfo, addedProduct } = useAuth();
     const style = "md:flex justify-between bg-green-400 py-4 px-8 relative";
     const toggleShow = () => {
         if (hideUserInfo) {
@@ -15,7 +15,7 @@ const Header = () => {
         else {
             setHideUserInfo(true)
         }
-    }
+    };
     return (
         <div className={style}>
             <div className="flex items-center">
@@ -25,6 +25,11 @@ const Header = () => {
             </div>
             <div className="flex items-center">
                 <NavLink className={link} to='/my-account'>My-Account</NavLink>
+                {
+                    user.email && <div className="text-xl mx-2">
+                        <i className="fas fa-shopping-cart"></i><span className="text-purple-900 font-semibold ml-1">{addedProduct?.length}</span>
+                    </div>
+                }
                 {
                     user.email && user.photoURL && <img onClick={toggleShow} className="w-12 h-12 rounded-full ml-2" src={user.photoURL} alt="" />
                 }
