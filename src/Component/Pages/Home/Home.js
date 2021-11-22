@@ -4,12 +4,14 @@ import Reviews from "./Rviews"
 import useTailwind from '../../TailwindCss/useTailwind';
 import SingleNews from "../News/singleNews";
 import { Link } from 'react-router-dom';
+import useAuth from '../../Hook/useAuth';
 
 const Home = () => {
     const [reviews, setReviews] = useState([]);
     const [news, setNews] = useState([]);
     const [products, setProduct] = useState([]);
     const { bannerHeader, button, SectionHeader } = useTailwind();
+    const { setHideUserInfo } = useAuth();
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products/home")
@@ -28,7 +30,7 @@ const Home = () => {
             .then(data => setNews(data))
     }, [])
     return (
-        <div>
+        <div onClick={() => { setHideUserInfo(false) }}>
             {/* banner */}
             <div className="md:grid grid-cols-2 gap-3 bg-white items-center text-justify px-10">
                 <img src="https://i.ibb.co/3F4TnWF/Product9-88890957-e050-4cda-bba4-0cdc7c737fef.jpg" alt="" />

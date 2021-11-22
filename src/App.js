@@ -24,6 +24,7 @@ import Shop from './Component/Pages/Shop/Shop';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import Footer from './Component/ShareComponent/Footer/Footer';
 import Header from './Component/ShareComponent/Header';
+import MyAccount from './Component/user/MyAccount';
 
 function App() {
   return (
@@ -35,14 +36,16 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/news" element={<News />} />
-          <Route path="/desboard" element={<PrivateRoute element={<Desboard />} />}>
-            <Route path="add-product" element={<CheckAdmin element={<AddProduct />} />} />
-            <Route path="add-review" element={<AddReviews />} />
-            <Route path="add-news" element={<CheckAdmin element={<AddNews />} />} />
-            <Route path="payment" element={<Payment />} />
+          <Route path="/my-account" element={<PrivateRoute element={<MyAccount />} />}>
             <Route path="profile" element={<Profile />} />
             <Route path="my-order" element={<MyOrder />} />
             <Route path="my-review" element={<MyReview />} />
+            <Route path="add-review" element={<AddReviews />} />
+            <Route path="payment" element={<Payment />} />
+          </Route>
+          <Route path="/desboard" element={<PrivateRoute element={<Desboard />} />}>
+            <Route path="add-product" element={<CheckAdmin element={<AddProduct />} />} />
+            <Route path="add-news" element={<CheckAdmin element={<AddNews />} />} />
             <Route path="manage-order" element={<CheckAdmin element={<ManageOrder />} />} />
             <Route path="make-admin" element={<CheckAdmin element={<MakeAdmin />} />} />
             <Route path="manage-product" element={<CheckAdmin element={<ManageProduct />} />}>

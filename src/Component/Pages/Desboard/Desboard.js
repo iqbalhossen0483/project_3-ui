@@ -18,11 +18,6 @@ const Desboard = () => {
                         <NavLink className={link} to='make-admin'>Make-Admin</NavLink>
                     </>
                 }
-                <NavLink className={link} to='profile'>My-Profile</NavLink>
-                <NavLink className={link} to='my-order'>My-Order</NavLink>
-                <NavLink className={link} to='my-review'>My-Review</NavLink>
-                <NavLink className={link} to='add-review'>Add-Review</NavLink>
-                <NavLink className={link} to='payment'>Payment-Method</NavLink>
                 <div className="px-2 my-3">
                     <button onClick={lognOut} className={button}>Log-Out</button>
                 </div>

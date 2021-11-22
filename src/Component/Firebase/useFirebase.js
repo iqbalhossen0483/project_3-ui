@@ -7,6 +7,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [hideUserInfo, setHideUserInfo] = useState(false);
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
 
@@ -47,7 +48,7 @@ const useFirebase = () => {
     const lognOut = () => {
         signOut(auth)
             .then(result => {
-
+                setHideUserInfo(false);
             })
             .catch(err => {
                 console.log(err.message)
@@ -95,7 +96,9 @@ const useFirebase = () => {
         logInWithEmail,
         isLoading,
         makeUser,
-        isAdmin
+        isAdmin,
+        hideUserInfo,
+        setHideUserInfo
     }
 };
 
