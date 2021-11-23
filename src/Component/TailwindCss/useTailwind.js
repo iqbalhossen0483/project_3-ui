@@ -1,5 +1,5 @@
 const useTailwind = () => {
-    const link = "text-xl ml-2 hover:underline";
+    const link = "text-xl ml-4 hover:text-white active:text-white";
     const bannerHeader = "text-3xl md:text-4xl font-semibold text-center my-5 text-green-400";
     const SectionHeader = "text-3xl md:text-5xl font-bold text-center my-5";
     const button = "border rounded-md py-1 mb-3 px-3 text-xl bg-green-500";

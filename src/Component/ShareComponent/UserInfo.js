@@ -18,14 +18,14 @@ const UserInfo = () => {
                 {
                     isAdmin && <NavLink
                         onClick={() => { setHideUserInfo(false) }}
-                        className={button} to='/desboard'>
+                        className="button" to='/desboard'>
                         Desboard
                     </NavLink>
                 }
                 {
                     !isAdmin && <NavLink
                         onClick={() => { setHideUserInfo(false) }}
-                        className={button} to="/my-account/my-order">
+                        className="button" to="/my-account/my-order">
                         Your-Profile
                     </NavLink>
                 }

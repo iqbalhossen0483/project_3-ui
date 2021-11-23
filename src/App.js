@@ -16,6 +16,7 @@ import MyReview from './Component/Pages/Desboard/MyReview';
 import Payment from './Component/Pages/Desboard/Payment';
 import Profile from './Component/Pages/Desboard/Profile';
 import UpdateProduct from './Component/Pages/Desboard/UpdateProduct';
+import ViewCart from './Component/Pages/Desboard/ViewCart';
 import Home from './Component/Pages/Home/Home';
 import News from './Component/Pages/News/News';
 import NotFound from './Component/Pages/NotFound';
@@ -42,8 +43,9 @@ function App() {
             <Route path="my-review" element={<MyReview />} />
             <Route path="add-review" element={<AddReviews />} />
             <Route path="payment" element={<Payment />} />
+            <Route path="view-cart" element={<ViewCart />} />
           </Route>
-          <Route path="/desboard" element={<PrivateRoute element={<Desboard />} />}>
+          <Route path="/desboard" element={<CheckAdmin element={<Desboard />} />}>
             <Route path="add-product" element={<CheckAdmin element={<AddProduct />} />} />
             <Route path="add-news" element={<CheckAdmin element={<AddNews />} />} />
             <Route path="manage-order" element={<CheckAdmin element={<ManageOrder />} />} />

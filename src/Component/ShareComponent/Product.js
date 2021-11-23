@@ -42,9 +42,9 @@ const Product = (props) => {
             <p className="text-2xl ml-4 text-green-500 font-semibold mt-3">
                 Price: {price} BDT</p>
             <div className="flex justify-evenly mt-3">
-                <button onClick={() => { handleCart(_id) }} className={button}>Add to cart</button>
+                <button onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
                 <Link to={`/place-order/${_id}`}>
-                    <button className={button}>Buy now</button>
+                    <button className="button">Buy now</button>
                 </Link>
             </div>
         </div>

@@ -49,7 +49,7 @@ const Home = () => {
                     <p className="text-xl ">Believe in your cycle, It will lead your way. The best rides heppen on two wheels. Ride it like a pro it's not just a riding. It's a feeling. Ride and live today </p>
                     <div className="flex justify-center mt-5">
                         <Link to="/shop">
-                            <button className={button}>See all products</button>
+                            <button className="button">See all products</button>
                         </Link>
                     </div>
                 </div>

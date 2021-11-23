@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
@@ -8,7 +8,7 @@ import UserInfo from './UserInfo';
 const Header = () => {
     const { link } = useTailwind();
     const { user, hideUserInfo, setHideUserInfo, addedProduct, showCart, setShowCart } = useAuth();
-    const style = "md:flex justify-between bg-green-400 py-4 px-8 relative";
+    const style = "md:flex justify-between bg-green-400 py-4 px-8 relative sticky top-0";
     const toggleShow = () => {
         if (hideUserInfo) {
             setHideUserInfo(false)
