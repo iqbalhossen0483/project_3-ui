@@ -8,12 +8,10 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
     const [addedProduct, setAddedProduct] = useState([]);
-    const [cartProducts, setCartProducts] = useState([]);
     const [showCart, setShowCart] = useState(false);
     const [hideUserInfo, setHideUserInfo] = useState(false);
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
-
 
     //create user to database
     const makeUser = (name, email) => {
@@ -111,8 +109,6 @@ const useFirebase = () => {
         setAddedProduct,
         showCart,
         setShowCart,
-        cartProducts,
-        setCartProducts
     }
 };
 

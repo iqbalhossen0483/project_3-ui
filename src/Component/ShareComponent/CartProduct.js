@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
-import useTailwind from '../TailwindCss/useTailwind';
 
 const CartProduct = () => {
-    const { addedProduct, setShowCart, cartProducts, setCartProducts } = useAuth();
-    const [products, setProduct] = useState([])
-    const { button } = useTailwind();
+    const [products, setProduct] = useState([]);
+    const [cartProducts, setCartProducts] = useState([]);
+    const { setShowCart, addedProduct } = useAuth();
+
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
@@ -21,13 +21,12 @@ const CartProduct = () => {
         }
         setCartProducts(newCartProducts);
     }, [addedProduct, products]);
-
     return (
         <div
             onMouseEnter={() => setShowCart(true)}
             onMouseLeave={() => setShowCart(false)}
             className="absolute top-full right-5 bg-white shadow-md z-20">
-            {products &&
+            {cartProducts &&
                 cartProducts.map(product => <div
                     key={product?._id}
                     className="grid grid-cols-2 items-center text-center">

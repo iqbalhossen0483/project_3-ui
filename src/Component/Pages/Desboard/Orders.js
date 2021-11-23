@@ -27,7 +27,7 @@ const Orders = ({ order, children, orders, setOrder }) => {
                 <p>ID: {productId}</p>
                 <p>Price: {price}</p>
             </div>
-            <img className="w-full h-32" src={img} alt="" />
+            <img className="w-full h-32 object-cover" src={img} alt="" />
             <p>{`${name},
                         ${email}, 
                         ${division}, 
