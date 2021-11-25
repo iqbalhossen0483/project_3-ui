@@ -5,6 +5,7 @@ const ViewCart = () => {
     const [products, setProduct] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
     const [quantity, setQuantity] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
     const { addedProduct, setAddedProduct, user } = useAuth();
 
     useEffect(() => {
@@ -16,12 +17,15 @@ const ViewCart = () => {
     }, []);
 
     useEffect(() => {
-        const newCartProducts = [];
-        for (const id of addedProduct) {
-            const findCartProduct = products.find(product => product._id === id);
-            newCartProducts.push(findCartProduct);
+        if (products.length) {
+            const newCartProducts = [];
+            for (const id of addedProduct) {
+                const findCartProduct = products.find(product => product._id === id);
+                newCartProducts.push(findCartProduct);
+            }
+            setCartProducts(newCartProducts);
+            setIsLoading(false);
         }
-        setCartProducts(newCartProducts);
     }, [addedProduct, products,])
 
     const handleMinus = () => {
@@ -32,49 +36,66 @@ const ViewCart = () => {
 
     const handleDelete = (id) => {
         const remain = addedProduct.filter(_id => _id !== id);
-        setAddedProduct(remain);
         const remainCartProduct = cartProducts.filter(product => product._id !== id);
-        setCartProducts(remainCartProduct);
 
         fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(addedProduct)
+            body: JSON.stringify(remain)
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    setAddedProduct(addedProduct);
+                    setAddedProduct(remain);
+                    setCartProducts(remainCartProduct);
                 }
             })
+    }
+    let totalPrice = 0;
+
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
     }
     return (
         <div className="m-5 bg-white rounded">
             {cartProducts &&
-                cartProducts.map(product => <div
-                    key={product?._id}
-                    className="p-3 grid grid-cols-4 justify-center items-center text-center">
-                    <img src={product?.img} alt="" />
-                    <p>{product?.name}</p>
-                    <p>{product?.price}</p>
-                    <div className="flex justify-evenly">
-                        <div className="flex items-center">
+                cartProducts.map(product => {
+                    totalPrice += parseInt(product.price);
+                    return <div
+                        key={product._id}
+                        className="p-3 grid grid-cols-4 justify-center items-center text-center">
+                        <img src={product.img} alt="" />
+                        <p>{product.name}</p>
+                        <p>{product.price}</p>
+                        <div className="flex justify-evenly">
+                            <div className="flex items-center">
+                                <button
+                                    onClick={handleMinus} className="button">-
+                                </button>
+                                <span>1</span>
+                                <button
+                                    onClick={() => { setQuantity(quantity + 1) }} className="button">+
+                                </button>
+                            </div>
                             <button
-                                onClick={handleMinus} className="button">-
-                            </button>
-                            <span>1</span>
-                            <button
-                                onClick={() => { setQuantity(quantity + 1) }} className="button">+
-                            </button>
+                                onClick={() => { handleDelete(product._id) }}
+                                className="button">Delete</button>
                         </div>
-                        <button
-                            onClick={() => { handleDelete(product._id) }}
-                            className="button">Delete</button>
+                        <hr className="col-span-4" />
                     </div>
-                    <hr className="col-span-4" />
-                </div>)
+                })
+            }
+            {cartProducts &&
+                <div className="grid grid-cols-4 text-center">
+                    <p></p>
+                    <p></p>
+                    <p className="py-3">Total: {totalPrice}</p>
+                    <p></p>
+                </div>
             }
         </div>
     );
