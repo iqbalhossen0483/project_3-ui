@@ -34,7 +34,7 @@ const ManageProduct = () => {
     }
     return (
         <div className="mx-5 bg-white my-10 text-center rounded-md relative">
-            <div className="grid grid-cols-5 gap-3 border-b py-3">
+            <div className="grid grid-cols-5 gap-3 border-b py-3 z-0">
                 <p>Images</p>
                 <p>Name</p>
                 <p>Price</p>

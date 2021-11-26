@@ -8,7 +8,7 @@ import UserInfo from './UserInfo';
 const Header = () => {
     const { link } = useTailwind();
     const { user, hideUserInfo, setHideUserInfo, addedProduct, showCart, setShowCart } = useAuth();
-    const style = "md:flex justify-between bg-green-400 py-4 px-8 relative sticky top-0";
+    const style = "md:flex justify-between bg-green-400 py-4 px-8 relative sticky top-0 z-10";
     const toggleShow = () => {
         if (hideUserInfo) {
             setHideUserInfo(false)
