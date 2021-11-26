@@ -1,37 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
 
 const Product = (props) => {
-    const { img, name, description, _id, price } = props.product;
-    const { product, button } = useTailwind();
+    const { product } = useTailwind();
+    const navigate = useNavigate();
     const { addedProduct, setAddedProduct, user } = useAuth();
+    const { img, name, description, _id, price } = props.product;
     const handleCart = (id) => {
-        const notExist = addedProduct.find(_id => _id === id);
-        if (!notExist) {
-            let cart = [];
-            if (addedProduct.length === 0) {
-                cart = [id];
-            } else {
-                cart = [...addedProduct, id]
-            }
-            fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
-                method: "PUT",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(cart)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.modifiedCount > 0) {
-                        setAddedProduct(cart);
-                    }
+        if (user.email) {
+            console.log("user email available")
+            const notExist = addedProduct.find(_id => _id === id);
+            if (!notExist) {
+                let cart = [];
+                if (addedProduct.length === 0) {
+                    cart = [id];
+                } else {
+                    cart = [...addedProduct, id]
+                }
+                fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
+                    method: "PUT",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(cart)
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.modifiedCount > 0) {
+                            setAddedProduct(cart);
+                        }
+                    })
+            }
+            else {
+                alert("already added")
+            }
         }
         else {
-            alert("already added")
+            console.log("user email not available")
+            navigate("/log-in");
         }
     }
     return (
