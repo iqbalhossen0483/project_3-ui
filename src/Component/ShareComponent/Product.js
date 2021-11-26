@@ -8,16 +8,24 @@ const Product = (props) => {
     const navigate = useNavigate();
     const { addedProduct, setAddedProduct, user } = useAuth();
     const { img, name, description, _id, price } = props.product;
+    console.log(addedProduct);
     const handleCart = (id) => {
         if (user.email) {
-            console.log("user email available")
-            const notExist = addedProduct.find(_id => _id === id);
+            const notExist = addedProduct.find(cart => cart.id === id);
             if (!notExist) {
                 let cart = [];
                 if (addedProduct.length === 0) {
-                    cart = [id];
+                    cart = [
+                        {
+                            id: id,
+                            quantity: 1
+                        }
+                    ];
                 } else {
-                    cart = [...addedProduct, id]
+                    cart = [...addedProduct, {
+                        id: id,
+                        quantity: 1
+                    }];
                 }
                 fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
                     method: "PUT",
@@ -38,7 +46,6 @@ const Product = (props) => {
             }
         }
         else {
-            console.log("user email not available")
             navigate("/log-in");
         }
     }

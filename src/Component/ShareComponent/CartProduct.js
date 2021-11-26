@@ -16,8 +16,8 @@ const CartProduct = () => {
 
         if (products.length) {
             const newCartProducts = [];
-            for (const id of addedProduct) {
-                const findCartProduct = products.find(product => product._id === id);
+            for (const cart of addedProduct) {
+                const findCartProduct = products.find(product => product._id === cart.id);
                 newCartProducts.push(findCartProduct);
             }
             setCartProducts(newCartProducts);
