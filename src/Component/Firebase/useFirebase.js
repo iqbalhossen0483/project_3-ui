@@ -13,6 +13,24 @@ const useFirebase = () => {
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
 
+
+    //google log in
+    const logInWithGoogle = () => {
+        return signInWithPopup(auth, googleProvider)
+    }
+    //observe user
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+                checkUser(user.email);
+            }
+            else {
+                setUser({});;
+            }
+        })
+    }, [auth, isAdmin]);
+
     //create user to database
     const makeUser = (name, email) => {
         const userInfo = {
@@ -34,39 +52,18 @@ const useFirebase = () => {
         fetch(`https://cycle-mart.herokuapp.com/users/${email}`)
             .then(res => res.json())
             .then(data => {
-                setIsLoading(true);
                 if (data.cart) {
                     setAddedProduct(data.cart);
                 }
                 if (data?.roll === "admin") {
                     setIsAdmin(true);
-                    setIsLoading(false);
                 }
                 else {
                     setIsAdmin(false);
-                    setIsLoading(false);
                 }
+                setIsLoading(false);
             })
     }
-
-    //google log in
-    const logInWithGoogle = () => {
-        return signInWithPopup(auth, googleProvider)
-    }
-    //observe user
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-                checkUser(user.email);
-            }
-            else {
-                setUser({});;
-            }
-            setIsLoading(false)
-        })
-    }, [auth, isAdmin]);
-
 
     //email pass
     const singUPWithEmail = (email, password) => {

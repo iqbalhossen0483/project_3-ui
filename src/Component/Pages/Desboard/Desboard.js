@@ -4,11 +4,11 @@ import useAuth from '../../Hook/useAuth';
 import useTailwind from '../../TailwindCss/useTailwind';
 
 const Desboard = () => {
-    const { link, button } = useTailwind();
-    const { isAdmin, lognOut } = useAuth();
+    const { link } = useTailwind();
+    const { isAdmin } = useAuth();
     return (
         <div className="md:grid grid-cols-6">
-            <div className="bg-white flex flex-col">
+            <div className="bg-green-500 flex flex-col">
                 {
                     isAdmin && <>
                         <NavLink className={link} to='add-product'>Add-Product</NavLink>
@@ -18,9 +18,6 @@ const Desboard = () => {
                         <NavLink className={link} to='make-admin'>Make-Admin</NavLink>
                     </>
                 }
-                <div className="px-2 my-3">
-                    <button onClick={lognOut} className={button}>Log-Out</button>
-                </div>
             </div>
             <div className="col-span-5">
                 <Outlet />
