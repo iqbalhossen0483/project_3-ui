@@ -18,7 +18,7 @@ const UserInfo = () => {
                 {
                     isAdmin && <NavLink
                         onClick={() => { setHideUserInfo(false) }}
-                        className="button" to='/desboard'>
+                        className="button" to='/desboard/add-product'>
                         Desboard
                     </NavLink>
                 }
