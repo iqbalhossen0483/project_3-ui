@@ -57,8 +57,8 @@ const Product = (props) => {
                 Price: {price} BDT</p>
             <div className="flex justify-evenly mt-3">
                 <button onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
-                <Link to={`/place-order/${_id}`}>
-                    <button className="button">Buy now</button>
+                <Link to={`/products/${_id}`}>
+                    <button className="button">Details</button>
                 </Link>
             </div>
         </div>
