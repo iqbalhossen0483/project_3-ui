@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
 
 const Purchase = () => {
-    const [product, setProduct] = useState({});
+    const [singleProduct, setSingleProduct] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [orders, setOrders] = useState([]);
     const { id } = useParams();
-    const { user } = useAuth();
+    const navigate = useNavigate();
+    const { user, setAddedProduct } = useAuth();
     const { button, formHeader, form, input } = useTailwind();
 
     const name = user.displayName;
@@ -19,12 +22,42 @@ const Purchase = () => {
         }
     });
 
+    useEffect(() => {
+        fetch("https://cycle-mart.herokuapp.com/products")
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data);
+            })
+    }, []);
+
+    useEffect(() => {
+        if (id.startsWith("&&")) {
+            const allId = id.split("&&");
+            const sliced = allId.slice(1, allId.length);
+            const newCartProducts = [];
+            for (const id of sliced) {
+                const cartProduct = products.find(product => product._id === id);
+                newCartProducts.push(cartProduct);
+            }
+            setOrders(newCartProducts);
+        }
+        else {
+            fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+                .then(res => res.json())
+                .then(data => setSingleProduct([data]))
+        }
+    }, [id, products]);
+
     const onSubmit = order => {
-        order.productId = product._id;
-        order.img = product.img;
-        order.price = product.price;
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
+        if (singleProduct.length) {
+            order.products = singleProduct;
+        }
+        else {
+            order.products = orders;
+        }
+
         fetch("https://cycle-mart.herokuapp.com/orders", {
             method: "POST",
             headers: {
@@ -35,16 +68,13 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    alert("Your order created succesfully");
-                    reset()
+                    alert("Your order created successfully");
+                    reset();
+                    navigate("/")
+                    setAddedProduct([]);
                 }
             })
-    }
-    useEffect(() => {
-        fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
-            .then(res => res.json())
-            .then(data => setProduct(data))
-    }, [id]);
+    };
     return (
         <div>
             <form className={form} onSubmit={handleSubmit(onSubmit)}>

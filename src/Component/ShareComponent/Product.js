@@ -8,7 +8,6 @@ const Product = (props) => {
     const navigate = useNavigate();
     const { addedProduct, setAddedProduct, user } = useAuth();
     const { img, name, description, _id, price } = props.product;
-    console.log(addedProduct);
     const handleCart = (id) => {
         if (user.email) {
             const notExist = addedProduct.find(cart => cart.id === id);

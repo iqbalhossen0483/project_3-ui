@@ -6,6 +6,7 @@ const ViewCart = () => {
     const [products, setProduct] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [allId, setAllId] = useState("");
     const { addedProduct, setAddedProduct, user } = useAuth();
 
     useEffect(() => {
@@ -69,6 +70,14 @@ const ViewCart = () => {
     }
     let totalPrice = 0;
 
+    useEffect(() => {
+        let url = "";
+        for (const cart of cartProducts) {
+            url += "&&" + cart.id;
+        }
+        setAllId(url);
+    }, [cartProducts]);
+
     if (isLoading) {
         return <div className="h-screen flex justify-center items-center">
             <div className="spinner"></div>
@@ -117,7 +126,7 @@ const ViewCart = () => {
                         <p></p>
                         <p className="text-2xl">Total: <span className="font-semibold text-green-500">{totalPrice} BDT</span></p>
                         <div className="flex justify-center">
-                            <Link to="">
+                            <Link to={`/place-order/${allId}`}>
                                 <button className="button">Pleace Order</button>
                             </Link>
                         </div>

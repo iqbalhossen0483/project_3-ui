@@ -3,7 +3,7 @@ import useTailwind from '../../TailwindCss/useTailwind';
 
 const Orders = ({ order, children, orders, setOrder }) => {
     const { button } = useTailwind();
-    const { productId, price, img, name, email, division, district, ps, road, date, status } = order;
+    const { name, email, division, district, ps, road, date, status } = order;
 
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
@@ -23,11 +23,19 @@ const Orders = ({ order, children, orders, setOrder }) => {
     }
     return (
         <div className="grid grid-cols-4 gap-3 border-b py-3 items-center">
-            <div>
-                <p>ID: {productId}</p>
-                <p>Price: {price}</p>
+            <div className="col-span-2">
+                {
+                    order.products.map(product => <div
+                        className="grid grid-cols-2"
+                        key={product._id}>
+                        <div>
+                            <p>ID: {product._id}</p>
+                            <p>Price: {product.price}</p>
+                        </div>
+                        <img className="w-56 h-32 object-cover" src={product.img} alt="" />
+                    </div>)
+                }
             </div>
-            <img className="w-full h-32 object-cover" src={img} alt="" />
             <p>{`${name},
                         ${email}, 
                         ${division}, 
