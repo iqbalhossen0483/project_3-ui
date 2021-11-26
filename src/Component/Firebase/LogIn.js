@@ -54,7 +54,7 @@ const LogIn = () => {
                 <p className="text-xl text-center mt-5">Or</p>
                 <div className="flex justify-center">
                     <button disabled={!disable} onClick={googleLogIn}>
-                        <img className="w-16 border rounded" src="https://i.ibb.co/5xqcLt2/download.png" alt="" />
+                        <img className="w-16 border rounded" src="https://i.ibb.co/BTPQhFg/download.png" alt="" />
                     </button>
                 </div>
                 <p className="text-center mt-3">New to here? <Link to="/sign-up">sign up</Link></p>
