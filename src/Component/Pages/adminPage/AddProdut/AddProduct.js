@@ -24,9 +24,9 @@ const AddProduct = () => {
         <div className="mx-3 md:mx-0">
             <form className={form} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={formHeader}>Add a product</h3>
-                <input className={input} {...register("img", { required: true })} placeholder="Enter a img url" />
-                <input className={input} {...register("name", { required: true })} placeholder="Enter the name" />
-                <input className={input} {...register("description", { required: true })} placeholder="Enter short description" />
+                <input className={input} {...register("img")} placeholder="Enter a img url" />
+                <input className={input} {...register("name")} placeholder="Enter the name" />
+                <input className={input} {...register("description")} placeholder="Enter short description" />
                 <input className={button} type="submit" />
             </form>
         </div>
