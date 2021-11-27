@@ -22,6 +22,9 @@ const Purchase = () => {
         }
     });
 
+    let totalPrice = 0;
+    let sipping = 100;
+
     //load products
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
@@ -33,26 +36,27 @@ const Purchase = () => {
 
     //find triger products
     useEffect(() => {
-        if (id.startsWith("&&")) {
-            const allId = id.split("&&");
-            const sliced = allId.slice(1, allId.length);
-            const newCartProducts = [];
-            for (const id of sliced) {
-                const cartProduct = products.find(product => product._id === id);
-                console.log(cartProduct)
-                for (const cart of addedProduct) {
-                    if (cart.id === cartProduct?._id) {
-                        cartProduct.quantity = cart.quantity;
-                        newCartProducts.push(cartProduct);
+        if (products.length) {
+            if (id.startsWith("&&")) {
+                const allId = id.split("&&");
+                const sliced = allId.slice(1, allId.length);
+                const newCartProducts = [];
+                for (const id of sliced) {
+                    const cartProduct = products.find(product => product._id === id);
+                    for (const cart of addedProduct) {
+                        if (cart.id === cartProduct?._id) {
+                            cartProduct.quantity = cart.quantity;
+                            newCartProducts.push(cartProduct);
+                        }
                     }
                 }
+                setOrders(newCartProducts);
             }
-            setOrders(newCartProducts);
-        }
-        else {
-            fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
-                .then(res => res.json())
-                .then(data => setSingleProduct([data]))
+            else {
+                fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+                    .then(res => res.json())
+                    .then(data => setSingleProduct([data]))
+            }
         }
     }, [id, products]);
 
@@ -74,15 +78,15 @@ const Purchase = () => {
             orders.map(product => {
                 const singleOrder = product;
                 let OrderedProductQuantity = 1;
-                singleOrder.quantity = OrderedProductQuantity;
                 for (const cart of addedProduct) {
                     OrderedProductQuantity = cart.quantity;
                 }
-                return newOrders.push(singleProduct);
-            })
+                singleOrder.quantity = OrderedProductQuantity;
+                return newOrders.push(singleOrder);
+            });
             order.products = newOrders;
+            order.totalBDT = totalPrice + sipping;
         }
-
         fetch("https://cycle-mart.herokuapp.com/orders", {
             method: "POST",
             headers: {
@@ -105,42 +109,67 @@ const Purchase = () => {
             <div className={form}>
                 <h1 className={formHeader}>Order Summary</h1>
                 {singleProduct.length &&
-                    singleProduct.map(product => <div
-                        className="grid grid-cols-2 text-xl"
-                        key={product._id}>
-                        <div className="col-span-2 flex justify-center">
-                            <img className="w-36 h-32" src={product.img} alt="" />
-                        </div>
-                        <div>
-                            <p className="text-2xl font-semibold">Product Name: </p>
-                            <hr className="mb-3 mt-1" />
-                            <p>Product Price:</p>
-                            <p>Product Quantity:</p>
-                            <p>Sub-total: </p>
-                            <p>Shipping Cost:</p>
-                            <hr className="mt-2" />
-                            <p>Total:</p>
-                        </div>
-                        <div>
-                            <p className="text-2xl font-semibold">{product.name}</p>
-                            <hr className="mb-3 mt-1" />
-                            <p>{product.price}</p>
-                            <p>{quantity}</p>
-                            <p>{quantity * product.price}</p>
-                            <p>100</p>
-                            <hr className="mt-2" />
-                            <p>{quantity * product.price + 100}</p>
-                        </div>
-                    </div>)
-                }
-                {orders.length &&
-                    orders.map(product => {
+                    singleProduct.map(product => {
+                        const totalPrice = quantity * product.price;
+                        let sipping = 100;
+                        totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                         return <div
-                            key={product?._id}>
-                            <p>{product?.name}</p>
-                            <p>{product?.quantity}</p>
+                            className="grid grid-cols-2 text-xl"
+                            key={product._id}>
+                            <div className="col-span-2 flex justify-center">
+                                <img className="w-36 h-32" src={product.img} alt="" />
+                            </div>
+                            <div>
+                                <p className="text-2xl font-semibold">Product Name: </p>
+                                <hr className="mb-3 mt-1" />
+                                <p>Product Price:</p>
+                                <p>Product Quantity:</p>
+                                <p>Sub-total: </p>
+                                <p>Shipping Cost:</p>
+                                <hr className="mt-2" />
+                                <p>Total:</p>
+                            </div>
+                            <div>
+                                <p className="text-2xl font-semibold">{product.name}</p>
+                                <hr className="mb-3 mt-1" />
+                                <p>{product.price}</p>
+                                <p>{quantity}</p>
+                                <p>{totalPrice}</p>
+                                <p>{sipping}</p>
+                                <hr className="mt-2" />
+                                <p>{totalPrice + sipping}</p>
+                            </div>
                         </div>
                     })
+                }
+                {orders.length && <div className="flex flex-wrap">
+                    {orders.length &&
+                        orders.map(product => {
+                            totalPrice += parseInt(product.price * product.quantity);
+                            totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
+                            return <div
+                                key={product._id}>
+                                <img className="w-32 h-32" src={product.img} alt="" />
+                            </div>
+                        })
+                    }
+                </div>}
+                {
+                    orders.length && <div
+                        className="grid grid-cols-2 mt-5 text-2xl font-bold leading-10">
+                        <div>
+                            <p>Sub-total: </p>
+                            <p>Shipping Cost: </p>
+                            <hr className="mt-3" />
+                            <p>Total: </p>
+                        </div>
+                        <div className="font-semibold text-green-500">
+                            <p>{totalPrice}</p>
+                            <p>{sipping}</p>
+                            <hr className="mt-3" />
+                            <p>{totalPrice + sipping}</p>
+                        </div>
+                    </div>
                 }
             </div>
             <div>

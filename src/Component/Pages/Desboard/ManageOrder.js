@@ -11,7 +11,6 @@ const ManageOrder = () => {
             .then(res => res.json())
             .then(data => setOrder(data))
     }, [reload]);
-
     const handleApprove = (id) => {
         const changeData = {
             status: "Approved",

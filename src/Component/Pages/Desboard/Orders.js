@@ -39,19 +39,24 @@ const Orders = ({ order, children, orders, setOrder }) => {
                     </div>)
                 }
             </div>
-            <p>{`${name},
-                        ${email}, 
-                        ${division}, 
-                        ${district}, 
-                        ${ps}, 
-                        ${road}, 
-                        ${date}`}</p>
+            <p>
+                {`${name},
+                ${email}, 
+                ${division}, 
+                ${district}, 
+                ${ps}, 
+                ${road}, 
+                ${date}`}
+            </p>
             <div>
                 <button onClick={() => handleDelete(order._id)} className={button}>Delete</button>
                 {children}
                 <p className="text-green-500 mr-2">
                     {status}
                 </p>
+                {order.totalBDT &&
+                    <p className="text-xl font-semibold">Total BDT: {order.totalBDT}</p>
+                }
             </div>
         </div>
     );
