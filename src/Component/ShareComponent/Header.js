@@ -50,7 +50,7 @@ const Header = () => {
             </div>
             {/* user info  */}
             {hideUserInfo && <UserInfo />}
-            {showCart && <CartProduct />}
+            {showCart && addedProduct.length > 0 && <CartProduct />}
         </div>
     );
 };

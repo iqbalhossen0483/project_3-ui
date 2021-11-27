@@ -30,7 +30,7 @@ const CartProduct = () => {
             onMouseEnter={() => setShowCart(true)}
             onMouseLeave={() => setShowCart(false)}
             className="absolute top-full right-5 bg-white shadow-md z-20">
-            {cartProducts &&
+            {cartProducts.length &&
                 cartProducts.map(product => {
                     totalPrice += parseInt(product.price);
                     return <div
@@ -42,7 +42,7 @@ const CartProduct = () => {
                     </div>
                 })
             }
-            {cartProducts &&
+            {cartProducts.length &&
                 <div className="grid grid-cols-2 text-center text-xl">
                     <p></p>
                     <p>Total: {totalPrice}</p>

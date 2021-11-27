@@ -66,12 +66,15 @@ const Purchase = () => {
         order.status = "pending";
         if (singleProduct.length) {
             let newSingle = [];
+            let price = 0;
             singleProduct.map(product => {
                 const single = product;
                 single.quantity = quantity;
+                price = product.price;
                 return newSingle.push(single);
             });
             order.products = newSingle;
+            order.totalBDT = quantity * price + sipping;
         }
         else {
             let newOrders = [];
@@ -111,7 +114,6 @@ const Purchase = () => {
                 {singleProduct.length &&
                     singleProduct.map(product => {
                         const totalPrice = quantity * product.price;
-                        let sipping = 100;
                         totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                         return <div
                             className="grid grid-cols-2 text-xl"
