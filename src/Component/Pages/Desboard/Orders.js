@@ -31,6 +31,9 @@ const Orders = ({ order, children, orders, setOrder }) => {
                         <div>
                             <p>ID: {product._id}</p>
                             <p>Price: {product.price}</p>
+                            {product.quantity && product.quantity > 1 &&
+                                <p>Quantity: {product.quantity}</p>
+                            }
                         </div>
                         <img className="w-56 h-32 object-cover" src={product.img} alt="" />
                     </div>)

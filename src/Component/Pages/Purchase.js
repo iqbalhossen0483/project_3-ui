@@ -10,8 +10,8 @@ const Purchase = () => {
     const [orders, setOrders] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
-    const { user, setAddedProduct } = useAuth();
-    const { button, formHeader, form, input } = useTailwind();
+    const { user, setAddedProduct, quantity } = useAuth();
+    const { formHeader, form, input } = useTailwind();
 
     const name = user.displayName;
     const email = user.email;
@@ -52,7 +52,13 @@ const Purchase = () => {
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
         if (singleProduct.length) {
-            order.products = singleProduct;
+            let newSingle = [];
+            singleProduct.map(product => {
+                const single = product;
+                single.quantity = quantity;
+                return newSingle.push(single);
+            });
+            order.products = newSingle;
         }
         else {
             order.products = orders;
@@ -76,18 +82,52 @@ const Purchase = () => {
             })
     };
     return (
-        <div>
-            <form className={form} onSubmit={handleSubmit(onSubmit)}>
-                <h3 className={formHeader}>Place Order</h3>
-                <input className={input} disabled {...register("name", { required: true })} placeholder="Enter name" />
-                <input type="email" disabled className={input} {...register("email", { required: true })} placeholder="Enter email" />
-                <input className={input} {...register("division", { required: true })} placeholder="Enter division" />
-                <input className={input} {...register("district", { required: true })} placeholder="Enter district" />
-                <input className={input} {...register("ps", { required: true })} placeholder="Enter police station" />
-                <input className={input} {...register("road", { required: true })} placeholder="Enter road name" />
-                <input type="number" className={input} {...register("number", { required: true })} placeholder="Enter your number" />
-                <input className={button} type="submit" />
-            </form>
+        <div className="grid grid-cols-2">
+            <div className={form}>
+                <h1 className={formHeader}>Order Summary</h1>
+                {singleProduct.length &&
+                    singleProduct.map(product => <div
+                        className="grid grid-cols-2 text-xl"
+                        key={product._id}>
+                        <div className="col-span-2 flex justify-center">
+                            <img className="w-36 h-32" src={product.img} alt="" />
+                        </div>
+                        <div>
+                            <p className="text-2xl font-semibold">Product Name: </p>
+                            <hr className="mb-3 mt-1" />
+                            <p>Product Price:</p>
+                            <p>Product Quantity:</p>
+                            <p>Sub-total: </p>
+                            <p>Shipping Cost:</p>
+                            <hr className="mt-2" />
+                            <p>Total:</p>
+                        </div>
+                        <div>
+                            <p className="text-2xl font-semibold">{product.name}</p>
+                            <hr className="mb-3 mt-1" />
+                            <p>{product.price}</p>
+                            <p>{quantity}</p>
+                            <p>{quantity * product.price}</p>
+                            <p>100</p>
+                            <hr className="mt-2" />
+                            <p>{quantity * product.price + 100}</p>
+                        </div>
+                    </div>)
+                }
+            </div>
+            <div>
+                <form className={form} onSubmit={handleSubmit(onSubmit)}>
+                    <h3 className={formHeader}>Place Order</h3>
+                    <input className={input} disabled {...register("name", { required: true })} placeholder="Enter name" />
+                    <input type="email" disabled className={input} {...register("email", { required: true })} placeholder="Enter email" />
+                    <input className={input} {...register("division", { required: true })} placeholder="Enter division" />
+                    <input className={input} {...register("district", { required: true })} placeholder="Enter district" />
+                    <input className={input} {...register("ps", { required: true })} placeholder="Enter police station" />
+                    <input className={input} {...register("road", { required: true })} placeholder="Enter road name" />
+                    <input type="number" className={input} {...register("number", { required: true })} placeholder="Enter your number" />
+                    <input className="button w-auto text-center" type="submit" value="Place order" />
+                </form>
+            </div>
         </div>
     );
 };

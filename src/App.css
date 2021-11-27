@@ -48,3 +48,13 @@
   outline: 0;
   box-shadow: 0 0 40px 40px #10b981 inset;
 }
+.product-color > p{
+  width: 25px;
+  height: 25px;
+  border-radius: 2px;
+  margin-left: 15px;
+}
+.product-color >p:hover{
+  outline: 1px solid green;
+  outline-offset: 3px;
+}

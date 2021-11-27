@@ -5,7 +5,7 @@ import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
 
 const AddReviews = () => {
-    const { button, formHeader, form, input } = useTailwind();
+    const { button, formHeader, singleDiv, input } = useTailwind();
     const [rating, setRating] = useState(0);
     const { user } = useAuth();
     const name = user.displayName;
@@ -40,7 +40,7 @@ const AddReviews = () => {
     }
     return (
         <div className="mx-3 md:mx-0">
-            <form className={form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={singleDiv} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={formHeader}>Your valuable comment</h3>
                 <input className={input} disabled {...register("name", { required: true })} placeholder="Enter the name" />
                 <input type="email" disabled className={input} {...register("email", { required: true })} placeholder="Enter a email" />

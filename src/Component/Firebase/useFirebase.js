@@ -10,6 +10,7 @@ const useFirebase = () => {
     const [addedProduct, setAddedProduct] = useState([]);
     const [showCart, setShowCart] = useState(false);
     const [hideUserInfo, setHideUserInfo] = useState(false);
+    const [quantity, setQuantity] = useState(1);
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
 
@@ -106,6 +107,8 @@ const useFirebase = () => {
         setAddedProduct,
         showCart,
         setShowCart,
+        quantity,
+        setQuantity
     }
 };
 

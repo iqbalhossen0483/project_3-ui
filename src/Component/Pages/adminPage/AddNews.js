@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import useTailwind from '../../TailwindCss/useTailwind';
 
 const AddNews = () => {
-    const { button, formHeader, form, input } = useTailwind();
+    const { button, formHeader, singleDiv, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = news => {
         const date = new Date().toLocaleDateString("en-US")
@@ -25,7 +25,7 @@ const AddNews = () => {
     }
     return (
         <div className="mx-3 md:mx-0">
-            <form className={form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={singleDiv} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={formHeader}>Add news</h3>
                 <input className={input} {...register("img", { required: true })} placeholder="Enter a img url" />
                 <input className={input} {...register("name", { required: true })} placeholder="Enter the name" />
