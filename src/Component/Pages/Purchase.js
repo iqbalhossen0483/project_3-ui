@@ -10,7 +10,7 @@ const Purchase = () => {
     const [orders, setOrders] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
-    const { user, setAddedProduct, quantity } = useAuth();
+    const { user, setAddedProduct, quantity, addedProduct } = useAuth();
     const { formHeader, form, input } = useTailwind();
 
     const name = user.displayName;
@@ -22,6 +22,7 @@ const Purchase = () => {
         }
     });
 
+    //load products
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
@@ -30,6 +31,7 @@ const Purchase = () => {
             })
     }, []);
 
+    //find triger products
     useEffect(() => {
         if (id.startsWith("&&")) {
             const allId = id.split("&&");
@@ -37,7 +39,13 @@ const Purchase = () => {
             const newCartProducts = [];
             for (const id of sliced) {
                 const cartProduct = products.find(product => product._id === id);
-                newCartProducts.push(cartProduct);
+                console.log(cartProduct)
+                for (const cart of addedProduct) {
+                    if (cart.id === cartProduct?._id) {
+                        cartProduct.quantity = cart.quantity;
+                        newCartProducts.push(cartProduct);
+                    }
+                }
             }
             setOrders(newCartProducts);
         }
@@ -48,6 +56,7 @@ const Purchase = () => {
         }
     }, [id, products]);
 
+    // post products
     const onSubmit = order => {
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
@@ -61,7 +70,17 @@ const Purchase = () => {
             order.products = newSingle;
         }
         else {
-            order.products = orders;
+            let newOrders = [];
+            orders.map(product => {
+                const singleOrder = product;
+                let OrderedProductQuantity = 1;
+                singleOrder.quantity = OrderedProductQuantity;
+                for (const cart of addedProduct) {
+                    OrderedProductQuantity = cart.quantity;
+                }
+                return newOrders.push(singleProduct);
+            })
+            order.products = newOrders;
         }
 
         fetch("https://cycle-mart.herokuapp.com/orders", {
@@ -113,6 +132,15 @@ const Purchase = () => {
                             <p>{quantity * product.price + 100}</p>
                         </div>
                     </div>)
+                }
+                {orders.length &&
+                    orders.map(product => {
+                        return <div
+                            key={product?._id}>
+                            <p>{product?.name}</p>
+                            <p>{product?.quantity}</p>
+                        </div>
+                    })
                 }
             </div>
             <div>

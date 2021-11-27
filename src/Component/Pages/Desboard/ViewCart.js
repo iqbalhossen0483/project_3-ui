@@ -9,6 +9,7 @@ const ViewCart = () => {
     const [allId, setAllId] = useState("");
     const { addedProduct, setAddedProduct, user } = useAuth();
 
+    //load products
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
@@ -17,6 +18,7 @@ const ViewCart = () => {
             })
     }, []);
 
+    //find cart products
     useEffect(() => {
         if (products.length) {
             const newCartProducts = [];
@@ -30,15 +32,36 @@ const ViewCart = () => {
         }
     }, [addedProduct, products]);
 
+    //quantity increase decrease
     const handlePlusMinus = (id, action) => {
         const newCart = [];
         for (const product of cartProducts) {
             if (product._id === id) {
                 if (action === "minus" && product.quantity >= 2) {
+                    const newCart = [];
                     product.quantity -= 1;
+                    for (const cart of addedProduct) {
+                        if (cart.id === id) {
+                            cart.quantity -= 1;
+                            newCart.push(cart);
+                        } else {
+                            newCart.push(cart);
+                        }
+                    }
+                    setAddedProduct(newCart);
                 }
                 if (action === "plus") {
+                    const newCart = [];
                     product.quantity += 1;
+                    for (const cart of addedProduct) {
+                        if (cart.id === id) {
+                            cart.quantity += 1;
+                            newCart.push(cart);
+                        } else {
+                            newCart.push(cart);
+                        }
+                    }
+                    setAddedProduct(newCart);
                 }
                 newCart.push(product);
             }
@@ -49,6 +72,7 @@ const ViewCart = () => {
         setCartProducts(newCart);
     }
 
+    // delete cart products
     const handleDelete = (id) => {
         const remain = addedProduct.filter(cart => cart.id !== id);
         const remainCartProduct = cartProducts.filter(product => product._id !== id);
@@ -70,6 +94,7 @@ const ViewCart = () => {
     }
     let totalPrice = 0;
 
+    //make a combine id for url
     useEffect(() => {
         let url = "";
         for (const cart of cartProducts) {
@@ -94,13 +119,13 @@ const ViewCart = () => {
             {cartProducts.length && <div className="m-5 bg-white rounded text-xl">
                 {
                     cartProducts.map(product => {
-                        totalPrice += parseInt(product.price);
+                        totalPrice += parseInt(product.price * product.quantity);
                         return <div
                             key={product._id}
                             className="p-3 grid grid-cols-4 justify-center items-center text-center">
                             <img src={product.img} alt="" />
                             <p>{product.name}</p>
-                            <p>{product.price} BDT</p>
+                            <p>{product.price * product.quantity} BDT</p>
                             <div className="flex justify-evenly">
                                 <div className="flex items-center">
                                     <button
