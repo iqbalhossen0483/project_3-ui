@@ -8,6 +8,7 @@ const Purchase = () => {
     const [singleProduct, setSingleProduct] = useState([]);
     const [products, setProducts] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { id } = useParams();
     const navigate = useNavigate();
     const { user, setAddedProduct, quantity, addedProduct } = useAuth();
@@ -51,11 +52,15 @@ const Purchase = () => {
                     }
                 }
                 setOrders(newCartProducts);
+                setIsLoading(false);
             }
             else {
                 fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
                     .then(res => res.json())
-                    .then(data => setSingleProduct([data]))
+                    .then(data => {
+                        setSingleProduct([data]);
+                        setIsLoading(false);
+                    })
             }
         }
     }, [id, products]);
@@ -107,6 +112,13 @@ const Purchase = () => {
                 }
             })
     };
+
+
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
+    }
     return (
         <div className="grid grid-cols-2">
             <div className={form}>

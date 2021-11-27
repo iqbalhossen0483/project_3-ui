@@ -5,6 +5,7 @@ import useAuth from '../Hook/useAuth';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     const { quantity, setQuantity, user, addedProduct, setAddedProduct } = useAuth();
     const navigate = useNavigate();
     const { id } = useParams();
@@ -13,7 +14,8 @@ const ProductDetails = () => {
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
-                setQuantity(1)
+                setQuantity(1);
+                setIsLoading(false);
             })
     }, [id]);
     const { name, img, price, _id } = products;
@@ -63,6 +65,12 @@ const ProductDetails = () => {
         else {
             navigate("/log-in");
         }
+    }
+
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
     }
     return (
         <div className="grid grid-cols-2 bg-white gap-3">
