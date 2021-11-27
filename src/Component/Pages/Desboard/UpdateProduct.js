@@ -20,6 +20,8 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
         newProduct.name = newProduct.name || product.name;
         newProduct.price = newProduct.price || product.price;
         newProduct.stock = newProduct.stock || product.stock;
+        newProduct.vendor = newProduct.vendor || product.vendor;
+        newProduct.type = newProduct.type || product.type;
         fetch("https://cycle-mart.herokuapp.com/products", {
             method: "PUT",
             headers: {
@@ -45,6 +47,8 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
                     <input className={input} {...register("name")} placeholder="Enter the name" />
                     <input type="number" className={input} {...register("price")} placeholder="Enter price" />
                     <input type="number" className={input} {...register("stock")} placeholder="Enter stock" />
+                    <input type="text" className={input} {...register("vendor")} placeholder="Enter vendor name" />
+                    <input type="text" className={input} {...register("type")} placeholder="Enter the type of cycle" />
                     <input className={button} type="submit" />
                 </form>
             </div>

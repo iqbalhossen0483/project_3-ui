@@ -11,7 +11,7 @@ const SingleNews = ({ news }) => {
             <p className="text-justify px-3 text-xl">{description.slice(0, 100)}</p>
             <p className=" px-3">Post on: {date}</p>
             <div className="flex justify-center">
-                <button className={button}>Learn more</button>
+                <button className="button">Learn more</button>
             </div>
         </div>
     );

@@ -26,6 +26,8 @@ const AddProduct = () => {
                 <h3 className={formHeader}>Add a product</h3>
                 <input className={input} {...register("img", { required: true })} placeholder="Enter a img url" />
                 <input className={input} {...register("name", { required: true })} placeholder="Enter the name" />
+                <input className={input} {...register("vendor", { required: true })} placeholder="Enter the vendor name" />
+                <input className={input} {...register("type", { required: true })} placeholder="Enter the type of cycle" />
                 <input className={input} {...register("description", { required: true })} placeholder="Enter short description" />
                 <input className={button} type="submit" />
             </form>

@@ -7,7 +7,7 @@ const Product = (props) => {
     const { product } = useTailwind();
     const navigate = useNavigate();
     const { addedProduct, setAddedProduct, user } = useAuth();
-    const { img, name, description, _id, price } = props.product;
+    const { img, name, _id, price } = props.product;
     const handleCart = (id) => {
         if (user.email) {
             const notExist = addedProduct.find(cart => cart.id === id);
@@ -51,11 +51,10 @@ const Product = (props) => {
     return (
         <div className={product}>
             <img style={{ borderRadius: "5px" }} src={img} alt="" />
-            <p className="text-2xl text-center font-semibold mb-2">{name}</p>
-            <p className="text-justify px-3">{description.slice(0, 150)}</p>
-            <p className="text-2xl ml-4 text-green-500 font-semibold mt-3">
+            <p className="text-2xl ml-4 font-semibold mb-2">{name}</p>
+            <p className="text-2xl ml-4 text-green-500 font-semibold">
                 Price: {price} BDT</p>
-            <div className="flex justify-evenly mt-3">
+            <div className="flex justify-between mx-2">
                 <button onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
                 <Link to={`/products/${_id}`}>
                     <button className="button">Details</button>
