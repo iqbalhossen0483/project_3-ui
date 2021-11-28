@@ -3,34 +3,38 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
 
 const ViewCart = () => {
-    const [products, setProduct] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [allId, setAllId] = useState("");
     const { addedProduct, setAddedProduct, user } = useAuth();
 
-    //load products
+    //make a combine id for url
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/products")
-            .then(res => res.json())
-            .then(data => {
-                setProduct(data);
-            })
-    }, []);
+        let url = "";
+        for (const cart of addedProduct) {
+            url += "&&" + cart.id;
+        }
+        setAllId(url);
+    }, [addedProduct]);
 
     //find cart products
     useEffect(() => {
-        if (products.length) {
-            const newCartProducts = [];
-            for (const cart of addedProduct) {
-                const findCartProduct = products.find(product => product._id === cart.id);
-                findCartProduct.quantity = cart.quantity;
-                newCartProducts.push(findCartProduct);
-            }
-            setCartProducts(newCartProducts);
-            setIsLoading(false);
+        if (allId) {
+            fetch(`https://cycle-mart.herokuapp.com/products/${allId}`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(product => {
+                        for (const cart of addedProduct) {
+                            if (product._id === cart.id) {
+                                return product.quantity = cart.quantity;
+                            }
+                        }
+                    })
+                    setCartProducts(data);
+                    setIsLoading(false)
+                })
         }
-    }, [addedProduct, products]);
+    }, [allId, addedProduct]);
 
     //quantity increase decrease
     const handlePlusMinus = (id, action) => {
@@ -94,14 +98,7 @@ const ViewCart = () => {
     }
     let totalPrice = 0;
 
-    //make a combine id for url
-    useEffect(() => {
-        let url = "";
-        for (const cart of cartProducts) {
-            url += "&&" + cart.id;
-        }
-        setAllId(url);
-    }, [cartProducts]);
+
 
     if (isLoading) {
         return <div className="h-screen flex justify-center items-center">

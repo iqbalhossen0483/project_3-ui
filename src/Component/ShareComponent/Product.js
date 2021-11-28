@@ -50,15 +50,17 @@ const Product = (props) => {
     }
     return (
         <div className={product}>
-            <img style={{ borderRadius: "5px" }} src={img} alt="" />
-            <p className="text-2xl ml-4 font-semibold mb-2">{name}</p>
-            <p className="text-2xl ml-4 text-green-500 font-semibold">
-                Price: {price} BDT</p>
-            <div className="flex justify-between mx-2">
-                <button onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
-                <Link to={`/products/${_id}`}>
-                    <button className="button">Details</button>
-                </Link>
+            <div>
+                <img className="h-52 w-full rounded-t object-cover" src={img} alt="" />
+                <p className="text-2xl ml-4 font-semibold mb-2">{name}</p>
+                <p className="text-2xl ml-4 text-green-500 font-semibold">
+                    Price: {price} BDT</p>
+                <div className="flex justify-between mx-2">
+                    <button onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
+                    <Link to={`/products/${_id}`}>
+                        <button className="button">Details</button>
+                    </Link>
+                </div>
             </div>
         </div>
     );

@@ -6,7 +6,6 @@ import useTailwind from '../TailwindCss/useTailwind';
 
 const Purchase = () => {
     const [singleProduct, setSingleProduct] = useState([]);
-    const [products, setProducts] = useState([]);
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { id } = useParams();
@@ -26,44 +25,32 @@ const Purchase = () => {
     let totalPrice = 0;
     let sipping = 100;
 
-    //load products
-    useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/products")
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data);
-            })
-    }, []);
-
     //find triger products
     useEffect(() => {
-        if (products.length) {
-            if (id.startsWith("&&")) {
-                const allId = id.split("&&");
-                const sliced = allId.slice(1, allId.length);
-                const newCartProducts = [];
-                for (const id of sliced) {
-                    const cartProduct = products.find(product => product._id === id);
-                    for (const cart of addedProduct) {
-                        if (cart.id === cartProduct?._id) {
-                            cartProduct.quantity = cart.quantity;
-                            newCartProducts.push(cartProduct);
+        if (id.startsWith("&&")) {
+            fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(product => {
+                        for (const cart of addedProduct) {
+                            if (product._id === cart.id) {
+                                return product.quantity = cart.quantity;
+                            }
                         }
-                    }
-                }
-                setOrders(newCartProducts);
-                setIsLoading(false);
-            }
-            else {
-                fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        setSingleProduct([data]);
-                        setIsLoading(false);
-                    })
-            }
+                    });
+                    setOrders(data);
+                    setIsLoading(false);
+                })
         }
-    }, [id, products]);
+        else {
+            fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    setSingleProduct([data]);
+                    setIsLoading(false);
+                })
+        }
+    }, [id, addedProduct]);
 
     // post products
     const onSubmit = order => {
@@ -157,9 +144,9 @@ const Purchase = () => {
                     })
                 }
                 {orders.length && <div className="flex flex-wrap">
-                    {orders.length &&
+                    {
                         orders.map(product => {
-                            totalPrice += parseInt(product.price * product.quantity);
+                            totalPrice += parseInt(product.price * product.quantity)
                             totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                             return <div
                                 key={product._id}>
