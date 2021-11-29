@@ -9,7 +9,7 @@ const LogIn = () => {
     const [disable, setdisable] = useState(true);
     const { register, handleSubmit, reset } = useForm();
     const { logInWithGoogle, logInWithEmail, makeUser } = useAuth();
-    const { form, input, button } = useTailwind();
+    const { singleDiv, input } = useTailwind();
     const location = useLocation();
     const navigate = useNavigate();
     const url = location.state?.from.pathname || "/home";
@@ -43,13 +43,17 @@ const LogIn = () => {
     }
     return (
         <div className="m-3 md:m-3">
-            <form className={form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={singleDiv + " my-20"} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className="text-2xl text-center mb-3 font-semibold">Please Log In</h3>
-                <input className={input} type="email" {...register("email", { required: true })} placeholder="Enter your email" />
-                <input className={input} type="password" {...register("password", { required: true })} placeholder="Give the password" />
+                <p className="text-xl">
+                    Your email: <input className={input} type="email" {...register("email", { required: true })} placeholder="Enter your email" />
+                </p>
+                <p className="text-xl">
+                    Password: <input className={input + " ml-2"} type="password" {...register("password", { required: true })} placeholder="Enter the password" />
+                </p>
                 <p className="text-red-400">{error}</p>
                 <div className=" flex justify-center mt-5">
-                    <input className={button} type="submit" value="Log In" />
+                    <input className="button" type="submit" value="Log In" />
                 </div>
                 <p className="text-xl text-center mt-5">Or</p>
                 <div className="flex justify-center">

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import useTailwind from "../../../TailwindCss/useTailwind";
 const AddProduct = () => {
-    const { button, formHeader, singleDiv, input } = useTailwind();
+    const { formHeader, singleDiv, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = product => {
         fetch("https://cycle-mart.herokuapp.com/products", {
@@ -29,7 +29,7 @@ const AddProduct = () => {
                 <input className={input} {...register("vendor", { required: true })} placeholder="Enter the vendor name" />
                 <input className={input} {...register("type", { required: true })} placeholder="Enter the type of cycle" />
                 <input className={input} {...register("description", { required: true })} placeholder="Enter short description" />
-                <input className={button} type="submit" />
+                <input className="button" type="submit" />
             </form>
         </div>
     );

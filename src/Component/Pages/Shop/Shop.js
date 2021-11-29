@@ -22,7 +22,7 @@ const Shop = () => {
                 })
         }
         else if (type) {
-            fetch(`http://localhost:5000/products/type/${type}`)
+            fetch(`https://cycle-mart.herokuapp.com/products/type/${type}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);
@@ -73,7 +73,7 @@ const Shop = () => {
     const showProductsByPriceRange = (e) => {
         e.preventDefault();
         if (rangePrice.from > 0 && rangePrice.till > 0) {
-            fetch(`http://localhost:5000/productsByPrice?from=${rangePrice.from}&till=${rangePrice.till}`)
+            fetch(`https://cycle-mart.herokuapp.com/productsByPrice?from=${rangePrice.from}&till=${rangePrice.till}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);

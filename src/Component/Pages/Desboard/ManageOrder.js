@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import useTailwind from '../../TailwindCss/useTailwind';
 import Orders from './Orders';
 
 const ManageOrder = () => {
     const [orders, setOrder] = useState([]);
     const [reload, setReload] = useState(false);
-    const { button } = useTailwind();
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/orders")
             .then(res => res.json())
@@ -48,7 +46,7 @@ const ManageOrder = () => {
             <div>
                 {
                     orders.map(order => <Orders key={order._id} order={order} orders={orders} setOrder={setOrder}>
-                        <button onClick={() => { handleApprove(order._id) }} className={button}>Approve</button>
+                        <button onClick={() => { handleApprove(order._id) }} className="button">Approve</button>
                     </Orders>)
                 }
             </div>

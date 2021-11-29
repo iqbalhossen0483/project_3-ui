@@ -9,7 +9,6 @@ const MyAccount = () => {
             <div className="flex flex-col bg-green-500 pt-10 pb-80">
                 <NavLink className={link} to='profile'>My-Profile</NavLink>
                 <NavLink className={link} to='my-order'>My-Order</NavLink>
-                <NavLink className={link} to='my-order'>My-Order</NavLink>
                 <NavLink className={link} to='view-cart'>View-Cart</NavLink>
                 <NavLink className={link} to='add-review'>Add-Review</NavLink>
                 <NavLink className={link} to='payment'>Payment-Method</NavLink>

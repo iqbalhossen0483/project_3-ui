@@ -29,7 +29,8 @@ const useFirebase = () => {
             else {
                 setUser({});;
             }
-        })
+        });
+        setIsLoading(false);
     }, [auth, isAdmin]);
 
     //create user to database
@@ -55,6 +56,7 @@ const useFirebase = () => {
             .then(data => {
                 if (data.cart) {
                     setAddedProduct(data.cart);
+                    console.log(data.cart);
                 }
                 if (data?.roll === "admin") {
                     setIsAdmin(true);
@@ -62,7 +64,6 @@ const useFirebase = () => {
                 else {
                     setIsAdmin(false);
                 }
-                setIsLoading(false);
             })
     }
 

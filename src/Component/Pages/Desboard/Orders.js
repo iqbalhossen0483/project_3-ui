@@ -1,8 +1,6 @@
 import React from 'react';
-import useTailwind from '../../TailwindCss/useTailwind';
 
 const Orders = ({ order, children, orders, setOrder }) => {
-    const { button } = useTailwind();
     const { name, email, division, district, ps, road, date, status } = order;
 
     const handleDelete = (id) => {
@@ -49,8 +47,12 @@ const Orders = ({ order, children, orders, setOrder }) => {
                 ${date}`}
             </p>
             <div>
-                <button onClick={() => handleDelete(order._id)} className={button}>Delete</button>
-                {children}
+                <div className="flex justify-center">
+                    <button onClick={() => handleDelete(order._id)} className="button">Delete</button>
+                </div>
+                <div className="flex justify-center">
+                    {children}
+                </div>
                 <p className="text-green-500 mr-2">
                     {status}
                 </p>

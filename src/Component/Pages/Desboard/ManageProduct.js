@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useTailwind from '../../TailwindCss/useTailwind';
 import UpdateProduct from './UpdateProduct';
 
 const ManageProduct = () => {
     const [products, setProduct] = useState([]);
     const [singleProduct, setSingleProduct] = useState({});
     const [showUpdateForm, setUpdateForm] = useState(false);
-    const { button } = useTailwind();
     // get data 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
@@ -51,9 +49,9 @@ const ManageProduct = () => {
                         <p>{product.price}</p>
                         <p>{product.stock}</p>
                         <div>
-                            <button onClick={() => handleDelete(product._id)} className={button}>Delete</button>
+                            <button onClick={() => handleDelete(product._id)} className="button">Delete</button>
                             <Link to={product._id}>
-                                <button onClick={() => setUpdateForm(true)} className={button}>Update</button>
+                                <button onClick={() => setUpdateForm(true)} className="button">Update</button>
                             </Link>
                         </div>
                     </div>)
