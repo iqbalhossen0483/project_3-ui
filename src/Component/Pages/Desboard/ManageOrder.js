@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Orders from './Orders';
+import { useAlert } from 'react-alert'
 
 const ManageOrder = () => {
     const [orders, setOrder] = useState([]);
     const [reload, setReload] = useState(false);
+    const alert = useAlert();
+
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/orders")
             .then(res => res.json())
             .then(data => setOrder(data))
     }, [reload]);
+
     const handleApprove = (id) => {
         const changeData = {
             status: "Approved",
@@ -24,7 +28,7 @@ const ManageOrder = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    alert("Order Approved");
+                    alert.show("Order Approved");
                     if (reload) {
                         setReload(false);
                     }

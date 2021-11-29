@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
+import { useAlert } from 'react-alert'
 
 const ProductDetails = () => {
     const [products, setProducts] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const alert = useAlert();
     const { quantity, setQuantity, user, addedProduct, setAddedProduct } = useAuth();
     const navigate = useNavigate();
     const { id } = useParams();
@@ -55,11 +57,12 @@ const ProductDetails = () => {
                     .then(data => {
                         if (data.modifiedCount > 0) {
                             setAddedProduct(cart);
+                            alert.show("Product added")
                         }
                     })
             }
             else {
-                alert("already added")
+                alert.show("already added");
             }
         }
         else {

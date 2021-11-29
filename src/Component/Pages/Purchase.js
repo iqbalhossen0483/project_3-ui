@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
+import { useAlert } from 'react-alert'
 
 const Purchase = () => {
     const [singleProduct, setSingleProduct] = useState([]);
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { id } = useParams();
+    const alert = useAlert();
     const navigate = useNavigate();
     const { user, setAddedProduct, quantity, addedProduct } = useAuth();
     const { formHeader, form, input } = useTailwind();
@@ -92,7 +94,7 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    alert("Your order created successfully");
+                    alert.show("Your order created successfully");
                     reset();
                     navigate("/")
                     setAddedProduct([]);

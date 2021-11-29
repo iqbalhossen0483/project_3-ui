@@ -1,7 +1,9 @@
 import React from 'react';
+import { useAlert } from 'react-alert'
 
 const Orders = ({ order, children, orders, setOrder }) => {
     const { name, email, division, district, ps, road, date, status } = order;
+    const alert = useAlert();
 
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
@@ -12,7 +14,7 @@ const Orders = ({ order, children, orders, setOrder }) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        alert("Order delete successfully");
+                        alert.show("Order delete successfully");
                         const remain = orders.filter(order => order._id !== id);
                         setOrder(remain);
                     }

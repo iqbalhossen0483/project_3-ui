@@ -1,9 +1,13 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import useTailwind from "../../../TailwindCss/useTailwind";
+import { useAlert } from 'react-alert'
+
 const AddProduct = () => {
     const { formHeader, singleDiv, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
+    const alert = useAlert();
+
     const onSubmit = product => {
         fetch("https://cycle-mart.herokuapp.com/products", {
             method: "POST",
@@ -15,7 +19,7 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    alert("A product was successfully added");
+                    alert.show("A product was successfully added");
                     reset();
                 }
             })

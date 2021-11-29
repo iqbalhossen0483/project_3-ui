@@ -2,12 +2,15 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
+import { useAlert } from 'react-alert'
 
 const Product = (props) => {
     const { product } = useTailwind();
     const navigate = useNavigate();
     const { addedProduct, setAddedProduct, user } = useAuth();
     const { img, name, _id, price } = props.product;
+    const alert = useAlert()
+
     const handleCart = (id) => {
         if (user.email) {
             const notExist = addedProduct.find(cart => cart.id === id);
@@ -37,11 +40,12 @@ const Product = (props) => {
                     .then(data => {
                         if (data.modifiedCount > 0) {
                             setAddedProduct(cart);
+                            alert.success('Product added to cart');
                         }
                     })
             }
             else {
-                alert("already added")
+                alert.info("already added");
             }
         }
         else {
@@ -56,7 +60,8 @@ const Product = (props) => {
                 <p className="text-xl ml-4 text-green-500 font-semibold">
                     Price: {price} BDT</p>
                 <div className="flex justify-between ml-2 mr-8">
-                    <button onClick={() => { handleCart(_id) }} className="button text-sm">Add to cart</button>
+                    <button
+                        onClick={() => { handleCart(_id) }} className="button text-sm">Add to cart</button>
                     <Link to={`/products/${_id}`}>
                         <button className="button text-sm">Details</button>
                     </Link>

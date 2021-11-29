@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UpdateProduct from './UpdateProduct';
+import { useAlert } from 'react-alert'
 
 const ManageProduct = () => {
     const [products, setProduct] = useState([]);
     const [singleProduct, setSingleProduct] = useState({});
     const [showUpdateForm, setUpdateForm] = useState(false);
+    const alert = useAlert();
+
     // get data 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [singleProduct]);
+
     // delete data 
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
@@ -22,7 +26,7 @@ const ManageProduct = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        alert("delete successfull");
+                        alert.show("delete successfull");
                         const newProducts = products.filter(product => product._id !== id);
                         setProduct(newProducts)
 

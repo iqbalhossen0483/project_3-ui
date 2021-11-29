@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
+import { useAlert } from 'react-alert'
 
 const ViewCart = () => {
     const [cartProducts, setCartProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [allId, setAllId] = useState("");
     const { addedProduct, setAddedProduct, user } = useAuth();
-
+    const alert = useAlert();
     //make a combine id for url
     useEffect(() => {
         let url = "";
@@ -31,9 +32,9 @@ const ViewCart = () => {
                         }
                     })
                     setCartProducts(data);
-                    setIsLoading(false)
                 })
         }
+        setIsLoading(false)
     }, [allId, addedProduct]);
 
     //quantity increase decrease
@@ -78,23 +79,27 @@ const ViewCart = () => {
 
     // delete cart products
     const handleDelete = (id) => {
-        const remain = addedProduct.filter(cart => cart.id !== id);
-        const remainCartProduct = cartProducts.filter(product => product._id !== id);
+        const confirm = window.confirm("Are you sure to delete");
+        if (confirm) {
+            const remain = addedProduct.filter(cart => cart.id !== id);
+            const remainCartProduct = cartProducts.filter(product => product._id !== id);
 
-        fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(remain)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
-                    setAddedProduct(remain);
-                    setCartProducts(remainCartProduct);
-                }
+            fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(remain)
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount > 0) {
+                        setAddedProduct(remain);
+                        setCartProducts(remainCartProduct);
+                        alert.show("Product deleted")
+                    }
+                })
+        }
     }
     let totalPrice = 0;
 

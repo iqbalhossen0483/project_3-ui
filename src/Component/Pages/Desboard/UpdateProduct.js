@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import useTailwind from '../../TailwindCss/useTailwind';
+import { useAlert } from 'react-alert'
 
 const UpdateProduct = ({ hideForm, product, setProduct }) => {
     const { id } = useParams();
     const { button, formHeader, form, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
+    const alert = useAlert();
 
     useEffect(() => {
         fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
@@ -32,7 +34,7 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    alert("This Product was updated");
+                    alert.show("This Product was updated");
                     reset();
                     hideForm(false);
                 }

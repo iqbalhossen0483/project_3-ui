@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form';
 import Rating from 'react-rating';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
+import { useAlert } from 'react-alert'
 
 const AddReviews = () => {
     const { formHeader, singleDiv, input } = useTailwind();
     const [rating, setRating] = useState(0);
     const { user } = useAuth();
+    const alert = useAlert();
     const name = user.displayName;
     const email = user.email;
     const { register, handleSubmit, reset } = useForm({
@@ -33,7 +35,7 @@ const AddReviews = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    alert("A review was successfully added");
+                    alert.show("A review was successfully added");
                     reset();
                 }
             })

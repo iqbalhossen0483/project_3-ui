@@ -1,10 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useTailwind from '../../TailwindCss/useTailwind';
+import { useAlert } from 'react-alert'
 
 const MakeAdmin = () => {
     const { formHeader, singleDiv, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
+    const alert = useAlert();
     const onSubmit = email => {
         fetch("https://cycle-mart.herokuapp.com/admin", {
             method: "PUT",
@@ -16,7 +18,7 @@ const MakeAdmin = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    alert("Make admin successful");
+                    alert.show("Make admin successful");
                     reset();
                 }
             })
