@@ -53,12 +53,12 @@ const Product = (props) => {
             <div>
                 <img className="h-52 w-full rounded-t object-cover" src={img} alt="" />
                 <p className="text-2xl ml-4 font-semibold mb-2">{name}</p>
-                <p className="text-2xl ml-4 text-green-500 font-semibold">
+                <p className="text-xl ml-4 text-green-500 font-semibold">
                     Price: {price} BDT</p>
-                <div className="flex justify-between mx-2">
-                    <button onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
+                <div className="flex justify-between ml-2 mr-8">
+                    <button onClick={() => { handleCart(_id) }} className="button text-sm">Add to cart</button>
                     <Link to={`/products/${_id}`}>
-                        <button className="button">Details</button>
+                        <button className="button text-sm">Details</button>
                     </Link>
                 </div>
             </div>

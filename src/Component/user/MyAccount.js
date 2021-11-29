@@ -6,15 +6,13 @@ const MyAccount = () => {
     const { link } = useTailwind();
     return (
         <div className="md:grid grid-cols-6">
-            <div className="bg-green-500 pt-7">
-                <div className="flex flex-col fixed">
-                    <NavLink className={link} to='profile'>My-Profile</NavLink>
-                    <NavLink className={link} to='my-order'>My-Order</NavLink>
-                    <NavLink className={link} to='my-order'>My-Order</NavLink>
-                    <NavLink className={link} to='view-cart'>View-Cart</NavLink>
-                    <NavLink className={link} to='add-review'>Add-Review</NavLink>
-                    <NavLink className={link} to='payment'>Payment-Method</NavLink>
-                </div>
+            <div className="flex flex-col bg-green-500 pt-10 pb-80">
+                <NavLink className={link} to='profile'>My-Profile</NavLink>
+                <NavLink className={link} to='my-order'>My-Order</NavLink>
+                <NavLink className={link} to='my-order'>My-Order</NavLink>
+                <NavLink className={link} to='view-cart'>View-Cart</NavLink>
+                <NavLink className={link} to='add-review'>Add-Review</NavLink>
+                <NavLink className={link} to='payment'>Payment-Method</NavLink>
             </div>
             <div className="col-span-5">
                 <Outlet />
