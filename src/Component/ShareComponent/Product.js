@@ -61,9 +61,9 @@ const Product = (props) => {
                     Price: {price} BDT</p>
                 <div className="flex justify-between ml-2 mr-8">
                     <button
-                        onClick={() => { handleCart(_id) }} className="button text-sm">Add to cart</button>
+                        onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
                     <Link to={`/products/${_id}`}>
-                        <button className="button text-sm">Details</button>
+                        <button className="button">Details</button>
                     </Link>
                 </div>
             </div>

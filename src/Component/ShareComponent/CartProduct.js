@@ -5,6 +5,7 @@ import useAuth from '../Hook/useAuth';
 const CartProduct = () => {
     const [products, setProduct] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { setShowCart, addedProduct } = useAuth();
 
     useEffect(() => {
@@ -12,6 +13,7 @@ const CartProduct = () => {
             .then(res => res.json())
             .then(data => {
                 setProduct(data);
+                setIsLoading(false);
             })
 
         if (products.length) {
@@ -25,6 +27,12 @@ const CartProduct = () => {
     }, [addedProduct, products]);
 
     let totalPrice = 0;
+
+    if (isLoading) {
+        return <p className="absolute top-full right-5 bg-white shadow-md z-20">
+            Loading...
+        </p>
+    }
     return (
         <div
             onMouseEnter={() => setShowCart(true)}

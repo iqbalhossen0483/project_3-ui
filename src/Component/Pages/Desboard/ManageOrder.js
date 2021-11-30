@@ -4,14 +4,17 @@ import { useAlert } from 'react-alert'
 
 const ManageOrder = () => {
     const [orders, setOrder] = useState([]);
-    const [reload, setReload] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/orders")
             .then(res => res.json())
-            .then(data => setOrder(data))
-    }, [reload]);
+            .then(data => {
+                setOrder(data);
+                setIsLoading(false);
+            })
+    }, [isLoading]);
 
     const handleApprove = (id) => {
         const changeData = {
@@ -29,16 +32,21 @@ const ManageOrder = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     alert.show("Order Approved");
-                    if (reload) {
-                        setReload(false);
+                    if (isLoading) {
+                        setIsLoading(false);
                     }
                     else {
-                        setReload(true);
+                        setIsLoading(true);
                     }
                 }
             })
     }
 
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
+    }
     return (
         <div className="mx-5 bg-white my-10 text-center rounded-md">
             <div className="grid grid-cols-4 gap-3 border-b py-3">

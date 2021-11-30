@@ -32,9 +32,9 @@ const ViewCart = () => {
                         }
                     })
                     setCartProducts(data);
+                    setIsLoading(false)
                 })
         }
-        setIsLoading(false)
     }, [allId, addedProduct]);
 
     //quantity increase decrease

@@ -7,13 +7,17 @@ const ManageProduct = () => {
     const [products, setProduct] = useState([]);
     const [singleProduct, setSingleProduct] = useState({});
     const [showUpdateForm, setUpdateForm] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
 
     // get data 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")
             .then(res => res.json())
-            .then(data => setProduct(data))
+            .then(data => {
+                setProduct(data);
+                setIsLoading(false);
+            })
     }, [singleProduct]);
 
     // delete data 
@@ -33,6 +37,12 @@ const ManageProduct = () => {
                     }
                 })
         }
+    }
+
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
     }
     return (
         <div className="mx-5 bg-white my-10 text-center rounded-md relative">

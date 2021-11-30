@@ -4,6 +4,7 @@ import Orders from './Orders';
 
 const MyOrder = () => {
     const [orders, setOrder] = useState([]);
+    const [isLoading, setIsloading] = useState(true);
     const { user } = useAuth();
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/orders")
@@ -11,8 +12,15 @@ const MyOrder = () => {
             .then(data => {
                 const find = data.filter(order => order.email === user.email);
                 setOrder(find);
+                setIsloading(false);
             })
     }, [user.email]);
+
+    if (isLoading) {
+        return <div className="h-screen flex justify-center items-center">
+            <div className="spinner"></div>
+        </div>
+    }
     return (
         <div>
             {orders.length ? <>

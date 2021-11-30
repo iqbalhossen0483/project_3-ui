@@ -94,7 +94,7 @@ const Shop = () => {
 
     useEffect(() => {
         if (products.length) {
-            const number = Math.floor(Math.random() * products.length) + 1;
+            const number = Math.floor(Math.random() * products.length - 1) + 1;
             fetch(`https://cycle-mart.herokuapp.com/products/rendom/${number}`)
                 .then(res => res.json())
                 .then(data => setRandomProduct(data))
@@ -107,8 +107,8 @@ const Shop = () => {
         </div>
     }
     return (
-        <div className="md:grid grid-cols-4 gap-5 md:px-5 my-10">
-            <div className="bg-white py-10 px-4">
+        <div className="px-5 my-10 flex h-screen overflow-hidden">
+            <div className="scrollbar bg-white py-10 px-4 w-80 mr-10">
                 <div className="text-xl leading-8">
                     <h2 className="text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Sellers</h2>
                     <form>
@@ -152,9 +152,11 @@ const Shop = () => {
                                 type="number"
                             />
                         </div>
-                        <input type="submit" className="button"
-                        />
-                        <input type="reset" className="button" />
+                        <div className="flex">
+                            <input type="submit" className="button"
+                            />
+                            <input type="reset" className="button" />
+                        </div>
                     </form>
                 </div>
                 <div className="text-xl leading-8 mt-10">
@@ -188,7 +190,7 @@ const Shop = () => {
                     }
                 </div>
             </div>
-            <div className="col-span-3 grid grid-cols-3 gap-5">
+            <div className="col-span-3 grid grid-cols-3 gap-5 overflow-y-auto scrollbar">
                 {
                     products.map(product => <Product key={product._id} product={product} />)
                 }

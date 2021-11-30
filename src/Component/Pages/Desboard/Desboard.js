@@ -7,8 +7,8 @@ const Desboard = () => {
     const { link } = useTailwind();
     const { isAdmin } = useAuth();
     return (
-        <div className="md:grid grid-cols-6 ">
-            <div className="flex flex-col bg-green-500 pt-5 pb-96">
+        <div className="md:grid grid-cols-6 h-screen overflow-hidden">
+            <div className="flex flex-col bg-green-500 pt-5">
                 {
                     isAdmin && <>
                         <NavLink className={link} to='add-product'>Add-Product</NavLink>
@@ -19,7 +19,7 @@ const Desboard = () => {
                     </>
                 }
             </div>
-            <div className="col-span-5">
+            <div className="col-span-5 overflow-auto scrollbar">
                 <Outlet />
             </div>
         </div>

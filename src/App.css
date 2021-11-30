@@ -33,7 +33,8 @@
   cursor: pointer;
   display: flex;
   align-self: center;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   margin: 10px 5px;
   padding: 5px;
   text-decoration: none;
@@ -62,4 +63,18 @@
 input[type="checkbox"]{
   height: 20px;
   width: 20px;
+}
+.scrollbar:hover{
+  overflow: auto;
+}
+.scrollbar::-webkit-scrollbar {
+  background: #fff;
+  border-radius: 4px;
+  height: 8px;
+  width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #868a88;
+  border-radius: 4px;
 }
