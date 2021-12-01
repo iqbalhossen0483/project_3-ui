@@ -18,6 +18,7 @@ import Profile from './Component/Pages/Desboard/Profile';
 import UpdateProduct from './Component/Pages/Desboard/UpdateProduct';
 import ViewCart from './Component/Pages/Desboard/ViewCart';
 import Home from './Component/Pages/Home/Home';
+import Slider from './Component/Pages/Home/Slider';
 import News from './Component/Pages/News/News';
 import NotFound from './Component/Pages/NotFound';
 import ProductDetails from './Component/Pages/ProductDetails';
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/slider" element={<Slider />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/news" element={<News />} />
           <Route path="/my-account" element={<PrivateRoute element={<MyAccount />} />}>

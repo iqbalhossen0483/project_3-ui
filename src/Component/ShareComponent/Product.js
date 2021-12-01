@@ -53,7 +53,7 @@ const Product = (props) => {
         }
     }
     return (
-        <div className={product}>
+        <div className={product + " shadow-lg"}>
             <div>
                 <img className="h-52 w-full rounded-t object-cover" src={img} alt="" />
                 <p className="text-2xl ml-4 font-semibold mb-2">{name}</p>

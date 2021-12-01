@@ -76,3 +76,13 @@ input[type="checkbox"]{
   background: #868a88;
   border-radius: 4px;
 }
+
+.carousel .thumb img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.carousel .slide img {
+  max-height:400px; /* change this to whatever you want */
+  width: auto;
+}

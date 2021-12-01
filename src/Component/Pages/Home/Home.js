@@ -3,15 +3,17 @@ import Product from '../../ShareComponent/Product';
 import Reviews from "./Rviews"
 import useTailwind from '../../TailwindCss/useTailwind';
 import SingleNews from "../News/singleNews";
-import { Link } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
+import Slider from './Slider';
+import Menus from './Menus';
+import Massenger from './Massenger';
 
 const Home = () => {
     const [reviews, setReviews] = useState([]);
     const [news, setNews] = useState([]);
     const [products, setProduct] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const { bannerHeader, button, SectionHeader } = useTailwind();
+    const { SectionHeader } = useTailwind();
     const { setHideUserInfo } = useAuth();
 
     useEffect(() => {
@@ -42,17 +44,19 @@ const Home = () => {
     return (
         <div onClick={() => { setHideUserInfo(false) }}>
             {/* banner */}
-            <div className="md:grid grid-cols-2 gap-3 bg-white items-center text-justify px-10">
-                <img src="https://i.ibb.co/3F4TnWF/Product9-88890957-e050-4cda-bba4-0cdc7c737fef.jpg" alt="" />
-                <div>
-                    <h3 className={bannerHeader}>RIDES MADE BETTER</h3>
-                    <p className="text-xl ">Believe in your cycle, It will lead your way. The best rides heppen on two wheels. Ride it like a pro it's not just a riding. It's a feeling. Ride and live today </p>
-                    <div className="flex justify-center mt-5">
-                        <Link to="/shop">
-                            <button className="button">See all products</button>
-                        </Link>
-                    </div>
+            <div className="md:grid grid-cols-4 gap-10 items-center text-justify bg-white h-96 overflow-hidden">
+                <div className="bg-white h-full">
+                    <Menus />
                 </div>
+                <div className="col-span-3 bg-white h-full">
+                    <Slider />
+                </div>
+            </div>
+            <div className="grid grid-cols-4 my-5 px-10 gap-10 text-center text-xl">
+                <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
+                <p className="bg-white rounded-3xl py-2 shadow-lg">Winter sales</p>
+                <p className="bg-white rounded-3xl py-2 shadow-lg">Best vendors</p>
+                <p className="bg-white rounded-3xl py-2 shadow-lg">Hot deals</p>
             </div>
             {/* product */}
             <div className="mt-10">
@@ -81,6 +85,7 @@ const Home = () => {
                     }
                 </div>
             </div>
+            <Massenger />
         </div>
     );
 };

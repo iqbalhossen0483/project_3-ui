@@ -1,7 +1,7 @@
 const useTailwind = () => {
     const link = "text-xl ml-4 hover:text-white active:text-white";
     const bannerHeader = "text-3xl md:text-4xl font-semibold text-center my-5 text-green-400";
-    const SectionHeader = "text-3xl md:text-5xl font-bold text-center my-5";
+    const SectionHeader = "text-2xl md:text-3xl font-semibold ml-10 my-5";
     const button = "border rounded-md py-1 mb-3 px-3 text-xl bg-green-500";
     const form = "flex flex-col md:w-3/5 mx-auto px-5 py-4 bg-white rounded my-10";
     const singleDiv = "flex flex-col md:w-2/6 mx-auto px-5 py-4 bg-white rounded my-10";
