@@ -7,11 +7,10 @@ const MyOrder = () => {
     const [isLoading, setIsloading] = useState(true);
     const { user } = useAuth();
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/orders")
+        fetch(`http://localhost:5000/orders/${user.email}`)
             .then(res => res.json())
             .then(data => {
-                const find = data.filter(order => order.email === user.email);
-                setOrder(find);
+                setOrder(data);
                 setIsloading(false);
             })
     }, [user.email]);

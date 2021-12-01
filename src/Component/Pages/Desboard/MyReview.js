@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
 import Rviews from '../Home/Rviews';
 
@@ -22,9 +23,9 @@ const MyReview = () => {
                     }
                 </div>
                 :
-                <div className="text-xl text-center mt-8">
+                <div className="text-xl text-center mt-8 w-40 mx-auto">
                     <p>You didn't make any review</p>
-                    <p>please Add a review</p>
+                    <NavLink className="button" to='add-review'>Add-Review</NavLink>
                 </div>}
         </div>
     );

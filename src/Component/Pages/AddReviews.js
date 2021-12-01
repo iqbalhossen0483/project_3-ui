@@ -10,12 +10,10 @@ const AddReviews = () => {
     const [rating, setRating] = useState(0);
     const { user } = useAuth();
     const alert = useAlert();
-    const name = user.displayName;
-    const email = user.email;
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
-            name: name,
-            email: email
+            name: user.displayName,
+            email: user.email
         }
     });
 
@@ -40,6 +38,7 @@ const AddReviews = () => {
                 }
             })
     }
+
     return (
         <div className="mx-3 md:mx-0">
             <form className={singleDiv + " my-20"} onSubmit={handleSubmit(onSubmit)}>

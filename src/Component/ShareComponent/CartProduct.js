@@ -3,28 +3,23 @@ import { Link } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
 
 const CartProduct = () => {
-    const [products, setProduct] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { setShowCart, addedProduct } = useAuth();
 
+
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/products")
+        let id = "";
+        for (const cart of addedProduct) {
+            id += "&&" + cart.id;
+        }
+        fetch(`http://localhost:5000/products/${id}`)
             .then(res => res.json())
             .then(data => {
-                setProduct(data);
+                setCartProducts(data);
                 setIsLoading(false);
             })
-
-        if (products.length) {
-            const newCartProducts = [];
-            for (const cart of addedProduct) {
-                const findCartProduct = products.find(product => product._id === cart.id);
-                newCartProducts.push(findCartProduct);
-            }
-            setCartProducts(newCartProducts);
-        }
-    }, [addedProduct, products]);
+    }, [addedProduct]);
 
     let totalPrice = 0;
 
