@@ -5,9 +5,8 @@ const Massenger = () => {
     return (
         <div>
             <MessengerCustomerChat
-                pageId="<PAGE_ID>"
+                pageId="110575143860941"
                 appId="<APP_ID>"
-                htmlRef="<REF_STRING>"
             />,
         </div>
     );
