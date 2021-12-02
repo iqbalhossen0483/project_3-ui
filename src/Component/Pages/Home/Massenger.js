@@ -6,7 +6,7 @@ const Massenger = () => {
         <div>
             <MessengerCustomerChat
                 pageId="110575143860941"
-                appId="<APP_ID>"
+                appId="438654467748573"
             />,
         </div>
     );
