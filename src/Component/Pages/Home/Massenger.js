@@ -5,8 +5,8 @@ const Massenger = () => {
     return (
         <div>
             <MessengerCustomerChat
-                pageId="110575143860941"
-                appId="438654467748573"
+                pageId={process.env.REACT_APP_PAGE_ID}
+                appId={process.env.REACT_APP_APP_ID}
             />,
         </div>
     );

@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyBtyAW-VvVQJXOOuqDI_tlKcmvzFoHyoxM",
-    authDomain: "cycle-mart-3ff64.firebaseapp.com",
-    projectId: "cycle-mart-3ff64",
-    storageBucket: "cycle-mart-3ff64.appspot.com",
-    messagingSenderId: "621497894439",
-    appId: "1:621497894439:web:a5bf762b80552029c53002",
-    measurementId: "G-4KXH5B2WVN"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGINGSENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
