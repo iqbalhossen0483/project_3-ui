@@ -62,7 +62,7 @@ input[type="checkbox"]{
   height: 20px;
   width: 20px;
 }
-.scrollbar:hover{
+.scrollbar{
   overflow: auto;
 }
 .scrollbar::-webkit-scrollbar {
@@ -73,6 +73,10 @@ input[type="checkbox"]{
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 4px;
+}
+.scrollbar:hover .scrollbar::-webkit-scrollbar-thumb {
   background: #868a88;
   border-radius: 4px;
 }

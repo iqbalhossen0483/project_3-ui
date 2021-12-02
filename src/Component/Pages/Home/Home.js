@@ -7,6 +7,7 @@ import useAuth from '../../Hook/useAuth';
 import Slider from './Slider';
 import Menus from './Menus';
 import Massenger from './Massenger';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [reviews, setReviews] = useState([]);
@@ -53,10 +54,18 @@ const Home = () => {
                 </div>
             </div>
             <div className="grid grid-cols-4 my-5 px-10 gap-10 text-center text-xl">
-                <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
-                <p className="bg-white rounded-3xl py-2 shadow-lg">Winter sales</p>
-                <p className="bg-white rounded-3xl py-2 shadow-lg">Best vendors</p>
-                <p className="bg-white rounded-3xl py-2 shadow-lg">Hot deals</p>
+                <Link to="/shop">
+                    <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
+                </Link>
+                <Link to="/shop">
+                    <p className="bg-white rounded-3xl py-2 shadow-lg">Winter sales</p>
+                </Link>
+                <Link to="/shop">
+                    <p className="bg-white rounded-3xl py-2 shadow-lg">Best vendors</p>
+                </Link>
+                <Link to="/shop">
+                    <p className="bg-white rounded-3xl py-2 shadow-lg">Hot deals</p>
+                </Link>
             </div>
             {/* product */}
             <div className="mt-10">
