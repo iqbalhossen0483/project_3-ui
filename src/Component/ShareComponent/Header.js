@@ -24,7 +24,7 @@ const Header = () => {
                 <NavLink className={link} to='/shop'>Shop</NavLink>
                 <NavLink className={link} to='/news'>News</NavLink>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center flex-wrap">
                 <NavLink className={link} to='/my-account/profile'>My-Account</NavLink>
                 {
                     user.email && <div className="text-xl mx-2">

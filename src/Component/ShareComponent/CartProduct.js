@@ -13,10 +13,11 @@ const CartProduct = () => {
         for (const cart of addedProduct) {
             id += "&&" + cart.id;
         }
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 setCartProducts(data);
+                console.log(data);
                 setIsLoading(false);
             })
     }, [addedProduct]);

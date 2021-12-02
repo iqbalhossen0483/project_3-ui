@@ -76,7 +76,7 @@ input[type="checkbox"]{
   background: #fff;
   border-radius: 4px;
 }
-.scrollbar:hover .scrollbar::-webkit-scrollbar-thumb {
+.scrollbar::-webkit-scrollbar-thumb {
   background: #868a88;
   border-radius: 4px;
 }

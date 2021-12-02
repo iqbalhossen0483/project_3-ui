@@ -77,10 +77,10 @@ const ProductDetails = () => {
     }
     return (
         <>
-            <div className="grid grid-cols-2 bg-white gap-3">
+            <div className="md:grid grid-cols-2 bg-white gap-3">
                 <img src={img} alt="" />
-                <div className="mt-8 text-2xl font-bold leading-10">
-                    <h1 className="text-5xl font-bold mb-7">{name}</h1>
+                <div className="px-5 md:px-0 mt-8 text-xl md:text-2xl font-bold leading-10">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-7">{name}</h1>
                     <p>Price: <span className="text-2xl font-semibold text-green-500">BDT {price * quantity}</span></p>
                     <div className="product-color flex items-center my-3">Color:
                         <p className="bg-green-600"></p>
@@ -108,7 +108,7 @@ const ProductDetails = () => {
                                 className="border rounded text-3xl px-5">+
                             </button>
                         </div>
-                        <div className="flex leading-5 mt-4">
+                        <div className="flex justify-center md:justify-start leading-5 mt-4">
                             <button
                                 onClick={() => { handleCart(_id) }}
                                 className="button">Add to cart</button>
@@ -119,8 +119,8 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-white py-8 text-center text-xl">
-                <div className="w-3/4 mx-auto border rounded-lg p-5">
+            <div className="bg-white py-8 px-2 md:px-0 text-justify text-xl">
+                <div className="md:w-3/4 mx-auto border rounded-lg p-5">
                     <p>{description}</p>
                 </div>
             </div>

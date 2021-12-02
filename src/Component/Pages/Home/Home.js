@@ -45,15 +45,15 @@ const Home = () => {
     return (
         <div onClick={() => { setHideUserInfo(false) }}>
             {/* banner */}
-            <div className="md:grid grid-cols-4 gap-10 items-center text-justify bg-white h-96 overflow-hidden">
-                <div className="bg-white h-full">
+            <div className="md:grid grid-cols-4 gap-10 items-center text-justify bg-white h-1/4 md:h-96 overflow-hidden">
+                <div className="hidden md:block bg-white h-full">
                     <Menus />
                 </div>
                 <div className="col-span-3 bg-white h-full">
                     <Slider />
                 </div>
             </div>
-            <div className="grid grid-cols-4 my-5 px-10 gap-10 text-center text-xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 my-5 px-5 md:px-10 gap-5 md:gap-10 text-center text-xl">
                 <Link to="/shop">
                     <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
                 </Link>
@@ -70,7 +70,7 @@ const Home = () => {
             {/* product */}
             <div className="mt-10">
                 <h3 className={SectionHeader}>Our Leatest Products</h3>
-                <div className="md:grid grid-cols-4 gap-4 md:m-5">
+                <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:m-5">
                     {
                         products.map(product => <Product key={product._id} product={product} />)
                     }
@@ -79,7 +79,7 @@ const Home = () => {
             {/* reviews */}
             <div className="my-16 md:px-5">
                 <h3 className={SectionHeader}>Our Customer Reviews</h3>
-                <div className="md:grid grid-cols-3 gap-4">
+                <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {
                         reviews.map(review => <Reviews key={review._id} review={review} />)
                     }
@@ -88,7 +88,7 @@ const Home = () => {
             {/* news */}
             <div className="my-16 md:px-5">
                 <h3 className={SectionHeader}>Leatest News</h3>
-                <div className="md:grid grid-cols-3 gap-4">
+                <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {
                         news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
                     }

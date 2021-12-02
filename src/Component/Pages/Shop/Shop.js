@@ -107,8 +107,8 @@ const Shop = () => {
         </div>
     }
     return (
-        <div className="px-5 my-10 flex h-screen overflow-hidden">
-            <div className="scrollbar bg-white py-10 px-4 w-80 mr-10">
+        <div className="md:px-5 my-10 flex md:h-screen md:overflow-hidden">
+            <div className="scrollbar hidden md:block bg-white py-10 px-4 w-80 mr-10">
                 <div className="text-xl leading-8">
                     <h2 className="text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Sellers</h2>
                     <form>
@@ -190,7 +190,7 @@ const Shop = () => {
                     }
                 </div>
             </div>
-            <div className="col-span-3 grid grid-cols-3 gap-5 overflow-y-auto scrollbar">
+            <div className="col-span-3 md:grid grid-cols-3 gap-5 overflow-y-auto scrollbar">
                 {
                     products.map(product => <Product key={product._id} product={product} />)
                 }
