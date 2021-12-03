@@ -41,7 +41,7 @@ const Slider = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="grid grid-cols-4 items-center">
+                <div className="md:grid grid-cols-4 items-center">
                     <img className="col-span-2" src="https://i.ibb.co/Kx00vX4/Product4-d92d289a-139f-4f62-8b67-e96b5f3d0d3e.jpg" alt="" />
                     <div className="col-span-2 hidden md:block">
                         <p className={bannerHeader}>A POPULATION FREE RIDE</p>
