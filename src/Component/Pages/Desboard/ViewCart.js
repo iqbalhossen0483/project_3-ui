@@ -113,13 +113,13 @@ const ViewCart = () => {
                 </div>
 
             }
-            {cartProducts.length && <div className="m-5 bg-white rounded text-xl">
+            {cartProducts.length && <div className="mt-5 md:m-5 bg-white rounded text-xl">
                 {
                     cartProducts.map(product => {
                         totalPrice += parseInt(product.price * product.quantity);
                         return <div
                             key={product._id}
-                            className="p-3 grid grid-cols-4 justify-center items-center text-center">
+                            className="p-3 grid md:grid-cols-4 justify-center items-center text-center">
                             <img src={product.img} alt="" />
                             <p>{product.name}</p>
                             <p>{product.price * product.quantity} BDT</p>
@@ -143,10 +143,10 @@ const ViewCart = () => {
                     })
                 }
                 {cartProducts.length &&
-                    <div className="grid grid-cols-4 text-center items-center">
-                        <p></p>
-                        <p></p>
-                        <p className="text-2xl">Total: <span className="font-semibold text-green-500">{totalPrice} BDT</span></p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-center items-center">
+                        <p className="hidden md:block"></p>
+                        <p className="hidden lg:block"></p>
+                        <p className="text-xl md:text-2xl">Total: <span className="font-semibold text-green-500">{totalPrice} BDT</span></p>
                         <div className="flex justify-center">
                             <Link to={`/place-order/${allId}`}>
                                 <button className="button">Pleace Order</button>

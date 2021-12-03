@@ -107,10 +107,10 @@ const Shop = () => {
         </div>
     }
     return (
-        <div className="md:px-5 my-10 flex md:h-screen md:overflow-hidden">
-            <div className="scrollbar hidden md:block bg-white py-10 px-4 w-80 mr-10">
-                <div className="text-xl leading-8">
-                    <h2 className="text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Sellers</h2>
+        <div className="md:pl-2 lg:px-5 my-10 flex md:h-screen md:overflow-hidden">
+            <div className="scrollbar hidden md:block bg-white py-10 px-2 lg:px-4 md:w-52 lg:w-80 mr-4 lg:mr-10">
+                <div className="lg:text-xl leading-8">
+                    <h2 className="text-2xl lg:text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Sellers</h2>
                     <form>
                         <p className="flex items-center">
                             <input
@@ -130,14 +130,14 @@ const Shop = () => {
                         <input type="reset" onClick={() => { setSeller("") }} className="button" />
                     </form>
                 </div>
-                <div className="mt-10 text-xl">
-                    <h2 className="text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Price</h2>
+                <div className="mt-10 lg:text-xl">
+                    <h2 className="text-2xl lg:text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Price</h2>
                     <form
                         onSubmit={(e) => { showProductsByPriceRange(e) }}
                         onReset={handleReset}
                         className="grid grid-cols-3 mt-4">
                         <div>
-                            <p>Start from:</p>
+                            <p>From:</p>
                             <p className="mt-2">Till:</p>
                         </div>
                         <div className="col-span-2">
@@ -159,8 +159,8 @@ const Shop = () => {
                         </div>
                     </form>
                 </div>
-                <div className="text-xl leading-8 mt-10">
-                    <h2 className="text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Products type</h2>
+                <div className="lg:text-xl leading-8 mt-10">
+                    <h2 className="text-2xl lg:text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Products type</h2>
                     <form>
                         <p className="flex items-center">
                             <input
@@ -181,7 +181,7 @@ const Shop = () => {
                         <input type="reset" onClick={() => { setType("") }} className="button" />
                     </form>
                 </div>
-                <div className="text-xl leading-8 mt-10">
+                <div className="hidden lg:block text-xl leading-8 mt-10">
                     <h2 className="text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Best Products</h2>
                     {
                         randomProduct.map(product => <Product
@@ -190,7 +190,7 @@ const Shop = () => {
                     }
                 </div>
             </div>
-            <div className="col-span-3 md:grid grid-cols-3 gap-5 overflow-y-auto scrollbar">
+            <div className="col-span-3 grid md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-y-auto scrollbar">
                 {
                     products.map(product => <Product key={product._id} product={product} />)
                 }

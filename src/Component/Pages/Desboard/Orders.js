@@ -22,8 +22,8 @@ const Orders = ({ order, children, orders, setOrder }) => {
         }
     }
     return (
-        <div className="grid grid-cols-4 gap-3 border-b py-3 items-center">
-            <div className="col-span-2">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 border-b py-3 items-center justify-center">
+            <div className="col-span-2 px-2 md:px-0">
                 {
                     order.products.map(product => <div
                         className="grid grid-cols-2"

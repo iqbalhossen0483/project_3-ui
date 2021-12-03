@@ -17,7 +17,7 @@ const Profile = () => {
                     <div className="text-center md:absolute top-2 right-2 z-0">
                         <button className="button">Update your profile</button>
                     </div>
-                    <p className="text-xl text-center">{customer.email}</p>
+                    <p className="text-xl ml-3 lg:ml-0 lg:text-center">{customer.email}</p>
                 </div>
             }
         </div>

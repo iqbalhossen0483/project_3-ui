@@ -17,13 +17,13 @@ const MyReview = () => {
     return (
         <div>
             {reviews.length ?
-                <div className="md:grid grid-cols-3 gap-4 md:m-10">
+                <div className="lg:grid grid-cols-3 gap-4 md:m-10">
                     {
                         reviews.map(review => <Rviews review={review} />)
                     }
                 </div>
                 :
-                <div className="text-xl text-center mt-8 w-40 mx-auto">
+                <div className="text-xl text-center mt-8 h-auto w-40 mx-auto">
                     <p>You didn't make any review</p>
                     <NavLink className="button" to='add-review'>Add-Review</NavLink>
                 </div>}

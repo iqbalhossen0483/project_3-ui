@@ -45,8 +45,8 @@ const Home = () => {
     return (
         <div onClick={() => { setHideUserInfo(false) }}>
             {/* banner */}
-            <div className="md:grid grid-cols-4 gap-10 items-center text-justify bg-white h-1/4 md:h-96 overflow-hidden">
-                <div className="hidden md:block bg-white h-full">
+            <div className="lg:grid grid-cols-4 gap-10 items-center text-justify bg-white h-1/4 lg:h-96 overflow-hidden">
+                <div className="hidden lg:block bg-white h-full">
                     <Menus />
                 </div>
                 <div className="col-span-3 bg-white h-full">

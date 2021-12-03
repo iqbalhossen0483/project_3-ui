@@ -109,7 +109,7 @@ const Purchase = () => {
         </div>
     }
     return (
-        <div className="grid grid-cols-2">
+        <div className="px-3 md:px-0 md:grid grid-cols-2">
             <div className={form}>
                 <h1 className={formHeader}>Order Summary</h1>
                 {singleProduct.length &&

@@ -49,7 +49,7 @@ const ManageOrder = () => {
     }
     return (
         <div className="mx-5 bg-white my-10 text-center rounded-md">
-            <div className="grid grid-cols-4 gap-3 border-b py-3">
+            <div className="hidden lg:grid grid-cols-4 gap-3 border-b py-3">
                 <p>Product details</p>
                 <p>Product images</p>
                 <p>Customer details</p>
