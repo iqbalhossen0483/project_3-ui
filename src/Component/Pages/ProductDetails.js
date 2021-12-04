@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
-import { useAlert } from 'react-alert'
+import { useAlert } from 'react-alert';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState({});

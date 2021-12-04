@@ -4,10 +4,11 @@ import Reviews from "./Rviews"
 import useTailwind from '../../TailwindCss/useTailwind';
 import SingleNews from "../News/singleNews";
 import useAuth from '../../Hook/useAuth';
-import Slider from './Slider';
 import Menus from './Menus';
 import Massenger from './Massenger';
 import { Link } from 'react-router-dom';
+import PansySlider from './PansySlider';
+import Slider from "react-slick";
 
 const Home = () => {
     const [reviews, setReviews] = useState([]);
@@ -37,6 +38,44 @@ const Home = () => {
             })
     }, []);
 
+    //for slider
+    const settings = {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+
     if (isLoading) {
         return <div className="h-screen flex justify-center items-center">
             <div className="spinner"></div>
@@ -50,7 +89,7 @@ const Home = () => {
                     <Menus />
                 </div>
                 <div className="col-span-3 bg-white h-full">
-                    <Slider />
+                    <PansySlider />
                 </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 my-5 px-5 md:px-10 gap-5 md:gap-10 text-center text-xl">
@@ -79,21 +118,20 @@ const Home = () => {
             {/* reviews */}
             <div className="my-16 md:px-5">
                 <h3 className={SectionHeader}>Our Customer Reviews</h3>
-                <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-
+                <Slider {...settings}>
                     {
                         reviews.map(review => <Reviews key={review._id} review={review} />)
                     }
-                </div>
+                </Slider>
             </div>
             {/* news */}
             <div className="my-16 md:px-5">
                 <h3 className={SectionHeader}>Leatest News</h3>
-                <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Slider {...settings}>
                     {
                         news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
                     }
-                </div>
+                </Slider>
             </div>
             <Massenger />
         </div>

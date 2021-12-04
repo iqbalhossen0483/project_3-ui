@@ -25,7 +25,7 @@ const MyReview = () => {
                 :
                 <div className="text-xl text-center mt-8 h-auto w-40 mx-auto">
                     <p>You didn't make any review</p>
-                    <NavLink className="button" to='add-review'>Add-Review</NavLink>
+                    <NavLink className="button" to='/my-account/add-review'>Add-Review</NavLink>
                 </div>}
         </div>
     );
