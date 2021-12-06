@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../../ShareComponent/Footer/Footer';
+import Loader from '../../ShareComponent/Loader';
 import SingleNews from './singleNews';
 
 const News = () => {
@@ -15,13 +16,12 @@ const News = () => {
     }, []);
 
     if (isLoading) {
-        return <div className="h-screen flex justify-center items-center">
-            <div className="spinner"></div>
-        </div>
+        return <Loader />
     }
     return (
         <>
             <div className="my-16 md:px-5">
+
                 <div className="md:grid grid-cols-2 lg:grid-cols-3 gap-4">
                     {
                         news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)

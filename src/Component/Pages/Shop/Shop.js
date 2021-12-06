@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../../ShareComponent/Footer/Footer';
 import Product from '../../ShareComponent/Product';
+import { ProductSideSkelator, ProductSkelator } from '../../ShareComponent/SkelatorAll';
 
 const Shop = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -102,10 +103,23 @@ const Shop = () => {
         }
     }, [products]);
 
+
     if (isLoading) {
-        return <div className="h-screen flex justify-center items-center">
-            <div className="spinner"></div>
-        </div>
+        return (
+            <div className="lg:grid gap-5 grid-cols-4 mt-5">
+                <div className="">
+                    <ProductSideSkelator />
+                </div>
+                <div className="col-span-3 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <ProductSkelator />
+                    <ProductSkelator />
+                    <ProductSkelator />
+                    <ProductSkelator />
+                    <ProductSkelator />
+                    <ProductSkelator />
+                </div>
+            </div>
+        )
     }
     return (
         <div

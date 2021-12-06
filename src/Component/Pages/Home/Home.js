@@ -9,35 +9,53 @@ import Massenger from './Massenger';
 import { Link } from 'react-router-dom';
 import PansySlider from './PansySlider';
 import Slider from "react-slick";
-import Footer from "../../ShareComponent/Footer/Footer"
+import Footer from "../../ShareComponent/Footer/Footer";
+import { NewsSkelator, ProductSkelator, ReviewSkelator } from '../../ShareComponent/SkelatorAll';
 
 const Home = () => {
     const [reviews, setReviews] = useState([]);
     const [news, setNews] = useState([]);
     const [products, setProduct] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const { SectionHeader } = useTailwind();
     const { setHideUserInfo } = useAuth();
+    const [isLoading, setIsLoading] = useState({
+        product: true,
+        review: true,
+        news: true
+    });
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products/home")
             .then(res => res.json())
-            .then(data => setProduct(data))
-    }, []);
+            .then(data => {
+                setProduct(data);
+                const loading = isLoading;
+                loading.product = false;
+                setIsLoading(loading);
+            })
+    }, [isLoading]);
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/reviews")
             .then(res => res.json())
-            .then(data => setReviews(data))
-    }, []);
+            .then(data => {
+                setReviews(data);
+                const loading = isLoading;
+                loading.review = false;
+                setIsLoading(loading);
+            })
+    }, [isLoading])
+
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/news")
             .then(res => res.json())
             .then(data => {
                 setNews(data);
-                setIsLoading(false)
+                const loading = isLoading;
+                loading.news = false;
+                setIsLoading(loading);
             })
-    }, []);
+    }, [isLoading]);
 
     //for slider
     const settings = {
@@ -76,12 +94,6 @@ const Home = () => {
             }
         ]
     };
-
-    if (isLoading) {
-        return <div className="h-screen flex justify-center items-center">
-            <div className="spinner"></div>
-        </div>
-    }
     return (
         <>
             <div onClick={() => { setHideUserInfo(false) }}>
@@ -112,7 +124,17 @@ const Home = () => {
                 <div className="mt-10">
                     <h3 className={SectionHeader}>Our Leatest Products</h3>
                     <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:m-5">
-                        {
+                        {isLoading.product ?
+                            <>
+                                <ProductSkelator />
+                                <ProductSkelator />
+                                <ProductSkelator />
+                                <ProductSkelator />
+                                <ProductSkelator />
+                                <ProductSkelator />
+                                <ProductSkelator />
+                                <ProductSkelator />
+                            </> :
                             products.map(product => <Product key={product._id} product={product} />)
                         }
                     </div>
@@ -120,20 +142,32 @@ const Home = () => {
                 {/* reviews */}
                 <div className="my-16 md:px-5">
                     <h3 className={SectionHeader}>Our Customer Reviews</h3>
-                    <Slider {...settings}>
-                        {
-                            reviews.map(review => <Reviews key={review._id} review={review} />)
-                        }
-                    </Slider>
+                    {isLoading.review ?
+                        <div className="grid grid-cols-3 gap-5">
+                            <ReviewSkelator />
+                            <ReviewSkelator />
+                            <ReviewSkelator />
+                        </div> :
+                        <Slider {...settings}>
+                            {
+                                reviews.map(review => <Reviews key={review._id} review={review} />)
+                            }
+                        </Slider>}
                 </div>
                 {/* news */}
                 <div className="my-16 md:px-5">
                     <h3 className={SectionHeader}>Leatest News</h3>
-                    <Slider {...settings}>
-                        {
-                            news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
-                        }
-                    </Slider>
+                    {isLoading.news ?
+                        <div className="grid grid-cols-3 gap-5">
+                            <NewsSkelator />
+                            <NewsSkelator />
+                            <NewsSkelator />
+                        </div> :
+                        <Slider {...settings}>
+                            {
+                                news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
+                            }
+                        </Slider>}
                 </div>
                 <Massenger />
             </div>

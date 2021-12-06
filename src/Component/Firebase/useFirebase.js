@@ -25,7 +25,6 @@ const useFirebase = () => {
             if (user) {
                 setUser(user);
                 checkUser(user.email);
-                console.log(user.photoURL);
             }
             else {
                 setUser({});;

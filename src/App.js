@@ -26,6 +26,7 @@ import Shop from './Component/Pages/Shop/Shop';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import MyAccount from './Component/user/MyAccount';
 import Header from "./Component/ShareComponent/Header"
+import { NewsSkelator } from './Component/ShareComponent/SkelatorAll';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/skelator" element={<NewsSkelator />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/news" element={<News />} />
