@@ -113,7 +113,7 @@ const ViewCart = () => {
                 </div>
 
             }
-            {cartProducts.length && <div className="mt-5 md:m-5 bg-white rounded text-xl">
+            {cartProducts.length && <div className="m-5 bg-white text-xl">
                 {
                     cartProducts.map(product => {
                         totalPrice += parseInt(product.price * product.quantity);

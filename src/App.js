@@ -24,13 +24,13 @@ import ProductDetails from './Component/Pages/ProductDetails';
 import Purchase from './Component/Pages/Purchase';
 import Shop from './Component/Pages/Shop/Shop';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
-import Footer from './Component/ShareComponent/Footer/Footer';
-import Header from './Component/ShareComponent/Header';
 import MyAccount from './Component/user/MyAccount';
+import Header from "./Component/ShareComponent/Header"
 
 function App() {
   return (
-    <div className="App">
+    <div
+      className="h-screen overflow-auto scrollbar App">
       <AuthProvider>
         <Header />
         <Routes>
@@ -61,7 +61,6 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
       </AuthProvider>
     </div>
   );

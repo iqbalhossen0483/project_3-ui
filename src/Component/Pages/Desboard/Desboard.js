@@ -1,14 +1,16 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
+import Footer from '../../ShareComponent/Footer/Footer';
 import useTailwind from '../../TailwindCss/useTailwind';
 
 const Desboard = () => {
     const { link } = useTailwind();
     const { isAdmin } = useAuth();
     return (
-        <div className="md:grid grid-cols-6 h-screen overflow-hidden">
-            <div className="flex flex-col bg-green-500 pt-5">
+        <div className="md:grid grid-cols-6">
+            <div style={{ width: "14.1rem" }}
+                className="flex flex-col bg-green-500 pt-5 h-full fixed">
                 {
                     isAdmin && <>
                         <NavLink className={link} to='add-product'>Add-Product</NavLink>
@@ -19,8 +21,10 @@ const Desboard = () => {
                     </>
                 }
             </div>
-            <div className="col-span-5 overflow-auto scrollbar">
+            <p></p>
+            <div className="col-span-5 h-screen flex flex-col justify-between">
                 <Outlet />
+                <Footer />
             </div>
         </div>
     );

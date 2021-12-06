@@ -45,7 +45,7 @@ const ManageProduct = () => {
         </div>
     }
     return (
-        <div className="mx-5 bg-white my-10 text-center rounded-md relative">
+        <div className="bg-white m-5 text-center relative">
             <div className="grid grid-cols-5 gap-3 border-b py-3 z-0">
                 <p>Images</p>
                 <p>Name</p>

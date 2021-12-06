@@ -1,9 +1,7 @@
 import React from 'react';
-import useTailwind from '../../TailwindCss/useTailwind';
 
 const SingleNews = ({ news }) => {
     const { img, name, description, date } = news;
-    const { button } = useTailwind();
     return (
         <div className="m-3 md:m-3 bg-white rounded-md pb-5 shadow-lg">
             <img className="rounded-t-md" src={img} alt="" />

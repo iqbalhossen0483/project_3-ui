@@ -9,6 +9,7 @@ import Massenger from './Massenger';
 import { Link } from 'react-router-dom';
 import PansySlider from './PansySlider';
 import Slider from "react-slick";
+import Footer from "../../ShareComponent/Footer/Footer"
 
 const Home = () => {
     const [reviews, setReviews] = useState([]);
@@ -82,59 +83,62 @@ const Home = () => {
         </div>
     }
     return (
-        <div onClick={() => { setHideUserInfo(false) }}>
-            {/* banner */}
-            <div className="lg:grid grid-cols-4 gap-10 items-center text-justify bg-white h-1/4 lg:h-96 overflow-hidden">
-                <div className="hidden lg:block bg-white h-full">
-                    <Menus />
+        <>
+            <div onClick={() => { setHideUserInfo(false) }}>
+                {/* banner */}
+                <div className="lg:grid grid-cols-4 gap-10 items-center text-justify bg-white h-1/4 lg:h-96 overflow-hidden">
+                    <div className="hidden lg:block bg-white h-full">
+                        <Menus />
+                    </div>
+                    <div className="col-span-3 bg-white h-full">
+                        <PansySlider />
+                    </div>
                 </div>
-                <div className="col-span-3 bg-white h-full">
-                    <PansySlider />
+                <div className="grid grid-cols-2 md:grid-cols-4 my-5 px-5 md:px-10 gap-5 md:gap-10 text-center text-xl">
+                    <Link to="/shop">
+                        <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
+                    </Link>
+                    <Link to="/shop">
+                        <p className="bg-white rounded-3xl py-2 shadow-lg">Winter sales</p>
+                    </Link>
+                    <Link to="/shop">
+                        <p className="bg-white rounded-3xl py-2 shadow-lg">Best vendors</p>
+                    </Link>
+                    <Link to="/shop">
+                        <p className="bg-white rounded-3xl py-2 shadow-lg">Hot deals</p>
+                    </Link>
                 </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 my-5 px-5 md:px-10 gap-5 md:gap-10 text-center text-xl">
-                <Link to="/shop">
-                    <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
-                </Link>
-                <Link to="/shop">
-                    <p className="bg-white rounded-3xl py-2 shadow-lg">Winter sales</p>
-                </Link>
-                <Link to="/shop">
-                    <p className="bg-white rounded-3xl py-2 shadow-lg">Best vendors</p>
-                </Link>
-                <Link to="/shop">
-                    <p className="bg-white rounded-3xl py-2 shadow-lg">Hot deals</p>
-                </Link>
-            </div>
-            {/* product */}
-            <div className="mt-10">
-                <h3 className={SectionHeader}>Our Leatest Products</h3>
-                <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:m-5">
-                    {
-                        products.map(product => <Product key={product._id} product={product} />)
-                    }
+                {/* product */}
+                <div className="mt-10">
+                    <h3 className={SectionHeader}>Our Leatest Products</h3>
+                    <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:m-5">
+                        {
+                            products.map(product => <Product key={product._id} product={product} />)
+                        }
+                    </div>
                 </div>
+                {/* reviews */}
+                <div className="my-16 md:px-5">
+                    <h3 className={SectionHeader}>Our Customer Reviews</h3>
+                    <Slider {...settings}>
+                        {
+                            reviews.map(review => <Reviews key={review._id} review={review} />)
+                        }
+                    </Slider>
+                </div>
+                {/* news */}
+                <div className="my-16 md:px-5">
+                    <h3 className={SectionHeader}>Leatest News</h3>
+                    <Slider {...settings}>
+                        {
+                            news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
+                        }
+                    </Slider>
+                </div>
+                <Massenger />
             </div>
-            {/* reviews */}
-            <div className="my-16 md:px-5">
-                <h3 className={SectionHeader}>Our Customer Reviews</h3>
-                <Slider {...settings}>
-                    {
-                        reviews.map(review => <Reviews key={review._id} review={review} />)
-                    }
-                </Slider>
-            </div>
-            {/* news */}
-            <div className="my-16 md:px-5">
-                <h3 className={SectionHeader}>Leatest News</h3>
-                <Slider {...settings}>
-                    {
-                        news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
-                    }
-                </Slider>
-            </div>
-            <Massenger />
-        </div>
+            <Footer />
+        </>
     );
 };
 
