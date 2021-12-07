@@ -18,7 +18,6 @@ const Payment = (props) => {
     console.log(props.orderDetails)
 
     const confirmOrder = (order) => {
-        order.totalBDT = totalPrice + sipping;
         fetch("https://cycle-mart.herokuapp.com/orders", {
             method: "POST",
             headers: {

@@ -29,7 +29,6 @@ const Purchase = () => {
         }
     });
 
-    let totalProductPrice = 0;
     let sipping = 100;
 
     //find triger products
