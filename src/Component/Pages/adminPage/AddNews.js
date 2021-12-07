@@ -31,7 +31,7 @@ const AddNews = () => {
                 <h3 className={formHeader}>Add news</h3>
                 <input className={input} {...register("img", { required: true })} placeholder="Enter a img url" />
                 <input className={input} {...register("name", { required: true })} placeholder="Enter the name" />
-                <textarea className={input + " w-64"} {...register("description", { required: true })} placeholder="Enter short description" />
+                <textarea className={input} {...register("description", { required: true })} placeholder="Enter short description" />
                 <input className="button" type="submit" />
             </form>
         </div>

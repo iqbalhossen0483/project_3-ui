@@ -46,20 +46,22 @@ const ManageProduct = () => {
     }
     return (
         <div className="bg-white m-5 text-center relative">
-            <div className="grid grid-cols-5 gap-3 border-b py-3 z-0">
+            <div className="grid grid-cols-6 gap-3 border-b py-3 z-0">
                 <p>Images</p>
                 <p>Name</p>
+                <p>Category</p>
                 <p>Price</p>
                 <p>Stock</p>
-                <p></p>
+                <p><Link to="/desboard/add-product">Add+</Link></p>
             </div>
             <div>
                 {
                     products.map(product => <div
                         key={product._id}
-                        className="grid grid-cols-5 gap-3 border-b py-3 items-center">
+                        className="grid grid-cols-6 gap-3 border-b py-3 items-center">
                         <img className="w-full h-32" src={product.img} alt="" />
                         <p>{product.name}</p>
+                        <p>{product.category}</p>
                         <p>{product.price}</p>
                         <p>{product.stock}</p>
                         <div>

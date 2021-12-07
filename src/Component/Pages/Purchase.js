@@ -159,10 +159,10 @@ const Purchase = () => {
                                 <hr className="mb-3 mt-1" />
                                 <p>{product.price}</p>
                                 <p>{quantity}</p>
-                                <p>{totalPrice}</p>
-                                <p>{sipping}</p>
+                                <p>{totalPrice} BDT</p>
+                                <p>{sipping} BDT</p>
                                 <hr className="mt-2" />
-                                <p>{totalPrice + sipping}</p>
+                                <p>{totalPrice + sipping} BDT</p>
                             </div>
                         </div>
                     })
@@ -180,18 +180,18 @@ const Purchase = () => {
                 </div>}
                 {
                     orders.length && <div
-                        className="grid grid-cols-2 mt-5 text-2xl font-bold leading-10">
+                        className="grid grid-cols-2 mt-5 text-xl font-semibold leading-10">
                         <div>
                             <p>Sub-total: </p>
                             <p>Shipping Cost: </p>
                             <hr className="mt-3" />
                             <p>Total: </p>
                         </div>
-                        <div className="font-semibold text-green-500">
-                            <p>{totalPrice}</p>
-                            <p>{sipping}</p>
+                        <div className="text-green-500">
+                            <p>{totalPrice} BDT</p>
+                            <p>{sipping} BDT</p>
                             <hr className="mt-3" />
-                            <p>{totalPrice + sipping}</p>
+                            <p>{totalPrice + sipping} BDT</p>
                         </div>
                     </div>
                 }

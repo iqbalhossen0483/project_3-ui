@@ -4,9 +4,9 @@ const useTailwind = () => {
     const SectionHeader = "text-2xl md:text-3xl font-semibold ml-10 my-5";
     const button = "border rounded-md py-1 mb-3 px-3 text-xl bg-green-500";
     const form = "flex flex-col md:w-3/5 mx-auto px-5 py-4 bg-white rounded my-10";
-    const singleDiv = "flex flex-col items-center md:w-4/6 lg:w-2/6 mx-auto px-5 py-4 bg-white rounded my-10";
+    const singleDiv = "flex flex-col md:w-4/6 lg:w-2/6 mx-auto px-5 py-4 bg-white rounded my-10";
     const formHeader = "text-3xl md:text-4xl font-semibold text-center mb-5";
-    const input = "border rounded py-1 px-3 my-1 text-xl";
+    const input = "border rounded py-1 px-3 my-1 text-xl focus:outline-none";
     const product = "m-3 md:m-0 rounded-md bg-white leading-6";
     const profile = "w-12 h-12 rounded-full mx-auto";
     return {

@@ -27,7 +27,7 @@ import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import MyAccount from './Component/user/MyAccount';
 import Header from "./Component/ShareComponent/Header"
 import { NewsSkelator } from './Component/ShareComponent/SkelatorAll';
-import Payment from './Component/Pages/Shop/Payment';
+import CategoryProduct from './Component/Pages/Shop/CategoryProduct';
 
 function App() {
   return (
@@ -40,6 +40,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/skelator" element={<NewsSkelator />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/:category" element={<CategoryProduct />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/news" element={<News />} />
           <Route path="/my-account" element={<PrivateRoute element={<MyAccount />} />}>
@@ -60,7 +61,6 @@ function App() {
             </Route>
           </Route>
           <Route path="/place-order/:id" element={<PrivateRoute element={<Purchase />} />} />
-          <Route path="/payment" element={<PrivateRoute element={<Payment />} />} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />

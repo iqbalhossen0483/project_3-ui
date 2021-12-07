@@ -6,7 +6,7 @@ import { useAlert } from 'react-alert'
 
 const UpdateProduct = ({ hideForm, product, setProduct }) => {
     const { id } = useParams();
-    const { button, formHeader, form, input } = useTailwind();
+    const { formHeader, singleDiv, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
 
@@ -20,6 +20,7 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
         newProduct.id = product._id;
         newProduct.img = newProduct.img || product.img;
         newProduct.name = newProduct.name || product.name;
+        newProduct.category = newProduct.category || product.category;
         newProduct.price = newProduct.price || product.price;
         newProduct.stock = newProduct.stock || product.stock;
         newProduct.vendor = newProduct.vendor || product.vendor;
@@ -43,15 +44,16 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
     return (
         <div onClick={() => hideForm(false)} className="absolute top-0 left-0 w-full h-full background">
             <div className="h-screen w-full flex justify-center items-center ">
-                <form onClick={e => e.stopPropagation()} className={form} onSubmit={handleSubmit(onSubmit)}>
+                <form onClick={e => e.stopPropagation()} className={singleDiv} onSubmit={handleSubmit(onSubmit)}>
                     <h3 className={formHeader}>Update Product</h3>
                     <input className={input} {...register("img")} placeholder="Enter a img url" />
                     <input className={input} {...register("name")} placeholder="Enter the name" />
+                    <input className={input} {...register("category")} placeholder="Enter the category" />
                     <input type="number" className={input} {...register("price")} placeholder="Enter price" />
                     <input type="number" className={input} {...register("stock")} placeholder="Enter stock" />
                     <input type="text" className={input} {...register("vendor")} placeholder="Enter vendor name" />
                     <input type="text" className={input} {...register("type")} placeholder="Enter the type of cycle" />
-                    <input className={button} type="submit" />
+                    <input className="button" type="submit" />
                 </form>
             </div>
         </div>

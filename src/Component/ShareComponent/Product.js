@@ -56,7 +56,7 @@ const Product = (props) => {
         <div className={product + " shadow-lg"}>
             <div>
                 <img className="h-52 w-full rounded-t object-cover" src={img} alt="" />
-                <p className="text-2xl ml-4 font-semibold mb-2">{name}</p>
+                <p className="text-xl ml-4 font-semibold my-2">{name}</p>
                 <p className="text-xl ml-4 text-green-500 font-semibold">
                     Price: {price} BDT</p>
                 <div className="flex justify-between ml-2 mr-8">

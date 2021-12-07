@@ -20,7 +20,7 @@ const ProductDetails = () => {
                 setIsLoading(false);
             })
     }, [id]);
-    const { name, img, price, _id, stock, vendor, type, description } = products;
+    const { name, img, price, _id, stock, vendor, type, description, category } = products;
 
     const handleMinus = () => {
         if (quantity > 1) {
@@ -80,7 +80,7 @@ const ProductDetails = () => {
             <div className="md:grid grid-cols-2 bg-white gap-3">
                 <img src={img} alt="" />
                 <div className="px-5 md:px-0 mt-8 text-xl md:text-2xl font-bold leading-10">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-7">{name}</h1>
+                    <h1 className="text-4xl md:text-5xl font-semibold mb-7">{name}</h1>
                     <p>Price: <span className="text-2xl font-semibold text-green-500">BDT {price * quantity}</span></p>
                     <div className="product-color flex items-center my-3">Color:
                         <p className="bg-green-600"></p>
@@ -89,6 +89,7 @@ const ProductDetails = () => {
                     </div>
                     <p>Vendor: <span className="text-xl font-semibold">{vendor}</span></p>
                     <p className="my-3">Type: <span className="text-xl font-semibold">{type}</span></p>
+                    <p className="my-3">Category: <span className="text-xl font-semibold">{category}</span></p>
                     <p>Availability:
                         <span className="text-green-500 text-xl font-semibold ml-2">{parseInt(stock) > 0 && parseInt(stock) > quantity ? "In stock!" :
                             <span className="text-red-500">

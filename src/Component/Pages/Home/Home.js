@@ -18,45 +18,37 @@ const Home = () => {
     const [products, setProduct] = useState([]);
     const { SectionHeader } = useTailwind();
     const { setHideUserInfo } = useAuth();
-    const [isLoading, setIsLoading] = useState({
-        product: true,
-        review: true,
-        news: true
-    });
+    const [productLoading, setProductLoading] = useState(true);
+    const [reviewLoading, setReviewLoading] = useState(true);
+    const [newsLoading, setNewsLoading] = useState(true);
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products/home")
             .then(res => res.json())
             .then(data => {
                 setProduct(data);
-                const loading = isLoading;
-                loading.product = false;
-                setIsLoading(loading);
+                setProductLoading(false)
             })
             .catch(err => console.log(err.massege))
-    }, [isLoading]);
+    }, []);
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/reviews")
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
-                const loading = isLoading;
-                loading.review = false;
-                setIsLoading(loading);
+                setReviewLoading(false);
             })
-    }, [isLoading])
+    }, [])
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/news")
             .then(res => res.json())
             .then(data => {
                 setNews(data);
-                const loading = isLoading;
-                loading.news = false;
-                setIsLoading(loading);
+                setNewsLoading(false);
             })
-    }, [isLoading]);
+    }, []);
 
     //for slider
     const settings = {
@@ -125,7 +117,7 @@ const Home = () => {
                 <div className="mt-10">
                     <h3 className={SectionHeader}>Our Leatest Products</h3>
                     <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:m-5">
-                        {isLoading.product ?
+                        {productLoading ?
                             <>
                                 <ProductSkelator />
                                 <ProductSkelator />
@@ -143,7 +135,7 @@ const Home = () => {
                 {/* reviews */}
                 <div className="my-16 md:px-5">
                     <h3 className={SectionHeader}>Our Customer Reviews</h3>
-                    {isLoading.review ?
+                    {reviewLoading ?
                         <div className="grid grid-cols-3 gap-5">
                             <ReviewSkelator />
                             <ReviewSkelator />
@@ -158,7 +150,7 @@ const Home = () => {
                 {/* news */}
                 <div className="my-16 md:px-5">
                     <h3 className={SectionHeader}>Leatest News</h3>
-                    {isLoading.news ?
+                    {newsLoading ?
                         <div className="grid grid-cols-3 gap-5">
                             <NewsSkelator />
                             <NewsSkelator />
