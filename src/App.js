@@ -13,7 +13,7 @@ import ManageOrder from './Component/Pages/Desboard/ManageOrder';
 import ManageProduct from './Component/Pages/Desboard/ManageProduct';
 import MyOrder from './Component/Pages/Desboard/MyOrder';
 import MyReview from './Component/Pages/Desboard/MyReview';
-import Payment from './Component/Pages/Desboard/Payment';
+import PaymentMathods from './Component/Pages/Desboard/PaymentMathods';
 import Profile from './Component/Pages/Desboard/Profile';
 import UpdateProduct from './Component/Pages/Desboard/UpdateProduct';
 import ViewCart from './Component/Pages/Desboard/ViewCart';
@@ -27,6 +27,7 @@ import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import MyAccount from './Component/user/MyAccount';
 import Header from "./Component/ShareComponent/Header"
 import { NewsSkelator } from './Component/ShareComponent/SkelatorAll';
+import Payment from './Component/Pages/Shop/Payment';
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
             <Route path="my-order" element={<MyOrder />} />
             <Route path="my-review" element={<MyReview />} />
             <Route path="add-review" element={<AddReviews />} />
-            <Route path="payment" element={<Payment />} />
+            <Route path="payment" element={<PaymentMathods />} />
             <Route path="view-cart" element={<ViewCart />} />
           </Route>
           <Route path="/desboard" element={<CheckAdmin element={<Desboard />} />}>
@@ -59,6 +60,7 @@ function App() {
             </Route>
           </Route>
           <Route path="/place-order/:id" element={<PrivateRoute element={<Purchase />} />} />
+          <Route path="/payment" element={<PrivateRoute element={<Payment />} />} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />

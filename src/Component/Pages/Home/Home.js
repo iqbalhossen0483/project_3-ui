@@ -33,6 +33,7 @@ const Home = () => {
                 loading.product = false;
                 setIsLoading(loading);
             })
+            .catch(err => console.log(err.massege))
     }, [isLoading]);
 
     useEffect(() => {

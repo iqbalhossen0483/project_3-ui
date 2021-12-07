@@ -108,7 +108,7 @@ const useFirebase = () => {
         showCart,
         setShowCart,
         quantity,
-        setQuantity
+        setQuantity,
     }
 };
 

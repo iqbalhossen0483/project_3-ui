@@ -4,11 +4,16 @@ import { useNavigate, useParams } from 'react-router';
 import useAuth from '../Hook/useAuth';
 import useTailwind from '../TailwindCss/useTailwind';
 import { useAlert } from 'react-alert'
+import Payment from './Shop/Payment';
 
 const Purchase = () => {
     const [singleProduct, setSingleProduct] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [cashOnDelivary, setCashOnDelivary] = useState(false);
+    const [showPayment, setShowPayment] = useState(false);
+    const [orderDetails, setOderDetails] = useState({});
     const { id } = useParams();
     const alert = useAlert();
     const navigate = useNavigate();
@@ -24,7 +29,7 @@ const Purchase = () => {
         }
     });
 
-    let totalPrice = 0;
+    let totalProductPrice = 0;
     let sipping = 100;
 
     //find triger products
@@ -33,6 +38,7 @@ const Purchase = () => {
             fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
                 .then(res => res.json())
                 .then(data => {
+                    let totalPrice = 0;
                     data.forEach(product => {
                         for (const cart of addedProduct) {
                             if (product._id === cart.id) {
@@ -40,6 +46,10 @@ const Purchase = () => {
                             }
                         }
                     });
+                    //set total price for lifting up and show payment page
+                    data.forEach(product => totalPrice += product.price * product.quantity);
+                    setTotalPrice(totalPrice);
+
                     setOrders(data);
                     setIsLoading(false);
                 })
@@ -48,13 +58,14 @@ const Purchase = () => {
             fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
                 .then(res => res.json())
                 .then(data => {
+                    setTotalPrice(data.price * quantity);
                     setSingleProduct([data]);
                     setIsLoading(false);
                 })
         }
-    }, [id, addedProduct]);
+    }, [id, addedProduct, quantity]);
 
-    // post products
+    // post order
     const onSubmit = order => {
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
@@ -84,25 +95,38 @@ const Purchase = () => {
             order.products = newOrders;
             order.totalBDT = totalPrice + sipping;
         }
-        fetch("https://cycle-mart.herokuapp.com/orders", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(order)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    alert.show("Your order created successfully");
-                    reset();
-                    navigate("/")
-                    setAddedProduct([]);
-                }
+        if (cashOnDelivary) {
+            fetch("https://cycle-mart.herokuapp.com/orders", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(order)
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        alert.show("Your order created successfully");
+                        reset();
+                        navigate("/")
+                        setAddedProduct([]);
+                    }
+                })
+        }
+        else {
+            setOderDetails(order);
+            setShowPayment(true);
+        }
     };
 
-
+    const handleCashOndelivary = e => {
+        if (e.target.checked) {
+            setCashOnDelivary(true);
+        }
+        else {
+            setCashOnDelivary(false);
+        }
+    }
     if (isLoading) {
         return <div className="h-screen flex justify-center items-center">
             <div className="spinner"></div>
@@ -114,7 +138,6 @@ const Purchase = () => {
                 <h1 className={formHeader}>Order Summary</h1>
                 {singleProduct.length &&
                     singleProduct.map(product => {
-                        const totalPrice = quantity * product.price;
                         totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                         return <div
                             className="grid grid-cols-2 text-xl"
@@ -148,7 +171,6 @@ const Purchase = () => {
                 {orders.length && <div className="flex flex-wrap">
                     {
                         orders.map(product => {
-                            totalPrice += parseInt(product.price * product.quantity)
                             totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                             return <div
                                 key={product._id}>
@@ -176,7 +198,9 @@ const Purchase = () => {
                 }
             </div>
             <div>
-                <form className={form} onSubmit={handleSubmit(onSubmit)}>
+                <form className={form}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
                     <h3 className={formHeader}>Place Order</h3>
                     <input className={input} disabled {...register("name", { required: true })} placeholder="Enter name" />
                     <input type="email" disabled className={input} {...register("email", { required: true })} placeholder="Enter email" />
@@ -185,9 +209,27 @@ const Purchase = () => {
                     <input className={input} {...register("ps", { required: true })} placeholder="Enter police station" />
                     <input className={input} {...register("road", { required: true })} placeholder="Enter road name" />
                     <input type="number" className={input} {...register("number", { required: true })} placeholder="Enter your number" />
-                    <input className="button w-auto text-center" type="submit" value="Place order" />
+                    <p className="flex items-center text-xl">
+                        <input onClick={e => { handleCashOndelivary(e) }} className='mr-2' type="checkbox" /> Cash on delivary
+                    </p>
+                    <div className="flex justify-center">
+                        {!cashOnDelivary ?
+                            <input className="button w-auto text-center" type="submit" value="Procced to Pay" />
+                            :
+                            <input className="button w-auto text-center" type="submit" value="Place order" />
+                        }
+                    </div>
                 </form>
             </div>
+            {showPayment &&
+                <div className="absolute h-full w-full bg-gray-100">
+                    <div>
+                        <Payment
+                            totalPrice={totalPrice}
+                            orderDetails={orderDetails} />
+                    </div>
+                </div>
+            }
         </div>
     );
 };
