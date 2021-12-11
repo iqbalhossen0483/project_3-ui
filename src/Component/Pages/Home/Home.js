@@ -116,7 +116,7 @@ const Home = () => {
                 {/* product */}
                 <div className="mt-10">
                     <h3 className={SectionHeader}>Our Leatest Products</h3>
-                    <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:m-5">
+                    <div className="md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:m-5">
                         {productLoading ?
                             <>
                                 <ProductSkelator />

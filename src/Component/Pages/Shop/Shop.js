@@ -75,7 +75,7 @@ const Shop = () => {
     const showProductsByPriceRange = (e) => {
         e.preventDefault();
         if (rangePrice.from > 0 && rangePrice.till > 0) {
-            fetch(`https://cycle-mart.herokuapp.com/products/productsByPrice?from=${rangePrice.from}&till=${rangePrice.till}`)
+            fetch(`https://cycle-mart.herokuapp.com/products/price/byrange?from=${rangePrice.from}&till=${rangePrice.till}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);
@@ -126,7 +126,7 @@ const Shop = () => {
             className="md:pl-2 lg:px-2 lg:grid grid-cols-4">
             <p></p>
             <div
-                className="h-full fixed scrollbar hidden md:block bg-white pt-5 px-2 lg:px-4 md:w-52 lg:w-80 mr-4 pb-36">
+                className="h-full fixed scrollbar hidden md:block bg-white pt-5 px-2 md:w-52 lg:px-4 lg:w-72 mr-4 pb-36">
                 <div className="lg:text-xl leading-8">
                     <h2 className="text-2xl lg:text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Sellers</h2>
                     <form>
