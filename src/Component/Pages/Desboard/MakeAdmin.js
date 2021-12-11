@@ -8,7 +8,7 @@ const MakeAdmin = () => {
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
     const onSubmit = email => {
-        fetch("https://cycle-mart.herokuapp.com/admin", {
+        fetch("https://cycle-mart.herokuapp.com/users/admin", {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

@@ -75,7 +75,7 @@ const Shop = () => {
     const showProductsByPriceRange = (e) => {
         e.preventDefault();
         if (rangePrice.from > 0 && rangePrice.till > 0) {
-            fetch(`https://cycle-mart.herokuapp.com/productsByPrice?from=${rangePrice.from}&till=${rangePrice.till}`)
+            fetch(`https://cycle-mart.herokuapp.com/products/productsByPrice?from=${rangePrice.from}&till=${rangePrice.till}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);
