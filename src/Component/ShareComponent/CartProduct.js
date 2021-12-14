@@ -17,7 +17,6 @@ const CartProduct = () => {
             .then(res => res.json())
             .then(data => {
                 setCartProducts(data);
-                console.log(data);
                 setIsLoading(false);
             })
     }, [addedProduct]);

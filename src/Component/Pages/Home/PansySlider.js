@@ -14,7 +14,7 @@ const PansySlider = () => {
         autoplaySpeed: 5000,
     };
     return (
-        <div className="pr-10 text-center">
+        <div className="md:pr-10 text-center">
             <Slider {...settings}>
                 <div>
                     <div
