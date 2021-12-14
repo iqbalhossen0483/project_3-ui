@@ -23,11 +23,11 @@ const Footer = () => {
             <div className="text-3xl leading-10">
                 <h2 className="text-2xl font-semibold md:ml-3 mb-5">Get in touch</h2>
                 <a href="https://web.facebook.com/profile.php?id=100009923686402">
-                    <i class="fab mx-3 hover:text-blue-500 fa-facebook-square"></i>
+                    <i className="fab mx-3 hover:text-blue-500 fa-facebook-square"></i>
                 </a>
-                <i class="fab mx-3 hover:text-blue-500 fa-instagram"></i>
-                <i class="fab mx-3 hover:text-blue-500 fa-youtube"></i>
-                <i class="fas mx-3 hover:text-blue-500 fa-link"></i>
+                <i className="fab mx-3 hover:text-blue-500 fa-instagram"></i>
+                <i className="fab mx-3 hover:text-blue-500 fa-youtube"></i>
+                <i className="fas mx-3 hover:text-blue-500 fa-link"></i>
             </div>
         </div>
     );

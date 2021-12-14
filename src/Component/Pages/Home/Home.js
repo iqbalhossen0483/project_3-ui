@@ -11,6 +11,7 @@ import PansySlider from './PansySlider';
 import Slider from "react-slick";
 import Footer from "../../ShareComponent/Footer/Footer";
 import { NewsSkelator, ProductSkelator, ReviewSkelator } from '../../ShareComponent/SkelatorAll';
+import { useAlert } from 'react-alert';
 
 const Home = () => {
     const [reviews, setReviews] = useState([]);
@@ -21,6 +22,8 @@ const Home = () => {
     const [productLoading, setProductLoading] = useState(true);
     const [reviewLoading, setReviewLoading] = useState(true);
     const [newsLoading, setNewsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const alart = useAlert();
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products/home")
@@ -29,8 +32,8 @@ const Home = () => {
                 setProduct(data);
                 setProductLoading(false)
             })
-            .catch(err => console.log(err.massege))
-    }, []);
+            .catch(err => setError(err.massege))
+    }, [alart]);
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/reviews")
@@ -39,7 +42,8 @@ const Home = () => {
                 setReviews(data);
                 setReviewLoading(false);
             })
-    }, [])
+            .catch(err => setError(err.massege))
+    }, [alart])
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/news")
@@ -48,7 +52,8 @@ const Home = () => {
                 setNews(data);
                 setNewsLoading(false);
             })
-    }, []);
+            .catch(err => setError(err.massege))
+    }, [alart]);
 
     //for slider
     const settings = {
@@ -163,6 +168,9 @@ const Home = () => {
                         </Slider>}
                 </div>
                 <Massenger />
+                {error &&
+                    <p>{error}</p>
+                }
             </div>
             <Footer />
         </>
