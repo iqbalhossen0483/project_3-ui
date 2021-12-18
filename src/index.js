@@ -5,19 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import AlartProvider from './Component/Hook/AlartProvider';
-import { Offline, Online } from "react-detect-offline";
-import InternetDetector from './Component/InternetDetector/InternetDetector';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AlartProvider>
-        <Online>
-          <App />
-        </Online>
-        <Offline>
-          <InternetDetector />
-        </Offline>
+        <App />
       </AlartProvider>
     </BrowserRouter>
   </React.StrictMode>,
