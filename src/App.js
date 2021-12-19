@@ -28,6 +28,7 @@ import MyAccount from './Component/user/MyAccount';
 import Header from "./Component/ShareComponent/Header"
 import { NewsSkelator } from './Component/ShareComponent/SkelatorAll';
 import CategoryProduct from './Component/Pages/Shop/CategoryProduct';
+import Customize from './Component/Pages/Desboard/Customize';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path="view-cart" element={<ViewCart />} />
           </Route>
           <Route path="/desboard" element={<CheckAdmin element={<Desboard />} />}>
+            <Route path="customize" element={<CheckAdmin element={<Customize />} />} />
             <Route path="add-product" element={<CheckAdmin element={<AddProduct />} />} />
             <Route path="add-news" element={<CheckAdmin element={<AddNews />} />} />
             <Route path="manage-order" element={<CheckAdmin element={<ManageOrder />} />} />

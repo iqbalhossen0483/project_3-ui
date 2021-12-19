@@ -42,6 +42,7 @@ const Desboard = () => {
                         <NavLink className="link" to='add-news'>Add-News</NavLink>
                         <NavLink className="link" to='manage-order'>Manage-Order</NavLink>
                         <NavLink className="link" to='manage-product'>Manage-Product</NavLink>
+                        <NavLink className="link" to='customize'>Customization</NavLink>
                         <NavLink className="link" to='make-admin'>Make-Admin</NavLink>
                     </>
                 }
