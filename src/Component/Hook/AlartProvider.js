@@ -2,16 +2,20 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 
 const AlartProvider = ({ children }) => {
     const AlertTemplate = ({ message }) => (
-        <div className="bg-green-100 font-semibold text-xl mt-16 px-5 md:px-20 py-1 rounded-md">
+        <div
+            className="alart">
             {message}
+            <i class="far fa-check-circle ml-5 text-green-500"></i>
         </div>
     )
+
     const options = {
-        position: positions.TOP_CENTER,
+        position: positions.BOTTOM_RIGHT,
         timeout: 5000,
         offset: '20px',
-        transition: transitions.SCALE
+        transition: transitions.SCALE,
     }
+
     return <AlertProvider template={AlertTemplate} {...options}>
         {children}
     </AlertProvider>

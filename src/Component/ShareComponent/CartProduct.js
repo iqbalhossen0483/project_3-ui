@@ -32,7 +32,7 @@ const CartProduct = () => {
         <div
             onMouseEnter={() => setShowCart(true)}
             onMouseLeave={() => setShowCart(false)}
-            className="absolute top-full right-5 bg-white shadow-md z-20">
+            className="cart-product scrollbar">
             {cartProducts.length &&
                 cartProducts.map(product => {
                     totalPrice += parseInt(product.price);

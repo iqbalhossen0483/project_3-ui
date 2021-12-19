@@ -28,6 +28,9 @@
   .spinner-container{
     @apply h-screen flex justify-center items-center
   }
+  .alart{
+    @apply bg-green-100 font-semibold text-xl mb-5 mr-3 px-5 md:px-20 py-1 rounded-r-md border-l-8 border-solid border-green-500
+  }
 
   /* home page  */
   .banner{
@@ -76,6 +79,11 @@
   }
   .calc{
     @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-center items-center
+  }
+
+  /* cart product */
+  .cart-product{
+    @apply absolute top-full right-5 bg-white shadow-md z-20 max-h-96 overflow-auto
   }
 }
 
