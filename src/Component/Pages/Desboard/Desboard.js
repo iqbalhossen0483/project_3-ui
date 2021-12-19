@@ -40,14 +40,14 @@ const Desboard = () => {
                     isAdmin && <>
                         <NavLink className="link" to='add-product'>Add-Product</NavLink>
                         <NavLink className="link" to='add-news'>Add-News</NavLink>
+                        <NavLink className="link" to='customize'>Customization</NavLink>
                         <NavLink className="link" to='manage-order'>Manage-Order</NavLink>
                         <NavLink className="link" to='manage-product'>Manage-Product</NavLink>
-                        <NavLink className="link" to='customize'>Customization</NavLink>
                         <NavLink className="link" to='make-admin'>Make-Admin</NavLink>
                     </>
                 }
             </div>
-            <p></p>
+            <div></div>
             <div className="col-span-5 h-screen flex flex-col justify-between">
                 <Outlet />
                 <Footer />
