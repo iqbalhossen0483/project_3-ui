@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import Footer from "../ShareComponent/Footer/Footer"
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import useTailwind from '../TailwindCss/useTailwind';
 import useAuth from '../Hook/useAuth';
 const SignUp = () => {
     const [error, setError] = useState("");
     const [disable, setdisable] = useState(true);
     const { register, handleSubmit, reset } = useForm();
     const { logInWithGoogle, singUPWithEmail, userName, makeUser } = useAuth();
-    const { singleDiv, input } = useTailwind();
     const location = useLocation();
     const navigate = useNavigate();
     const url = location.state?.from.pathname || "/home";
@@ -56,19 +54,19 @@ const SignUp = () => {
     return (
         <>
             <div className="m-3 md:m-3">
-                <form className={singleDiv} onSubmit={handleSubmit(onSubmit)}>
+                <form className="container" onSubmit={handleSubmit(onSubmit)}>
                     <h3 className="text-2xl text-center mb-3 font-semibold">Please Sing Up</h3>
                     <p className="text-xl">
-                        Your name: <input className={input + " ml-1"} {...register("name", { required: true })} placeholder="Enter your name" />
+                        Your name: <input className="input ml-1" {...register("name", { required: true })} placeholder="Enter your name" />
                     </p>
                     <p className="text-xl">
-                        Your email: <input className={input + " ml-1"} type="email" {...register("email", { required: true })} placeholder="Enter your email" />
+                        Your email: <input className="input ml-1" type="email" {...register("email", { required: true })} placeholder="Enter your email" />
                     </p>
                     <p className="text-xl">
-                        Password : <input className={input + " ml-2"} type="password" {...register("password", { required: true })} placeholder="Give a password" />
+                        Password : <input className="input ml-2" type="password" {...register("password", { required: true })} placeholder="Give a password" />
                     </p>
                     <p className="text-xl">
-                        Re-enter: <input className={input + " ml-5"} type="password" {...register("rePassword", { required: true })} placeholder="re-enter the password" />
+                        Re-enter: <input className="input ml-5" type="password" {...register("rePassword", { required: true })} placeholder="re-enter the password" />
                     </p>
                     <p className="text-red-400">{error}</p>
                     <div className=" flex justify-center mt-5">

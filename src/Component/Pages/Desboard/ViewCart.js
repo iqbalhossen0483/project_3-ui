@@ -101,7 +101,7 @@ const ViewCart = () => {
 
 
     if (isLoading) {
-        return <div className="h-screen flex justify-center items-center">
+        return <div className="spinner-container">
             <div className="spinner"></div>
         </div>
     }
@@ -119,7 +119,7 @@ const ViewCart = () => {
                         totalPrice += parseInt(product.price * product.quantity);
                         return <div
                             key={product._id}
-                            className="p-3 grid md:grid-cols-4 justify-center items-center text-center">
+                            className="view-cart-product">
                             <img src={product.img} alt="" />
                             <p>{product.name}</p>
                             <p>{product.price * product.quantity} BDT</p>
@@ -143,7 +143,7 @@ const ViewCart = () => {
                     })
                 }
                 {cartProducts.length &&
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-center items-center">
+                    <div className="calc">
                         <p className="hidden md:block"></p>
                         <p className="hidden lg:block"></p>
                         <p className="text-xl md:text-2xl">Total: <span className="font-semibold text-green-500">{totalPrice} BDT</span></p>

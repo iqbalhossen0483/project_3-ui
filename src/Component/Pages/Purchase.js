@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import useAuth from '../Hook/useAuth';
-import useTailwind from '../TailwindCss/useTailwind';
 import { useAlert } from 'react-alert'
 import Payment from './Shop/Payment';
 
@@ -18,7 +17,6 @@ const Purchase = () => {
     const alert = useAlert();
     const navigate = useNavigate();
     const { user, setAddedProduct, quantity, addedProduct } = useAuth();
-    const { formHeader, form, input } = useTailwind();
 
     const name = user.displayName;
     const email = user.email;
@@ -127,14 +125,14 @@ const Purchase = () => {
         }
     }
     if (isLoading) {
-        return <div className="h-screen flex justify-center items-center">
+        return <div className="spinner-container">
             <div className="spinner"></div>
         </div>
     }
     return (
         <div className="px-3 md:px-0 md:grid grid-cols-2">
-            <div className={form}>
-                <h1 className={formHeader}>Order Summary</h1>
+            <div className="container lg:w-4/6">
+                <h1 className="header">Order Summary</h1>
                 {singleProduct.length &&
                     singleProduct.map(product => {
                         totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
@@ -197,17 +195,17 @@ const Purchase = () => {
                 }
             </div>
             <div>
-                <form className={form}
+                <form className="container lg:w-4/6"
                     onSubmit={handleSubmit(onSubmit)}
                 >
-                    <h3 className={formHeader}>Place Order</h3>
-                    <input className={input} disabled {...register("name", { required: true })} placeholder="Enter name" />
-                    <input type="email" disabled className={input} {...register("email", { required: true })} placeholder="Enter email" />
-                    <input className={input} {...register("division", { required: true })} placeholder="Enter division" />
-                    <input className={input} {...register("district", { required: true })} placeholder="Enter district" />
-                    <input className={input} {...register("ps", { required: true })} placeholder="Enter police station" />
-                    <input className={input} {...register("road", { required: true })} placeholder="Enter road name" />
-                    <input type="number" className={input} {...register("number", { required: true })} placeholder="Enter your number" />
+                    <h3 className="header">Place Order</h3>
+                    <input className="input" disabled {...register("name", { required: true })} placeholder="Enter name" />
+                    <input type="email" disabled className="input" {...register("email", { required: true })} placeholder="Enter email" />
+                    <input className="input" {...register("division", { required: true })} placeholder="Enter division" />
+                    <input className="input" {...register("district", { required: true })} placeholder="Enter district" />
+                    <input className="input" {...register("ps", { required: true })} placeholder="Enter police station" />
+                    <input className="input" {...register("road", { required: true })} placeholder="Enter road name" />
+                    <input type="number" className="input" {...register("number", { required: true })} placeholder="Enter your number" />
                     <p className="flex items-center text-xl">
                         <input onClick={e => { handleCashOndelivary(e) }} className='mr-2' type="checkbox" /> Cash on delivary
                     </p>

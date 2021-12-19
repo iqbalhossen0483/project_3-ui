@@ -1,11 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
-import useTailwind from '../TailwindCss/useTailwind';
 
 const UserInfo = () => {
     const { user, isAdmin, lognOut, setHideUserInfo } = useAuth();
-    const { button } = useTailwind();
     return (
         <div className="absolute top-full right-4 shadow-md pt-5 px-3 text-center z-20 bg-white">
             <div>
@@ -29,7 +27,7 @@ const UserInfo = () => {
                         Your-Profile
                     </NavLink>
                 }
-                <button onClick={lognOut} className={button}>
+                <button onClick={lognOut} className="button">
                     <i className="fas fa-sign-out-alt"></i>
                 </button>
             </div>

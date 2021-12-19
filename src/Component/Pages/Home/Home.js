@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../../ShareComponent/Product';
 import Reviews from "./Rviews"
-import useTailwind from '../../TailwindCss/useTailwind';
 import SingleNews from "../News/singleNews";
 import useAuth from '../../Hook/useAuth';
 import Menus from './Menus';
@@ -17,7 +16,6 @@ const Home = () => {
     const [reviews, setReviews] = useState([]);
     const [news, setNews] = useState([]);
     const [products, setProduct] = useState([]);
-    const { SectionHeader } = useTailwind();
     const { setHideUserInfo } = useAuth();
     const [productLoading, setProductLoading] = useState(true);
     const [reviewLoading, setReviewLoading] = useState(true);
@@ -96,7 +94,7 @@ const Home = () => {
         <>
             <div onClick={() => { setHideUserInfo(false) }}>
                 {/* banner */}
-                <div className="lg:grid grid-cols-4 gap-10 items-center text-justify bg-white h-1/4 lg:h-96 overflow-hidden">
+                <div className="banner">
                     <div className="hidden lg:block bg-white h-full">
                         <Menus />
                     </div>
@@ -104,7 +102,8 @@ const Home = () => {
                         <PansySlider />
                     </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 my-5 px-5 md:px-10 gap-5 md:gap-10 text-center text-xl">
+                {/* flesh cart */}
+                <div className="flesh-cart">
                     <Link to="/shop">
                         <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
                     </Link>
@@ -120,8 +119,8 @@ const Home = () => {
                 </div>
                 {/* product */}
                 <div className="mt-10">
-                    <h3 className={SectionHeader}>Our Leatest Products</h3>
-                    <div className="md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:m-5">
+                    <h3 className="h1">Our Leatest Products</h3>
+                    <div className="product-container">
                         {productLoading ?
                             <>
                                 <ProductSkelator />
@@ -139,7 +138,7 @@ const Home = () => {
                 </div>
                 {/* reviews */}
                 <div className="my-16 md:px-5">
-                    <h3 className={SectionHeader}>Our Customer Reviews</h3>
+                    <h3 className="h1">Our Customer Reviews</h3>
                     {reviewLoading ?
                         <div className="grid grid-cols-3 gap-5">
                             <ReviewSkelator />
@@ -154,7 +153,7 @@ const Home = () => {
                 </div>
                 {/* news */}
                 <div className="my-16 md:px-5">
-                    <h3 className={SectionHeader}>Leatest News</h3>
+                    <h3 className="h1">Leatest News</h3>
                     {newsLoading ?
                         <div className="grid grid-cols-3 gap-5">
                             <NewsSkelator />

@@ -3,13 +3,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
-import useTailwind from '../TailwindCss/useTailwind';
 import CartProduct from './CartProduct';
 import UserInfo from './UserInfo';
 
 const Header = () => {
     const [menu, setMenu] = useState(true);
-    const { link } = useTailwind();
     const { user, hideUserInfo, setHideUserInfo, addedProduct, showCart, setShowCart } = useAuth();
     const style = `${!menu && "hidden"} md:flex justify-between bg-green-400 py-3 px-8 relative sticky top-14 md:top-0 z-10`;
     const toggleShow = () => {
@@ -60,12 +58,12 @@ const Header = () => {
             </div>
             <div className={style}>
                 <div className="flex flex-col md:flex-row items-center">
-                    <NavLink className={link} to='/home'>Home</NavLink>
-                    <NavLink className={link} to='/shop'>Shop</NavLink>
-                    <NavLink className={link} to='/news'>News</NavLink>
+                    <NavLink className="link" to='/home'>Home</NavLink>
+                    <NavLink className="link" to='/shop'>Shop</NavLink>
+                    <NavLink className="link" to='/news'>News</NavLink>
                 </div>
                 <div className="flex flex-col md:flex-row items-center flex-wrap">
-                    <NavLink className={link} to='/my-account/profile'>My-Account</NavLink>
+                    <NavLink className="link" to='/my-account/profile'>My-Account</NavLink>
                     <div className='hidden md:flex items-center'>
                         {
                             user.email && <div className="text-xl mx-2">
@@ -86,8 +84,8 @@ const Header = () => {
                         }
                     </div>
                     {!user?.email && <>
-                        <NavLink className={link} to='/log-in'>Log-In</NavLink>
-                        <NavLink className={link} to='/sign-up'>Sign-Up</NavLink>
+                        <NavLink className="link" to='/log-in'>Log-In</NavLink>
+                        <NavLink className="link" to='/sign-up'>Sign-Up</NavLink>
                     </>}
                 </div>
                 {/* user info  */}

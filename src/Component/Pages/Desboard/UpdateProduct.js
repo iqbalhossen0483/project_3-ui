@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
-import useTailwind from '../../TailwindCss/useTailwind';
 import { useAlert } from 'react-alert'
 
 const UpdateProduct = ({ hideForm, product, setProduct }) => {
     const { id } = useParams();
-    const { formHeader, singleDiv, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
 
@@ -44,15 +42,15 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
     return (
         <div onClick={() => hideForm(false)} className="absolute top-0 left-0 w-full h-full background">
             <div className="h-screen w-full flex justify-center items-center ">
-                <form onClick={e => e.stopPropagation()} className={singleDiv} onSubmit={handleSubmit(onSubmit)}>
-                    <h3 className={formHeader}>Update Product</h3>
-                    <input className={input} {...register("img")} placeholder="Enter a img url" />
-                    <input className={input} {...register("name")} placeholder="Enter the name" />
-                    <input className={input} {...register("category")} placeholder="Enter the category" />
-                    <input type="number" className={input} {...register("price")} placeholder="Enter price" />
-                    <input type="number" className={input} {...register("stock")} placeholder="Enter stock" />
-                    <input type="text" className={input} {...register("vendor")} placeholder="Enter vendor name" />
-                    <input type="text" className={input} {...register("type")} placeholder="Enter the type of cycle" />
+                <form onClick={e => e.stopPropagation()} className="container" onSubmit={handleSubmit(onSubmit)}>
+                    <h3 className="header">Update Product</h3>
+                    <input className="input" {...register("img")} placeholder="Enter a img url" />
+                    <input className="input" {...register("name")} placeholder="Enter the name" />
+                    <input className="input" {...register("category")} placeholder="Enter the category" />
+                    <input type="number" className="input" {...register("price")} placeholder="Enter price" />
+                    <input type="number" className="input" {...register("stock")} placeholder="Enter stock" />
+                    <input type="text" className="input" {...register("vendor")} placeholder="Enter vendor name" />
+                    <input type="text" className="input" {...register("type")} placeholder="Enter the type of cycle" />
                     <input className="button" type="submit" />
                 </form>
             </div>

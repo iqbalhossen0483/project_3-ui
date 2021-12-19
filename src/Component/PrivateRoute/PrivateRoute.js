@@ -6,7 +6,7 @@ const PrivateRoute = ({ element }) => {
     const location = useLocation();
 
     if (isLoading) {
-        return <div className="h-screen flex justify-center items-center">
+        return <div className="spinner-container">
             <div className="spinner"></div>
         </div>
     }

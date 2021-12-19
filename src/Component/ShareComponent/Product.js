@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../Hook/useAuth';
-import useTailwind from '../TailwindCss/useTailwind';
 import { useAlert } from 'react-alert'
 
 const Product = (props) => {
-    const { product } = useTailwind();
     const navigate = useNavigate();
     const { addedProduct, setAddedProduct, user } = useAuth();
     const { img, name, _id, price } = props.product;
@@ -53,7 +51,7 @@ const Product = (props) => {
         }
     }
     return (
-        <div className={product + " shadow-lg"}>
+        <div className="product">
             <div>
                 <img className="h-52 w-full rounded-t object-cover" src={img} alt="" />
                 <p className="text-xl ml-4 font-semibold my-2">{name}</p>

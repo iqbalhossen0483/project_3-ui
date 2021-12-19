@@ -53,6 +53,7 @@
   border-radius: 2px;
   margin-left: 15px;
 }
+
 .product-color >p:hover{
   outline: 1px solid green;
   outline-offset: 3px;

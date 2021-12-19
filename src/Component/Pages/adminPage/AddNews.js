@@ -1,10 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import useTailwind from '../../TailwindCss/useTailwind';
 import { useAlert } from 'react-alert'
 
 const AddNews = () => {
-    const { formHeader, singleDiv, input } = useTailwind();
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
     const onSubmit = news => {
@@ -27,11 +25,20 @@ const AddNews = () => {
     }
     return (
         <div className="mx-3 md:mx-0">
-            <form className={singleDiv} onSubmit={handleSubmit(onSubmit)}>
-                <h3 className={formHeader}>Add news</h3>
-                <input className={input} {...register("img", { required: true })} placeholder="Enter a img url" />
-                <input className={input} {...register("name", { required: true })} placeholder="Enter the name" />
-                <textarea className={input} {...register("description", { required: true })} placeholder="Enter short description" />
+            <form className="container" onSubmit={handleSubmit(onSubmit)}>
+                <h3 className="header">Add news</h3>
+                <input
+                    className="input"
+                    {...register("img", { required: true })} placeholder="Enter a img url"
+                />
+                <input
+                    className="input"
+                    {...register("name", { required: true })} placeholder="Enter the name"
+                />
+                <textarea
+                    className="input"
+                    {...register("description", { required: true })} placeholder="Enter short description"
+                />
                 <input className="button" type="submit" />
             </form>
         </div>

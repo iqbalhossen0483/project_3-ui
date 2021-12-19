@@ -21,8 +21,7 @@ const News = () => {
     return (
         <>
             <div className="my-16 md:px-5">
-
-                <div className="md:grid grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="news-container">
                     {
                         news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
                     }

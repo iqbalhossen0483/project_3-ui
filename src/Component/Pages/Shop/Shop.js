@@ -126,9 +126,9 @@ const Shop = () => {
             className="md:pl-2 lg:px-2 lg:grid grid-cols-4">
             <p></p>
             <div
-                className="h-full fixed scrollbar hidden md:block bg-white pt-5 px-2 md:w-52 lg:px-4 lg:w-72 mr-4 pb-36">
+                className="sidebar scrollbar">
                 <div className="lg:text-xl leading-8">
-                    <h2 className="text-2xl lg:text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Sellers</h2>
+                    <h2 className="side-menu">Sellers</h2>
                     <form>
                         <p className="flex items-center">
                             <input
@@ -149,24 +149,22 @@ const Shop = () => {
                     </form>
                 </div>
                 <div className="mt-5 lg:text-xl">
-                    <h2 className="text-2xl lg:text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Price</h2>
+                    <h2 className="side-menu">Price</h2>
                     <form
                         onSubmit={(e) => { showProductsByPriceRange(e) }}
                         onReset={handleReset}
-                        className="grid grid-cols-3 mt-4">
-                        <div>
+                        className="mt-4">
+                        <div className="grid grid-cols-custom">
                             <p>From:</p>
-                            <p className="mt-2">Till:</p>
-                        </div>
-                        <div className="col-span-2">
                             <input
                                 onBlur={(e) => { handlePriceRange(e, "from") }}
-                                className="border rounded-xl w-full focus:outline-none px-4 py-1"
+                                className="input rounded-xl w-full"
                                 type="number"
                             />
+                            <p>Till:</p>
                             <input
                                 onBlur={(e) => { handlePriceRange(e, "till") }}
-                                className="border rounded-xl w-full mt-2 focus:outline-none px-4 py-1"
+                                className="input rounded-xl w-full"
                                 type="number"
                             />
                         </div>
@@ -178,7 +176,7 @@ const Shop = () => {
                     </form>
                 </div>
                 <div className="lg:text-xl leading-8 mt-5">
-                    <h2 className="text-2xl lg:text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Products type</h2>
+                    <h2 className="side-menu">Products type</h2>
                     <form>
                         <p className="flex items-center">
                             <input
@@ -200,7 +198,7 @@ const Shop = () => {
                     </form>
                 </div>
                 <div className="hidden lg:block text-xl leading-8 mt-5">
-                    <h2 className="text-3xl text-green-500 font-semibold border-b-2 py-1 border-green-500">Best Products</h2>
+                    <h2 className="side-menu">Best Products</h2>
                     {
                         randomProduct.map(product => <Product
                             key={product._id}
@@ -209,7 +207,7 @@ const Shop = () => {
                 </div>
             </div>
             <div className="col-span-3 mt-10">
-                <div className="col-span-3 grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+                <div className="shop-product">
                     {
                         products.map(product => <Product key={product._id} product={product} />)
                     }

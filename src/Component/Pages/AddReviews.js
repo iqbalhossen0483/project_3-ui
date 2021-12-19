@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Rating from 'react-rating';
 import useAuth from '../Hook/useAuth';
-import useTailwind from '../TailwindCss/useTailwind';
 import { useAlert } from 'react-alert'
 
 const AddReviews = () => {
-    const { formHeader, singleDiv, input } = useTailwind();
     const [rating, setRating] = useState(0);
     const { user } = useAuth();
     const alert = useAlert();
@@ -41,11 +39,23 @@ const AddReviews = () => {
 
     return (
         <div className="mx-3 md:mx-0">
-            <form className={singleDiv + " my-20"} onSubmit={handleSubmit(onSubmit)}>
-                <h3 className={formHeader}>Your valuable comment</h3>
-                <input className={input} disabled {...register("name", { required: true })} placeholder="Enter the name" />
-                <input type="email" disabled className={input} {...register("email", { required: true })} placeholder="Enter a email" />
-                <textarea className={input} {...register("description", { required: true })} placeholder="Enter short description" />
+            <form className="container my-20" onSubmit={handleSubmit(onSubmit)}>
+                <h3 className="header">Your valuable comment</h3>
+                <input
+                    className="input"
+                    disabled
+                    {...register("name", { required: true })} placeholder="Enter the name"
+                />
+                <input
+                    type="email"
+                    disabled
+                    className="input"
+                    {...register("email", { required: true })} placeholder="Enter a email"
+                />
+                <textarea
+                    className="input"
+                    {...register("description", { required: true })} placeholder="Enter short description"
+                />
                 <Rating
                     className="text-yellow-300"
                     onChange={handleRating}
