@@ -69,9 +69,6 @@
   .closebtn{
     @apply text-2xl md:hidden absolute top-3 right-3
   }
-  .outlet{
-    @apply col-span-5 h-screen flex flex-col justify-between
-  }
 
   /* view cart page  */
   .view-cart-product{
