@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useAuth from '../../Hook/useAuth';
+import useFirebase from '../../Hook/useFirebase';
 import { useAlert } from 'react-alert'
 
 const ViewCart = () => {
     const [cartProducts, setCartProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [allId, setAllId] = useState("");
-    const { addedProduct, setAddedProduct, user } = useAuth();
+    const { addedProduct, setAddedProduct, user } = useFirebase();
     const alert = useAlert();
 
     //find cart products

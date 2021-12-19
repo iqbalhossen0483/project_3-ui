@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useAuth from '../Hook/useAuth';
+import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert'
 
 const Product = (props) => {
     const navigate = useNavigate();
-    const { addedProduct, setAddedProduct, user } = useAuth();
+    const { addedProduct, setAddedProduct, user } = useFirebase();
     const { img, name, _id, price } = props.product;
     const alert = useAlert()
 

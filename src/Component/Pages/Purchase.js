@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
-import useAuth from '../Hook/useAuth';
+import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert'
 import Payment from './Shop/Payment';
 
@@ -16,7 +16,7 @@ const Purchase = () => {
     const { id } = useParams();
     const alert = useAlert();
     const navigate = useNavigate();
-    const { user, setAddedProduct, quantity, addedProduct } = useAuth();
+    const { user, setAddedProduct, quantity, addedProduct } = useFirebase();
 
     const name = user.displayName;
     const email = user.email;

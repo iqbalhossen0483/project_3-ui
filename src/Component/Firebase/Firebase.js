@@ -2,7 +2,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChang
 import { useEffect, useState } from "react";
 import Authentication from "./Authentication";
 
-const useFirebase = () => {
+const Firebase = () => {
     Authentication();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -112,4 +112,4 @@ const useFirebase = () => {
     }
 };
 
-export default useFirebase;
+export default Firebase;

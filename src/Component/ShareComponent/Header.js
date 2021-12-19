@@ -2,13 +2,13 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import useAuth from '../Hook/useAuth';
+import useFirebase from '../Hook/useFirebase';
 import CartProduct from './CartProduct';
 import UserInfo from './UserInfo';
 
 const Header = () => {
     const [menu, setMenu] = useState(true);
-    const { user, hideUserInfo, setHideUserInfo, addedProduct, showCart, setShowCart } = useAuth();
+    const { user, hideUserInfo, setHideUserInfo, addedProduct, showCart, setShowCart } = useFirebase();
     const style = `${!menu && "hidden"} md:flex justify-between bg-green-400 py-3 px-8 relative sticky top-14 md:top-0 z-10`;
     const toggleShow = () => {
         if (hideUserInfo) {

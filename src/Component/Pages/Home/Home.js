@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Product from '../../ShareComponent/Product';
 import Reviews from "./Rviews"
 import SingleNews from "../News/singleNews";
-import useAuth from '../../Hook/useAuth';
+import useFirebase from '../../Hook/useFirebase';
 import Menus from './Menus';
 import Massenger from './Massenger';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ const Home = () => {
     const [reviews, setReviews] = useState([]);
     const [news, setNews] = useState([]);
     const [products, setProduct] = useState([]);
-    const { setHideUserInfo } = useAuth();
+    const { setHideUserInfo } = useFirebase();
     const [productLoading, setProductLoading] = useState(true);
     const [reviewLoading, setReviewLoading] = useState(true);
     const [newsLoading, setNewsLoading] = useState(true);

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import useAuth from '../../Hook/useAuth';
+import useFirebase from '../../Hook/useFirebase';
 import Loader from '../../ShareComponent/Loader';
 import Rviews from '../Home/Rviews';
 
 const MyReview = () => {
     const [reviews, setReview] = useState([]);
-    const { user } = useAuth();
+    const { user } = useFirebase();
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/reviews")

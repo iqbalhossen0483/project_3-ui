@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../../Hook/useAuth';
+import useFirebase from '../../Hook/useFirebase';
 import Orders from './Orders';
 
 const MyOrder = () => {
     const [orders, setOrder] = useState([]);
     const [isLoading, setIsloading] = useState(true);
-    const { user } = useAuth();
+    const { user } = useFirebase();
     useEffect(() => {
         fetch(`https://cycle-mart.herokuapp.com/orders/${user.email}`)
             .then(res => res.json())

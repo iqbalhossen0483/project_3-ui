@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../../Hook/useAuth';
+import useFirebase from '../../Hook/useFirebase';
 
 const Profile = () => {
-    const { user } = useAuth();
+    const { user } = useFirebase();
     const [customer, setCustomer] = useState({});
     useEffect(() => {
         fetch(`https://cycle-mart.herokuapp.com/users/${user.email}`)

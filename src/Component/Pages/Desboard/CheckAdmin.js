@@ -1,8 +1,8 @@
 import { Navigate, useLocation } from "react-router";
-import useAuth from "../../Hook/useAuth";
+import useFirebase from "../../Hook/useFirebase";
 
 const CheckAdmin = ({ element }) => {
-    const { user, isLoading, isAdmin } = useAuth();
+    const { user, isLoading, isAdmin } = useFirebase();
     const location = useLocation();
 
     if (isLoading) {

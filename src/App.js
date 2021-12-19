@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 import './App.css';
-import AuthProvider from './Component/Firebase/AuthProvider';
+import FirebaseProvider from './Component/Firebase/FirebaseProvider';
 import LogIn from './Component/Firebase/LogIn';
 import SignUp from './Component/Firebase/SignUp';
 import AddReviews from './Component/Pages/AddReviews';
@@ -34,7 +34,7 @@ function App() {
   return (
     <div
       className="h-screen overflow-auto scrollbar App">
-      <AuthProvider>
+      <FirebaseProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -67,7 +67,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </AuthProvider>
+      </FirebaseProvider>
     </div>
   );
 }

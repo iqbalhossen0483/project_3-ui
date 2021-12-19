@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import Footer from "../ShareComponent/Footer/Footer"
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import useAuth from '../Hook/useAuth';
+import useFirebase from '../Hook/useFirebase';
 const SignUp = () => {
     const [error, setError] = useState("");
     const [disable, setdisable] = useState(true);
     const { register, handleSubmit, reset } = useForm();
-    const { logInWithGoogle, singUPWithEmail, userName, makeUser } = useAuth();
+    const { logInWithGoogle, singUPWithEmail, userName, makeUser } = useFirebase();
     const location = useLocation();
     const navigate = useNavigate();
     const url = location.state?.from.pathname || "/home";

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import useAuth from '../Hook/useAuth';
+import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
-    const { quantity, setQuantity, user, addedProduct, setAddedProduct } = useAuth();
+    const { quantity, setQuantity, user, addedProduct, setAddedProduct } = useFirebase();
     const navigate = useNavigate();
     const { id } = useParams();
     useEffect(() => {

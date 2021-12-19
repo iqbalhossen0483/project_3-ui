@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useNavigate } from 'react-router';
-import useAuth from '../../Hook/useAuth';
+import useFirebase from '../../Hook/useFirebase';
 
 const Payment = (props) => {
     const [showCashOn, setShowCashOn] = useState(false);
@@ -10,7 +10,7 @@ const Payment = (props) => {
     const [showCredit, setShowCredit] = useState(false);
     const navigate = useNavigate();
     const alert = useAlert();
-    const { setAddedProduct } = useAuth();
+    const { setAddedProduct } = useFirebase();
     const totalPrice = props.totalPrice;
     let sipping = 0;
     totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;

@@ -2,12 +2,12 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import useAuth from '../../Hook/useAuth';
+import useFirebase from '../../Hook/useFirebase';
 import Footer from '../../ShareComponent/Footer/Footer';
 
 const Desboard = () => {
     const [dsMenu, setDsMenu] = useState(true);
-    const { isAdmin } = useAuth();
+    const { isAdmin } = useFirebase();
 
     const handleDsMenu = () => {
         if (dsMenu) {
