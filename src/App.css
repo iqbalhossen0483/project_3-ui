@@ -91,3 +91,28 @@ input[type="checkbox"]{
   max-height:400px; /* change this to whatever you want */
   width: auto;
 }
+.customize-category-menu{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #80808017;
+  margin-top: 0.75rem;
+}
+.customize-delete-icon{
+  color: #808080c7;
+  display: none;
+}
+.customize-category-menu:hover .customize-delete-icon{
+  display: block;
+}
+.customize-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr 15px;
+  gap: 2px;
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  background-color: #fff;
+  z-index: 1;
+}

@@ -84,7 +84,8 @@
   /* cart product */
   .cart-product{
     @apply absolute top-full right-5 bg-white shadow-md z-20 max-h-96 overflow-auto
-  }
+  };
+
 }
 
 

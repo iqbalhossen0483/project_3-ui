@@ -1,13 +1,13 @@
 import React, { createContext } from 'react';
 import Firebase from './Firebase';
 
-export const AuthContex = createContext();
+export const AuthFirebase = createContext();
 
 const FiebaseProvider = ({ children }) => {
     const auth = Firebase();
-    return <AuthContex.Provider value={auth}>
+    return <AuthFirebase.Provider value={auth}>
         {children}
-    </AuthContex.Provider>
+    </AuthFirebase.Provider>
 };
 
 export default FiebaseProvider;
