@@ -83,6 +83,10 @@
     @apply absolute top-full right-5 bg-white shadow-md z-20 max-h-96 overflow-auto
   };
 
+  .outlet{
+    @apply col-span-5 h-screen flex flex-col justify-between
+  }
+
 }
 
 
