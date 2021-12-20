@@ -116,3 +116,10 @@ input[type="checkbox"]{
   background-color: #fff;
   z-index: 1;
 }
+.outlet{
+  grid-column: span 5 / span 5;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

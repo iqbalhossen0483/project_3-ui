@@ -48,7 +48,7 @@ const Desboard = () => {
                 }
             </div>
             <div></div>
-            <div className="col-span-5 h-screen flex flex-col justify-between">
+            <div className="outlet">
                 <Outlet />
                 <Footer />
             </div>
