@@ -31,7 +31,7 @@ const Desboard = () => {
                 className={`${dsMenu && "hidden"} togglebar fas fa-caret-square-right`}>
             </i>
             <div style={{ width: "14.1rem" }}
-                className={`${!dsMenu && "hidden"} flex flex-col bg-green-500 pt-5 h-full fixed z-20`}>
+                className={`${!dsMenu && "hidden"} menubar`}>
                 <i
                     onClick={handleDsMenu}
                     className={`${!dsMenu && "hidden"} closebtn fas fa-times`}>
