@@ -25,9 +25,11 @@ const Firebase = () => {
             if (user) {
                 setUser(user);
                 checkUser(user.email);
+                setIsLoading(false);
             }
             else {
                 setUser({});;
+                setIsLoading(false);
             }
         });
     }, [auth, isAdmin]);
@@ -62,7 +64,6 @@ const Firebase = () => {
                 else {
                     setIsAdmin(false);
                 }
-                setIsLoading(false);
             })
     }
 
