@@ -43,7 +43,7 @@ const MyAccount = () => {
                     <NavLink className="link" to='payment'>Payment-Method</NavLink>
                 </div>
                 <p></p>
-                <div className="outlet">
+                <div className="col-span-5 h-screen flex flex-col justify-between">
                     <Outlet />
                     <Footer />
                 </div>
