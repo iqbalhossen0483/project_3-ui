@@ -25,21 +25,22 @@ const AddNews = () => {
     }
     return (
         <div className="mx-3 md:mx-0">
-            <form className="container" onSubmit={handleSubmit(onSubmit)}>
-                <h3 className="header">Add news</h3>
+            <form className="container lg:w-11/12" onSubmit={handleSubmit(onSubmit)}>
+                <h3 className="header col-span-2">Add news</h3>
                 <input
-                    className="input"
+                    className="input w-full"
                     {...register("img", { required: true })} placeholder="Enter a img url"
                 />
                 <input
-                    className="input"
+                    className="input w-full"
                     {...register("name", { required: true })} placeholder="Enter the name"
                 />
                 <textarea
-                    className="input"
+                    className="input w-full"
+                    rows={10}
                     {...register("description", { required: true })} placeholder="Enter short description"
                 />
-                <input className="button" type="submit" />
+                <input className="button w-52 h-10" type="submit" />
             </form>
         </div>
     );

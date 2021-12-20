@@ -24,7 +24,7 @@ const AddProduct = () => {
     }
     return (
         <div className="mx-3 md:mx-0">
-            <form className="container lg:w-3/4 grid grid-cols-2 gap-5" onSubmit={handleSubmit(onSubmit)}>
+            <form className="container lg:w-11/12 lg:grid grid-cols-2 gap-5" onSubmit={handleSubmit(onSubmit)}>
                 <h3 className="header col-span-2">Add a product</h3>
                 <div>
                     <input
@@ -58,6 +58,7 @@ const AddProduct = () => {
                 </div>
                 <textarea
                     className="input"
+                    rows={10}
                     {...register("description", { required: true })} placeholder="Enter short description"
                 />
                 <div className='col-span-2 flex justify-center'>
