@@ -5,7 +5,7 @@ import useFirebase from '../Hook/useFirebase';
 const UserInfo = () => {
     const { user, isAdmin, lognOut, setHideUserInfo } = useFirebase();
     return (
-        <div className="absolute top-full right-4 shadow-md pt-5 px-3 text-center z-20 bg-white">
+        <div style={{ position: "absolute" }} className="absolute top-full right-4 shadow-md pt-5 px-3 text-center z-20 bg-white">
             <div>
                 <p className="text-xl font-semibold">{user?.displayName?.toUpperCase()}</p>
                 <p>{user.email}</p>

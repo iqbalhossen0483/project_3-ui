@@ -29,7 +29,7 @@ const CartProduct = () => {
         </p>
     }
     return (
-        <div
+        <div style={{ position: "absolute" }}
             onMouseEnter={() => setShowCart(true)}
             onMouseLeave={() => setShowCart(false)}
             className="cart-product scrollbar">
