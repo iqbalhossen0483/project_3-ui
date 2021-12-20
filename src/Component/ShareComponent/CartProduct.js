@@ -24,7 +24,7 @@ const CartProduct = () => {
     let totalPrice = 0;
 
     if (isLoading) {
-        return <p className="absolute top-full right-5 bg-white shadow-md z-20">
+        return <p style={{ position: "absolute" }} className="absolute top-full right-5 bg-white shadow-md z-20">
             Loading...
         </p>
     }

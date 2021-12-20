@@ -86,6 +86,7 @@ const Customize = () => {
                 </form>
                 <button
                     onClick={(e) => showForm(e)}
+                    style={{ position: "absolute" }}
                     className='absolute bottom-3 right-3'>
                     Add+
                 </button>
