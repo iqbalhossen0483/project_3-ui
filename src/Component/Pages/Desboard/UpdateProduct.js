@@ -15,14 +15,7 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
     }, [id, setProduct]);
 
     const onSubmit = newProduct => {
-        newProduct.img = newProduct.img || product.img;
-        newProduct.name = newProduct.name || product.name;
-        newProduct.description = newProduct.description || product.description;
-        newProduct.price = newProduct.price || product.price;
-        newProduct.stock = newProduct.stock || product.stock;
-        newProduct.type = newProduct.type || product.type;
-        newProduct.vendor = newProduct.vendor || product.vendor;
-        newProduct.category = newProduct.category || product.category;
+        console.log(newProduct)
 
         fetch("https://cycle-mart.herokuapp.com/products", {
             method: "PUT",
@@ -33,12 +26,17 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data.modifiedCount > 0) {
                     alert.show("This Product was updated");
                     reset();
                     hideForm(false);
+                } else {
+                    alert.show("You did't update any field");
+                    hideForm(false)
                 }
             })
+            .catch(err => alert.show(err.message))
     }
     return (
         <div
@@ -54,43 +52,43 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
                     <div>
                         <input
                             className="input w-full"
-                            {...register("img", { required: true })}
+                            {...register("img")}
                             defaultValue={product.img}
                             placeholder="Enter a img url"
                         />
                         <input
                             className="input w-full"
-                            {...register("name", { required: true })}
+                            {...register("name")}
                             defaultValue={product.name}
                             placeholder="Enter the name"
                         />
                         <input
                             className="input w-full"
-                            {...register("category", { required: true })}
+                            {...register("category")}
                             defaultValue={product.category}
                             placeholder="Enter the category"
                         />
                         <input
                             className="input w-full"
-                            {...register("price", { required: true })}
+                            {...register("price")}
                             defaultValue={product.price}
                             placeholder="Enter the price"
                         />
                         <input
                             className="input w-full"
-                            {...register("stock", { required: true })}
+                            {...register("stock")}
                             defaultValue={product.stock}
                             placeholder="Enter the stock"
                         />
                         <input
                             className="input w-full"
-                            {...register("vendor", { required: true })}
+                            {...register("vendor")}
                             defaultValue={product.vendor}
                             placeholder="Enter the vendor name"
                         />
                         <input
                             className="input w-full"
-                            {...register("type", { required: true })}
+                            {...register("type")}
                             defaultValue={product.type}
                             placeholder="Enter the type of cycle"
                         />
@@ -98,7 +96,7 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
                     <textarea
                         className="input"
                         rows={10}
-                        {...register("description", { required: true })}
+                        {...register("description")}
                         defaultValue={product.description}
                         placeholder="Enter short description"
                     />
