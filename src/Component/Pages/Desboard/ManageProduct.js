@@ -10,6 +10,8 @@ const ManageProduct = () => {
     const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
 
+    console.log(showUpdateForm);
+
     // get data 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/products")

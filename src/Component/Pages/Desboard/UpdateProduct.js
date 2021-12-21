@@ -17,11 +17,13 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
     const onSubmit = newProduct => {
         newProduct.img = newProduct.img || product.img;
         newProduct.name = newProduct.name || product.name;
-        newProduct.category = newProduct.category || product.category;
+        newProduct.description = newProduct.description || product.description;
         newProduct.price = newProduct.price || product.price;
         newProduct.stock = newProduct.stock || product.stock;
-        newProduct.vendor = newProduct.vendor || product.vendor;
         newProduct.type = newProduct.type || product.type;
+        newProduct.vendor = newProduct.vendor || product.vendor;
+        newProduct.category = newProduct.category || product.category;
+
         fetch("https://cycle-mart.herokuapp.com/products", {
             method: "PUT",
             headers: {
@@ -39,18 +41,70 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
             })
     }
     return (
-        <div onClick={() => hideForm(false)} className="absolute top-0 left-0 w-full h-full background">
+        <div
+            style={{ position: "absolute" }}
+            onClick={() => hideForm(false)}
+            className="absolute top-0 left-0 w-full h-full background">
             <div className="h-screen w-full flex justify-center items-center ">
-                <form onClick={e => e.stopPropagation()} className="container" onSubmit={handleSubmit(onSubmit)}>
-                    <h3 className="header">Update Product</h3>
-                    <input className="input" {...register("img")} placeholder="Enter a img url" />
-                    <input className="input" {...register("name")} placeholder="Enter the name" />
-                    <input className="input" {...register("category")} placeholder="Enter the category" />
-                    <input type="number" className="input" {...register("price")} placeholder="Enter price" />
-                    <input type="number" className="input" {...register("stock")} placeholder="Enter stock" />
-                    <input type="text" className="input" {...register("vendor")} placeholder="Enter vendor name" />
-                    <input type="text" className="input" {...register("type")} placeholder="Enter the type of cycle" />
-                    <input className="button" type="submit" />
+                <form
+                    onClick={e => e.stopPropagation()}
+                    className="container lg:w-11/12 lg:grid grid-cols-2 gap-5"
+                    onSubmit={handleSubmit(onSubmit)}>
+                    <h3 className="header col-span-2">Update Product</h3>
+                    <div>
+                        <input
+                            className="input w-full"
+                            {...register("img", { required: true })}
+                            defaultValue={product.img}
+                            placeholder="Enter a img url"
+                        />
+                        <input
+                            className="input w-full"
+                            {...register("name", { required: true })}
+                            defaultValue={product.name}
+                            placeholder="Enter the name"
+                        />
+                        <input
+                            className="input w-full"
+                            {...register("category", { required: true })}
+                            defaultValue={product.category}
+                            placeholder="Enter the category"
+                        />
+                        <input
+                            className="input w-full"
+                            {...register("price", { required: true })}
+                            defaultValue={product.price}
+                            placeholder="Enter the price"
+                        />
+                        <input
+                            className="input w-full"
+                            {...register("stock", { required: true })}
+                            defaultValue={product.stock}
+                            placeholder="Enter the stock"
+                        />
+                        <input
+                            className="input w-full"
+                            {...register("vendor", { required: true })}
+                            defaultValue={product.vendor}
+                            placeholder="Enter the vendor name"
+                        />
+                        <input
+                            className="input w-full"
+                            {...register("type", { required: true })}
+                            defaultValue={product.type}
+                            placeholder="Enter the type of cycle"
+                        />
+                    </div>
+                    <textarea
+                        className="input"
+                        rows={10}
+                        {...register("description", { required: true })}
+                        defaultValue={product.description}
+                        placeholder="Enter short description"
+                    />
+                    <div className='col-span-2 flex justify-center'>
+                        <input className="button w-52" type="submit" />
+                    </div>
                 </form>
             </div>
         </div>
