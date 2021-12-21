@@ -31,6 +31,12 @@
   .alart{
     @apply bg-green-100 font-semibold text-xl mb-5 mr-3 px-5 md:px-20 py-1 rounded-r-md border-l-8 border-solid border-green-500
   }
+  .header-menu{
+    @apply md:flex justify-between bg-green-400 py-3 px-8 sticky top-14 md:top-0 z-10
+  }
+  .active{
+    @apply text-white
+  }
 
   /* home page  */
   .banner{

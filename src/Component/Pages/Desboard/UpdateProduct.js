@@ -15,7 +15,6 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
     }, [id, setProduct]);
 
     const onSubmit = newProduct => {
-        newProduct.id = product._id;
         newProduct.img = newProduct.img || product.img;
         newProduct.name = newProduct.name || product.name;
         newProduct.category = newProduct.category || product.category;
