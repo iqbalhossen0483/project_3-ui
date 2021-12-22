@@ -7,7 +7,6 @@ const Firebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [addedProduct, setAddedProduct] = useState([]);
     const [showCart, setShowCart] = useState(false);
     const [hideUserInfo, setHideUserInfo] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -51,13 +50,16 @@ const Firebase = () => {
     };
     // chect user is admin
     const checkUser = (email) => {
-        fetch(`https://cycle-mart.herokuapp.com/users/${email}`)
+        fetch(`http://localhost:5000/users/login/${email}`)
             .then(res => res.json())
             .then(data => {
-                if (data.cart) {
-                    setAddedProduct(data.cart);
+                const token = localStorage.getItem("token");
+                if (token) {
+                    localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
+                } else {
+                    localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
                 }
-                if (data?.roll === "admin") {
+                if (data.admin) {
                     setIsAdmin(true);
                 }
                 else {
@@ -104,8 +106,6 @@ const Firebase = () => {
         isAdmin,
         hideUserInfo,
         setHideUserInfo,
-        addedProduct,
-        setAddedProduct,
         showCart,
         setShowCart,
         quantity,

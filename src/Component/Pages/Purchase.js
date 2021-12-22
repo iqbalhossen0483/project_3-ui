@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert'
 import Payment from './Shop/Payment';
+import useFunc from '../Hook/useFunc';
 
 const Purchase = () => {
     const [singleProduct, setSingleProduct] = useState([]);
@@ -16,7 +17,8 @@ const Purchase = () => {
     const { id } = useParams();
     const alert = useAlert();
     const navigate = useNavigate();
-    const { user, setAddedProduct, quantity, addedProduct } = useFirebase();
+    const { user, quantity } = useFirebase();
+    const { setAddedProduct, addedProduct } = useFunc();
 
     const name = user.displayName;
     const email = user.email;

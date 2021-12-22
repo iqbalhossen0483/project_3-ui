@@ -35,8 +35,8 @@ function App() {
   return (
     <div
       className="h-screen overflow-auto scrollbar App">
-      <FunctionProvider>
-        <FirebaseProvider>
+      <FirebaseProvider>
+        <FunctionProvider>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -69,8 +69,8 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </FirebaseProvider>
-      </FunctionProvider>
+        </FunctionProvider>
+      </FirebaseProvider>
     </div>
   );
 }

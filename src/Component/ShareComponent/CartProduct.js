@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFirebase from '../Hook/useFirebase';
+import useFunc from '../Hook/useFunc';
 
 const CartProduct = () => {
     const [cartProducts, setCartProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const { setShowCart, addedProduct } = useFirebase();
+    const { setShowCart } = useFirebase();
+    const { addedProduct } = useFunc();
 
 
     useEffect(() => {

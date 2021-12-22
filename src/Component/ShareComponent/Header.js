@@ -3,12 +3,14 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useFirebase from '../Hook/useFirebase';
+import useFunc from '../Hook/useFunc';
 import CartProduct from './CartProduct';
 import UserInfo from './UserInfo';
 
 const Header = () => {
     const [menu, setMenu] = useState(true);
-    const { user, hideUserInfo, setHideUserInfo, addedProduct, showCart, setShowCart } = useFirebase();
+    const { user, hideUserInfo, setHideUserInfo, showCart, setShowCart } = useFirebase();
+    const { addedProduct } = useFunc();
 
     const toggleShow = () => {
         if (hideUserInfo) {

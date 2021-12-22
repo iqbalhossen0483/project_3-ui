@@ -3,12 +3,15 @@ import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert';
+import useFunc from '../Hook/useFunc';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
-    const { quantity, setQuantity, user, addedProduct, setAddedProduct } = useFirebase();
+    const { quantity, setQuantity, user, } = useFirebase();
+    const { addedProduct, setAddedProduct } = useFunc();
+
     const navigate = useNavigate();
     const { id } = useParams();
     useEffect(() => {
