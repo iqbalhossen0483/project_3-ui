@@ -1,5 +1,6 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth"
 import { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 import Authentication from "./Authentication";
 
 const Firebase = () => {
@@ -12,6 +13,7 @@ const Firebase = () => {
     const [quantity, setQuantity] = useState(1);
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
+    const alart = useAlert();
 
 
     //google log in
@@ -53,17 +55,22 @@ const Firebase = () => {
         fetch(`https://cycle-mart.herokuapp.com/users/login/${email}`)
             .then(res => res.json())
             .then(data => {
-                const token = localStorage.getItem("token");
-                if (token) {
-                    localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
+                if (data.token) {
+                    const token = localStorage.getItem("token");
+                    if (token) {
+                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
+                    } else {
+                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
+                    }
+                    if (data.admin) {
+                        setIsAdmin(true);
+                    }
+                    else {
+                        setIsAdmin(false);
+                    }
                 } else {
-                    localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
-                }
-                if (data.admin) {
-                    setIsAdmin(true);
-                }
-                else {
-                    setIsAdmin(false);
+                    setUser({});
+                    alart.show("an unexpected error ocur");
                 }
                 setIsLoading(false);
             })

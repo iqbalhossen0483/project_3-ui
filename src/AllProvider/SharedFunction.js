@@ -4,6 +4,7 @@ import useFirebase from "../Component/Hook/useFirebase";
 
 const SharedFunction = () => {
     const [addedProduct, setAddedProduct] = useState([]);
+    const [customer, setCustomer] = useState({});
     const { user } = useFirebase();
     const gettoken = localStorage.getItem("token");
     const token = JSON.parse(gettoken);
@@ -16,13 +17,17 @@ const SharedFunction = () => {
                 }
             })
                 .then(res => res.json())
-                .then(data => setAddedProduct(data.cart))
+                .then(data => {
+                    setAddedProduct(data.cart);
+                    setCustomer(data)
+                })
         }
     }, [user, token])
 
     return {
         addedProduct,
-        setAddedProduct
+        setAddedProduct,
+        customer
     }
 };
 
