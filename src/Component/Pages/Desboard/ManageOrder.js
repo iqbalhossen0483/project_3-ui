@@ -6,15 +6,25 @@ const ManageOrder = () => {
     const [orders, setOrder] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
+    const gettoken = localStorage.getItem("token");
+    const token = JSON.parse(gettoken);
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/orders")
+        fetch("https://cycle-mart.herokuapp.com/orders", {
+            headers: {
+                "authorization": token
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setOrder(data);
                 setIsLoading(false);
             })
-    }, [isLoading]);
+            .catch(err => {
+                alert.show("Unexpected error ocurs");
+                setIsLoading(false)
+            })
+    }, [isLoading, alert, token]);
 
     const handleApprove = (id) => {
         const changeData = {
