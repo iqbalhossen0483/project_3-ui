@@ -50,7 +50,7 @@ const Firebase = () => {
     };
     // chect user is admin
     const checkUser = (email) => {
-        fetch(`http://localhost:5000/users/login/${email}`)
+        fetch(`https://cycle-mart.herokuapp.com/users/login/${email}`)
             .then(res => res.json())
             .then(data => {
                 const token = localStorage.getItem("token");

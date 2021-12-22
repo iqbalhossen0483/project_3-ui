@@ -10,7 +10,7 @@ const SharedFunction = () => {
 
     useEffect(() => {
         if (user.email && token) {
-            fetch(`http://localhost:5000/users/${user.email}`, {
+            fetch(`https://cycle-mart.herokuapp.com/users/${user.email}`, {
                 headers: {
                     "authorization": token
                 }
