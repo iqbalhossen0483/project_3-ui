@@ -13,10 +13,10 @@ const Product = (props) => {
 
     const handleCart = (id) => {
         if (user.email) {
-            const notExist = addedProduct.find(cart => cart.id === id);
+            const notExist = addedProduct?.find(cart => cart.id === id);
             if (!notExist) {
                 let cart = [];
-                if (addedProduct.length === 0) {
+                if (!addedProduct) {
                     cart = [
                         {
                             id: id,

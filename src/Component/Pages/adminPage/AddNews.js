@@ -1,17 +1,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useAlert } from 'react-alert'
+import useFunc from '../../Hook/useFunc';
 
 const AddNews = () => {
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
+    const { userToken } = useFunc();
+
+
     const onSubmit = news => {
         const date = new Date().toLocaleDateString("en-US")
         news.date = date;
         fetch("https://cycle-mart.herokuapp.com/news", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "authorization": userToken()
             },
             body: JSON.stringify(news)
         })

@@ -6,14 +6,20 @@ const SharedFunction = () => {
     const [addedProduct, setAddedProduct] = useState([]);
     const [customer, setCustomer] = useState({});
     const { user } = useFirebase();
-    const gettoken = localStorage.getItem("token");
-    const token = JSON.parse(gettoken);
 
+    //jwt token which is stored in local storige
+    const userToken = () => {
+        const gettoken = localStorage.getItem("token");
+        const token = JSON.parse(gettoken);
+        return token;
+    }
+
+    //check user has token or not
     useEffect(() => {
-        if (user.email && token) {
+        if (user.email && userToken()) {
             fetch(`https://cycle-mart.herokuapp.com/users/${user.email}`, {
                 headers: {
-                    "authorization": token
+                    "authorization": userToken()
                 }
             })
                 .then(res => res.json())
@@ -22,12 +28,13 @@ const SharedFunction = () => {
                     setCustomer(data)
                 })
         }
-    }, [user, token])
+    }, [user])
 
     return {
         addedProduct,
         setAddedProduct,
-        customer
+        customer,
+        userToken
     }
 };
 

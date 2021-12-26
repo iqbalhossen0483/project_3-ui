@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useFirebase from '../../Hook/useFirebase';
+import useFunc from '../../Hook/useFunc';
 import Loader from '../../ShareComponent/Loader';
 import Rviews from '../Home/Rviews';
 
@@ -8,15 +9,21 @@ const MyReview = () => {
     const [reviews, setReview] = useState([]);
     const { user } = useFirebase();
     const [isLoading, setIsLoading] = useState(true);
+    const { userToken } = useFunc();
+
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/reviews")
+        fetch("https://cycle-mart.herokuapp.com/reviews", {
+            headers: {
+                "authorization": userToken()
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 const find = data.filter(review => review.email === user.email);
                 setReview(find);
                 setIsLoading(false);
             })
-    }, [user.email]);
+    }, [user.email, userToken]);
 
     if (isLoading) {
         return <Loader />

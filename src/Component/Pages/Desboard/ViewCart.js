@@ -15,24 +15,29 @@ const ViewCart = () => {
     //find cart products
     useEffect(() => {
         let url = "";
-        for (const cart of addedProduct) {
-            url += "&&" + cart.id;
+        if (addedProduct) {
+            for (const cart of addedProduct) {
+                url += "&&" + cart.id;
+            }
+            setAllId(url);
         }
-        setAllId(url);
-        fetch(`https://cycle-mart.herokuapp.com/products/${url}`)
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(product => {
-                    for (const cart of addedProduct) {
-                        if (product._id === cart.id) {
-                            return product.quantity = cart.quantity;
+
+        if (allId) {
+            fetch(`https://cycle-mart.herokuapp.com/products/${url}`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(product => {
+                        for (const cart of addedProduct) {
+                            if (product._id === cart.id) {
+                                return product.quantity = cart.quantity;
+                            }
                         }
-                    }
+                    })
+                    setCartProducts(data);
                 })
-                setCartProducts(data);
-                setIsLoading(false)
-            })
-    }, [addedProduct]);
+        }
+        setIsLoading(false)
+    }, [addedProduct, allId]);
 
     //quantity increase decrease
     const handlePlusMinus = (id, action) => {

@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form';
 import Rating from 'react-rating';
 import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert'
+import useFunc from '../Hook/useFunc';
 
 const AddReviews = () => {
     const [rating, setRating] = useState(0);
     const { user } = useFirebase();
     const alert = useAlert();
+    const { userToken } = useFunc();
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
             name: user.displayName,
@@ -24,7 +26,8 @@ const AddReviews = () => {
         fetch("https://cycle-mart.herokuapp.com/reviews", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "authorization": userToken()
             },
             body: JSON.stringify(review)
         })

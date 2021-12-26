@@ -3,24 +3,31 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useEffect } from 'react';
+import useFunc from '../../Hook/useFunc';
 
 const Customize = () => {
     const [form, setShowForm] = useState(false);
     const [categoryMenus, setCategoryMenus] = useState([]);
     const { register, handleSubmit, reset } = useForm();
     const alart = useAlert();
+    const { userToken } = useFunc();
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/menus")
+        fetch("https://cycle-mart.herokuapp.com/menus", {
+            headers: {
+                "authorization": userToken()
+            }
+        })
             .then(res => res.json())
             .then(data => setCategoryMenus(data))
-    }, [categoryMenus])
+    }, [categoryMenus, userToken])
 
     const onSubmit = menu => {
         fetch("https://cycle-mart.herokuapp.com/menus", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "authorization": userToken()
             },
             body: JSON.stringify(menu)
         })
@@ -36,7 +43,10 @@ const Customize = () => {
 
     const deletMenu = (id) => {
         fetch(`https://cycle-mart.herokuapp.com/menus/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "authorization": userToken()
+            }
         })
             .then(res => res.json())
             .then(data => {

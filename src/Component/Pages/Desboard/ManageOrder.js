@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Orders from './Orders';
 import { useAlert } from 'react-alert'
+import useFunc from '../../Hook/useFunc';
 
 const ManageOrder = () => {
     const [orders, setOrder] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
-    const gettoken = localStorage.getItem("token");
-    const token = JSON.parse(gettoken);
+    const { userToken } = useFunc();
 
     useEffect(() => {
         fetch("https://cycle-mart.herokuapp.com/orders", {
             headers: {
-                "authorization": token
+                "authorization": userToken()
             }
         })
             .then(res => res.json())
@@ -24,7 +24,7 @@ const ManageOrder = () => {
                 alert.show("Unexpected error ocurs");
                 setIsLoading(false)
             })
-    }, [isLoading, alert, token]);
+    }, [isLoading, alert, userToken]);
 
     const handleApprove = (id) => {
         const changeData = {

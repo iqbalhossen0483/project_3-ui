@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import useFirebase from '../../Hook/useFirebase';
 import Orders from './Orders';
 import { useAlert } from "react-alert";
+import useFunc from '../../Hook/useFunc';
 
 const MyOrder = () => {
     const [orders, setOrder] = useState([]);
     const [isLoading, setIsloading] = useState(true);
     const { user } = useFirebase();
     const alart = useAlert();
-    const getToken = localStorage.getItem("token");
-    const token = JSON.parse(getToken);
+    const { userToken } = useFunc();
 
     useEffect(() => {
         fetch(`https://cycle-mart.herokuapp.com/orders/${user.email}`, {
             headers: {
-                "authorization": token
+                "authorization": userToken()
             }
         })
             .then(res => res.json())
@@ -26,7 +26,7 @@ const MyOrder = () => {
                 alart.show("Unexpected error ocurs");
                 setIsloading(false);
             })
-    }, [user.email, token, alart]);
+    }, [user.email, alart, userToken]);
 
     if (isLoading) {
         return <div className="spinner-container">

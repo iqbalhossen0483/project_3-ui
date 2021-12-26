@@ -1,16 +1,19 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAlert } from 'react-alert'
+import useFunc from '../../../Hook/useFunc';
 
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
+    const { userToken } = useFunc();
 
     const onSubmit = product => {
         fetch("https://cycle-mart.herokuapp.com/products", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "authorization": userToken()
             },
             body: JSON.stringify(product)
         })

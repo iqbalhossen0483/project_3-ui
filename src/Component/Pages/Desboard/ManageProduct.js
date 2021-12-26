@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UpdateProduct from './UpdateProduct';
 import { useAlert } from 'react-alert'
+import useFunc from '../../Hook/useFunc';
 
 const ManageProduct = () => {
     const [products, setProduct] = useState([]);
@@ -9,6 +10,7 @@ const ManageProduct = () => {
     const [showUpdateForm, setUpdateForm] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const alert = useAlert();
+    const { userToken } = useFunc()
 
 
     // get data 
@@ -19,14 +21,17 @@ const ManageProduct = () => {
                 setProduct(data);
                 setIsLoading(false);
             })
-    }, [singleProduct]);
+    }, []);
 
     // delete data 
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
         if (confirm) {
             fetch(`https://cycle-mart.herokuapp.com/products/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "authorization": userToken()
+                }
             })
                 .then(res => res.json())
                 .then(data => {

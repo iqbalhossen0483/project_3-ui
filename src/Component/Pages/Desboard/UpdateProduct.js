@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import { useAlert } from 'react-alert'
+import useFunc from '../../Hook/useFunc';
 
 const UpdateProduct = ({ hideForm, product, setProduct }) => {
     const { id } = useParams();
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
+    const { userToken } = useFunc();
 
     useEffect(() => {
         fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
@@ -20,7 +22,8 @@ const UpdateProduct = ({ hideForm, product, setProduct }) => {
         fetch("https://cycle-mart.herokuapp.com/products", {
             method: "PUT",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "authorization": userToken()
             },
             body: JSON.stringify(newProduct)
         })

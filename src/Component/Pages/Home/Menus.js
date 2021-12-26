@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import useFunc from '../../Hook/useFunc';
 
 const Menus = () => {
     const navigate = useNavigate();
     const [categoryMenus, setCategoryMenus] = useState([]);
+    const { userToken } = useFunc();
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/menus")
+        fetch("https://cycle-mart.herokuapp.com/menus", {
+            headers: {
+                "authorization": userToken()
+            }
+        })
             .then(res => res.json())
             .then(data => setCategoryMenus(data))
-    }, []);
+    }, [userToken]);
 
     return (
         <div className="py-5 px-4 text-xl leading-10 border-r h-full">

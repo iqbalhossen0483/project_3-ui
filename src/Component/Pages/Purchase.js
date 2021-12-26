@@ -68,6 +68,7 @@ const Purchase = () => {
     const onSubmit = order => {
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
+        //single product was ordered
         if (singleProduct.length) {
             let newSingle = [];
             let price = 0;
@@ -80,6 +81,7 @@ const Purchase = () => {
             order.products = newSingle;
             order.totalBDT = quantity * price + sipping;
         }
+        //maltiple products were ordered
         else {
             let newOrders = [];
             orders.map(product => {
@@ -94,6 +96,7 @@ const Purchase = () => {
             order.products = newOrders;
             order.totalBDT = totalPrice + sipping;
         }
+        //post order
         if (cashOnDelivary) {
             fetch("https://cycle-mart.herokuapp.com/orders", {
                 method: "POST",
@@ -108,7 +111,9 @@ const Purchase = () => {
                         alert.show("Your order created successfully");
                         reset();
                         navigate("/")
-                        setAddedProduct([]);
+                        if (!singleProduct.length) {
+                            setAddedProduct([]);
+                        }
                     }
                 })
         }
@@ -198,16 +203,47 @@ const Purchase = () => {
             </div>
             <div>
                 <form className="container lg:w-4/6"
-                    onSubmit={handleSubmit(onSubmit)}
-                >
+                    onSubmit={handleSubmit(onSubmit)}>
+
                     <h3 className="header">Place Order</h3>
-                    <input className="input" disabled {...register("name", { required: true })} placeholder="Enter name" />
-                    <input type="email" disabled className="input" {...register("email", { required: true })} placeholder="Enter email" />
-                    <input className="input" {...register("division", { required: true })} placeholder="Enter division" />
-                    <input className="input" {...register("district", { required: true })} placeholder="Enter district" />
-                    <input className="input" {...register("ps", { required: true })} placeholder="Enter police station" />
-                    <input className="input" {...register("road", { required: true })} placeholder="Enter road name" />
-                    <input type="number" className="input" {...register("number", { required: true })} placeholder="Enter your number" />
+                    <input
+                        className="input"
+                        disabled {...register("name", { required: true })}
+                        placeholder="Enter name"
+                    />
+                    <input
+                        type="email"
+                        disabled
+                        className="input"
+                        {...register("email", { required: true })}
+                        placeholder="Enter email"
+                    />
+                    <input
+                        className="input"
+                        {...register("division", { required: true })}
+                        placeholder="Enter division"
+                    />
+                    <input
+                        className="input"
+                        {...register("district", { required: true })}
+                        placeholder="Enter district"
+                    />
+                    <input
+                        className="input"
+                        {...register("ps", { required: true })}
+                        placeholder="Enter police station"
+                    />
+                    <input
+                        className="input"
+                        {...register("road", { required: true })}
+                        placeholder="Enter road name"
+                    />
+                    <input
+                        type="number"
+                        className="input"
+                        {...register("number", { required: true })}
+                        placeholder="Enter your number"
+                    />
                     <p className="flex items-center text-xl">
                         <input onClick={e => { handleCashOndelivary(e) }} className='mr-2' type="checkbox" /> Cash on delivary
                     </p>

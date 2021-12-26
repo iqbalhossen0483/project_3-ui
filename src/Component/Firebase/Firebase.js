@@ -20,6 +20,33 @@ const Firebase = () => {
     const logInWithGoogle = () => {
         return signInWithPopup(auth, googleProvider)
     }
+
+    // chect user is admin
+    const checkUser = (email) => {
+        fetch(`https://cycle-mart.herokuapp.com/users/login/${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.token) {
+                    const token = localStorage.getItem("token");
+                    if (token) {
+                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
+                    } else {
+                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
+                    }
+                    if (data.admin) {
+                        setIsAdmin(true);
+                    }
+                    else {
+                        setIsAdmin(false);
+                    }
+                } else {
+                    setUser({});
+                    alart.show("an unexpected error ocur");
+                }
+                setIsLoading(false);
+            })
+    }
+
     //observe user
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -50,31 +77,6 @@ const Firebase = () => {
             .then(res => res.json())
             .then(data => { })
     };
-    // chect user is admin
-    const checkUser = (email) => {
-        fetch(`https://cycle-mart.herokuapp.com/users/login/${email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.token) {
-                    const token = localStorage.getItem("token");
-                    if (token) {
-                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
-                    } else {
-                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
-                    }
-                    if (data.admin) {
-                        setIsAdmin(true);
-                    }
-                    else {
-                        setIsAdmin(false);
-                    }
-                } else {
-                    setUser({});
-                    alart.show("an unexpected error ocur");
-                }
-                setIsLoading(false);
-            })
-    }
 
     //email pass
     const singUPWithEmail = (email, password) => {
