@@ -27,12 +27,8 @@ const Firebase = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.token) {
-                    const token = localStorage.getItem("token");
-                    if (token) {
-                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
-                    } else {
-                        localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`))
-                    }
+                    localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`));
+
                     if (data.admin) {
                         setIsAdmin(true);
                     }

@@ -3,6 +3,25 @@
   padding: 0;
   box-sizing: border-box;
 }
+.header-bg{
+  background-image: linear-gradient(#1aaf85, #28eeb6);
+}
+.menubar-bg{
+  background-image: linear-gradient(to right, #1aaf85, #28eeb6);
+}
+.gradient-text{
+  background: linear-gradient(to right, #220074, #343740e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.active{
+  background: linear-gradient(to right, #4c07e9, #1944bde8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: underline;
+}
+
 .App{
   background-color: #928f8f13;
 }

@@ -5,6 +5,7 @@ import { useAlert } from 'react-alert'
 const MakeAdmin = () => {
     const { register, handleSubmit, reset } = useForm();
     const alert = useAlert();
+    
     const onSubmit = email => {
         fetch("https://cycle-mart.herokuapp.com/users/admin", {
             method: "PUT",

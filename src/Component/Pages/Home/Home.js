@@ -105,16 +105,16 @@ const Home = () => {
                 {/* flesh cart */}
                 <div className="flesh-cart">
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 shadow-lg">Free shipping</p>
+                        <p className="bg-white rounded-3xl py-2 border">Free shipping</p>
                     </Link>
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 shadow-lg">Winter sales</p>
+                        <p className="bg-white rounded-3xl py-2 border">Winter sales</p>
                     </Link>
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 shadow-lg">Best vendors</p>
+                        <p className="bg-white rounded-3xl py-2 border">Best vendors</p>
                     </Link>
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 shadow-lg">Hot deals</p>
+                        <p className="bg-white rounded-3xl py-2 border">Hot deals</p>
                     </Link>
                 </div>
                 {/* product */}

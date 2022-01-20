@@ -36,7 +36,7 @@ const Header = () => {
     }, [])
     return (
         <>
-            <div className='md:hidden sticky top-0 z-10 flex items-center justify-between py-2 px-6 text-2xl bg-green-500'>
+            <div className='md:hidden sticky top-0 z-10 flex items-center justify-between py-2 px-6 text-2xl header-bg'>
                 <i onClick={handleMenu} className="fas fa-bars"></i>
                 <div className='flex items-center'>
                     {
@@ -58,26 +58,26 @@ const Header = () => {
                     }
                 </div>
             </div>
-            <div className={`${!menu && "hidden"} header-menu`}>
-                <div className="flex flex-col md:flex-row items-center">
+            <div className={`${!menu && "hidden"} header-menu header-bg`}>
+                <div className="flex flex-col md:flex-row items-center font-semibold">
                     <NavLink
-                        className="link"
+                        className="link gradient-text"
                         to='/home'>
                         Home
                     </NavLink>
                     <NavLink
-                        className="link"
+                        className="link gradient-text"
                         to='/shop'>
                         Shop
                     </NavLink>
                     <NavLink
-                        className="link"
+                        className="link gradient-text"
                         to='/news'>
                         News
                     </NavLink>
                 </div>
-                <div className="flex flex-col md:flex-row items-center flex-wrap">
-                    <NavLink className="link" to='/my-account/profile'>My-Account</NavLink>
+                <div className="flex flex-col md:flex-row items-center flex-wrap font-semibold">
+                    <NavLink className="link gradient-text" to='/my-account/profile'>My-Account</NavLink>
                     <div className='hidden md:flex items-center'>
                         {
                             user.email && <div className="text-xl mx-2">
@@ -98,13 +98,13 @@ const Header = () => {
                         }
                     </div>
                     {!user?.email && <>
-                        <NavLink className="link" to='/log-in'>Log-In</NavLink>
-                        <NavLink className="link" to='/sign-up'>Sign-Up</NavLink>
+                        <NavLink className="link gradient-text" to='/log-in'>Log-In</NavLink>
+                        <NavLink className="link gradient-text" to='/sign-up'>Sign-Up</NavLink>
                     </>}
                 </div>
                 {/* user info  */}
                 {hideUserInfo && <UserInfo />}
-                {showCart && addedProduct.length > 0 && <CartProduct />}
+                {showCart && addedProduct?.length > 0 && <CartProduct />}
             </div>
         </>
     );
