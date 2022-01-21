@@ -30,7 +30,7 @@ const Desboard = () => {
                 onClick={handleDsMenu}
                 className={`${dsMenu && "hidden"} togglebar fas fa-caret-square-right`}>
             </i>
-            <div style={{ width: "14.1rem" }}
+            <div style={{ width: "14.3rem" }}
                 className={`${!dsMenu && "hidden"} menubar menubar-bg`}>
                 <i
                     onClick={handleDsMenu}

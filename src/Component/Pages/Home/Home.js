@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import PansySlider from './PansySlider';
 import Slider from "react-slick";
 import Footer from "../../ShareComponent/Footer/Footer";
+import settings from './sliderSetting';
 import { NewsSkelator, ProductSkelator, ReviewSkelator } from '../../ShareComponent/SkelatorAll';
 import { useAlert } from 'react-alert';
 
@@ -52,47 +53,11 @@ const Home = () => {
             })
             .catch(err => setError(err.massege))
     }, [alart]);
-
-    //for slider
-    const settings = {
-        dots: true,
-        arrows: false,
-        infinite: true,
-        speed: 1000,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    };
+    
     return (
         <>
             <div onClick={() => { setHideUserInfo(false) }}>
+
                 {/* banner */}
                 <div className="banner">
                     <div className="hidden lg:block bg-white h-full">
@@ -102,21 +67,23 @@ const Home = () => {
                         <PansySlider />
                     </div>
                 </div>
+
                 {/* flesh cart */}
                 <div className="flesh-cart">
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 border">Free shipping</p>
+                        <p className="item">Free shipping</p>
                     </Link>
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 border">Winter sales</p>
+                        <p className="item">Winter sales</p>
                     </Link>
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 border">Best vendors</p>
+                        <p className="item">Best vendors</p>
                     </Link>
                     <Link to="/shop">
-                        <p className="bg-white rounded-3xl py-2 border">Hot deals</p>
+                        <p className="item">Hot deals</p>
                     </Link>
                 </div>
+
                 {/* product */}
                 <div className="mt-10">
                     <h3 className="h1">Our Leatest Products</h3>
@@ -132,10 +99,14 @@ const Home = () => {
                                 <ProductSkelator />
                                 <ProductSkelator />
                             </> :
-                            products.map(product => <Product key={product._id} product={product} />)
+                            products.map(product => <Product
+                                key={product._id}
+                                product={product}
+                            />)
                         }
                     </div>
                 </div>
+
                 {/* reviews */}
                 <div className="my-16 md:px-5">
                     <h3 className="h1">Our Customer Reviews</h3>
@@ -147,10 +118,14 @@ const Home = () => {
                         </div> :
                         <Slider {...settings}>
                             {
-                                reviews.map(review => <Reviews key={review._id} review={review} />)
+                                reviews.map(review => <Reviews
+                                    key={review._id}
+                                    review={review}
+                                />)
                             }
                         </Slider>}
                 </div>
+
                 {/* news */}
                 <div className="my-16 md:px-5">
                     <h3 className="h1">Leatest News</h3>
@@ -162,7 +137,10 @@ const Home = () => {
                         </div> :
                         <Slider {...settings}>
                             {
-                                news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
+                                news.map(singleNews => <SingleNews
+                                    key={singleNews._id}
+                                    news={singleNews}
+                                />)
                             }
                         </Slider>}
                 </div>

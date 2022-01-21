@@ -30,6 +30,7 @@ import { NewsSkelator } from './Component/ShareComponent/SkelatorAll';
 import CategoryProduct from './Component/Pages/Shop/CategoryProduct';
 import Customize from './Component/Pages/Desboard/Customize';
 import FunctionProvider from "./AllProvider/FunctionProvider"
+import UpdateProfile from './Component/Pages/Desboard/UpdateProfile';
 
 function App() {
   return (
@@ -39,32 +40,147 @@ function App() {
         <FunctionProvider>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/skelator" element={<NewsSkelator />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/shop/:category" element={<CategoryProduct />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/my-account" element={<PrivateRoute element={<MyAccount />} />}>
-              <Route path="profile" element={<Profile />} />
-              <Route path="my-order" element={<MyOrder />} />
-              <Route path="my-review" element={<MyReview />} />
-              <Route path="add-review" element={<AddReviews />} />
-              <Route path="payment" element={<PaymentMathods />} />
-              <Route path="view-cart" element={<ViewCart />} />
+
+            {/* ---------
+              public route 
+            ---------------*/}
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/skelator"
+              element={<NewsSkelator />}
+            />
+            <Route
+              path="/shop"
+              element={<Shop />}
+            />
+            <Route
+              path="/shop/:category"
+              element={<CategoryProduct />}
+            />
+            <Route
+              path="/products/:id"
+              element={<ProductDetails />}
+            />
+            <Route
+              path="/news"
+              element={<News />}
+            />
+
+            {/* -------------
+              private route
+            -----------------*/}
+
+            <Route
+              path="/place-order/:id"
+              element={<PrivateRoute
+                element={<Purchase />} />}
+            />
+            
+            <Route
+              path="/my-account"
+              element={<PrivateRoute
+                element={<MyAccount />}
+              />}>
+              <Route
+                path="profile"
+                element={<PrivateRoute
+                  element={<Profile />}
+                />}
+              />
+              <Route
+                path="update-profile"
+                element={<PrivateRoute
+                  element={<UpdateProfile />}
+                />}
+              />
+              <Route
+                path="my-order"
+                element={<PrivateRoute
+                  element={<MyOrder />}
+                />}
+              />
+              <Route
+                path="my-review"
+                element={<PrivateRoute
+                  element={<MyReview />}
+                />}
+              />
+              <Route
+                path="add-review"
+                element={<PrivateRoute
+                  element={<AddReviews />}
+                />}
+              />
+              <Route
+                path="payment"
+                element={<PrivateRoute
+                  element={<PaymentMathods />}
+                />}
+              />
+              <Route
+                path="view-cart"
+                element={<PrivateRoute
+                  element={<ViewCart />}
+                />}
+              />
             </Route>
-            <Route path="/desboard" element={<CheckAdmin element={<Desboard />} />}>
-              <Route path="customize" element={<CheckAdmin element={<Customize />} />} />
-              <Route path="add-product" element={<CheckAdmin element={<AddProduct />} />} />
-              <Route path="add-news" element={<CheckAdmin element={<AddNews />} />} />
-              <Route path="manage-order" element={<CheckAdmin element={<ManageOrder />} />} />
-              <Route path="make-admin" element={<CheckAdmin element={<MakeAdmin />} />} />
-              <Route path="manage-product" element={<CheckAdmin element={<ManageProduct />} />}>
-                <Route path=":id" element={<UpdateProduct />} />
+
+            
+            {/* -------------
+              Admin route
+            -----------------*/}
+
+            <Route
+              path="/desboard"
+              element={<CheckAdmin
+                element={<Desboard />}
+              />}
+            >
+              <Route
+                path="customize"
+                element={<CheckAdmin
+                  element={<Customize />}
+                />}
+              />
+              <Route
+                path="add-product"
+                element={<CheckAdmin
+                  element={<AddProduct />}
+                />}
+              />
+              <Route
+                path="add-news"
+                element={<CheckAdmin
+                  element={<AddNews />}
+                />}
+              />
+              <Route
+                path="manage-order"
+                element={<CheckAdmin
+                  element={<ManageOrder />}
+                />}
+              />
+              <Route
+                path="make-admin"
+                element={<CheckAdmin
+                  element={<MakeAdmin />}
+                />}
+              />
+              <Route
+                path="manage-product"
+                element={<CheckAdmin
+                  element={<ManageProduct />}
+                />}>
+                <Route
+                  path=":id"
+                  element={<UpdateProduct />}
+                />
               </Route>
             </Route>
-            <Route path="/place-order/:id" element={<PrivateRoute element={<Purchase />} />} />
+
             <Route path="/log-in" element={<LogIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="*" element={<NotFound />} />

@@ -55,15 +55,26 @@ const Product = (props) => {
     return (
         <div className="product">
             <div>
-                <img className="h-52 w-full rounded-t object-cover" src={img} alt="" />
-                <p className="text-xl ml-4 font-semibold my-2">{name}</p>
+                <img
+                    className="h-52 w-full rounded-t object-cover"
+                    src={img} alt=""
+                />
+                <p className="text-xl ml-4 font-semibold my-2">
+                    {name}
+                </p>
                 <p className="text-xl ml-4 text-green-500 font-semibold">
-                    Price: {price} BDT</p>
+                    Price: {price} BDT
+                </p>
                 <div className="flex justify-between ml-2 mr-8">
                     <button
-                        onClick={() => { handleCart(_id) }} className="button">Add to cart</button>
+                        onClick={() => { handleCart(_id) }}
+                        className="button">
+                        Add to cart
+                    </button>
                     <Link to={`/products/${_id}`}>
-                        <button className="button">Details</button>
+                        <button className="button">
+                            Details
+                        </button>
                     </Link>
                 </div>
             </div>

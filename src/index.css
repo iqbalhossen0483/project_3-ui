@@ -14,6 +14,12 @@
   .input{
     @apply border rounded py-1 px-3 my-1 text-xl focus:outline-none
   }
+  .category-menu-wrapper{
+    @apply py-5 px-4 text-xl leading-10 border-r h-full
+  }
+  .category-menu{
+    @apply hover:text-green-500 hover:underline cursor-pointer
+  }
   .product{
     @apply m-3 md:m-0 rounded-md bg-white leading-6 border
   }
@@ -25,6 +31,9 @@
   }
   .h1{
     @apply text-2xl md:text-3xl font-semibold ml-10 my-5
+  }
+  .page-header{
+    @apply text-2xl text-center mb-3 font-semibold
   }
   .spinner-container{
     @apply h-screen flex justify-center items-center
@@ -39,6 +48,34 @@
   }
 
 
+
+  /* header component */
+  .header-container{
+    @apply md:hidden sticky top-0 z-10 flex 
+    items-center justify-between py-2 px-6 text-2xl
+  }
+  .menu-wrapper{
+    @apply flex flex-col md:flex-row items-center font-semibold
+  }
+
+  /* slider component */
+  .slider-container{
+    @apply md:pr-10 text-center
+  }
+  .slider-container .item{
+    @apply md:grid grid-cols-4 items-center justify-center
+  }
+
+  /* review component */
+  .review-container{
+    @apply m-3 md:m-3 h-72 bg-white rounded-md text-center py-5 border
+  }
+
+  /* user info container */
+  .userInfo-container{
+    @apply absolute top-full right-4 shadow-md pt-5 px-3 text-center z-20 bg-white
+  }
+
   /* home page  */
   .banner{
     @apply lg:grid grid-cols-4 gap-10 items-center text-justify 
@@ -47,6 +84,9 @@
   .flesh-cart{
     @apply grid grid-cols-2 md:grid-cols-4 my-5 px-5 md:px-10 gap-5 
     md:gap-10 text-center text-xl
+  }
+  .flesh-cart .item{
+    @apply bg-white rounded-3xl py-2 border
   }
   .product-container{
     @apply md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:m-5

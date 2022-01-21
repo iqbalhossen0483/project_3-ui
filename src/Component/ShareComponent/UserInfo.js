@@ -4,12 +4,21 @@ import useFirebase from '../Hook/useFirebase';
 
 const UserInfo = () => {
     const { user, isAdmin, lognOut, setHideUserInfo } = useFirebase();
+
     return (
-        <div style={{ position: "absolute" }} className="absolute top-full right-4 shadow-md pt-5 px-3 text-center z-20 bg-white">
+        <div
+            style={{ position: "absolute" }}
+            className="userInfo-container">
             <div>
-                <p className="text-xl font-semibold">{user?.displayName?.toUpperCase()}</p>
+                <p className="text-xl font-semibold">
+                    {user?.displayName?.toUpperCase()}
+                </p>
                 <p>{user.email}</p>
-                {isAdmin && <p className="font-semibold">Adminstator</p>}
+                {isAdmin &&
+                    <p className="font-semibold">
+                        Adminstator
+                    </p>
+                }
             </div>
             <hr className="mt-3" />
             <div className="mt-4 mb-2 text-white flex justify-evenly">
@@ -23,7 +32,7 @@ const UserInfo = () => {
                 {
                     !isAdmin && <NavLink
                         onClick={() => { setHideUserInfo(false) }}
-                        className="button" to="/my-account/my-order">
+                        className="button" to="/my-account/profile">
                         Your-Profile
                     </NavLink>
                 }

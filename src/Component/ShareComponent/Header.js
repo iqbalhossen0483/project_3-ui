@@ -36,7 +36,7 @@ const Header = () => {
     }, [])
     return (
         <>
-            <div className='md:hidden sticky top-0 z-10 flex items-center justify-between py-2 px-6 text-2xl header-bg'>
+            <div className='header-container header-bg'>
                 <i onClick={handleMenu} className="fas fa-bars"></i>
                 <div className='flex items-center'>
                     {
@@ -45,24 +45,27 @@ const Header = () => {
                                 onMouseEnter={() => { setShowCart(true) }}
                                 className="fas fa-shopping-cart">
                             </i>
-                            <span
-                                className="text-purple-900 font-semibold ml-1">{addedProduct?.length}
+                            <span className="text-purple-900 font-semibold ml-1">
+                                {addedProduct?.length}
                             </span>
                         </div>
                     }
                     {
-                        user.email && user.photoURL && <img onClick={toggleShow} className="w-10 h-10 rounded-full ml-2" src={user.photoURL} alt="" />
-                    }
-                    {
-                        user.email && !user.photoURL && <i onClick={toggleShow} className="fas fa-user text-2xl ml-2"></i>
+                        user.email &&
+                        <img onClick={toggleShow} 
+                        className="w-10 h-10 rounded-full ml-2" 
+                            src={user.photoURL ?
+                                user.photoURL :
+                                "https://res.cloudinary.com/dpphyosn4/image/upload/v1642742699/cycle-mart/users/nophoto_elhi6z.png"} alt="" 
+                        />
                     }
                 </div>
             </div>
             <div className={`${!menu && "hidden"} header-menu header-bg`}>
-                <div className="flex flex-col md:flex-row items-center font-semibold">
+                <div className="menu-wrapper">
                     <NavLink
                         className="link gradient-text"
-                        to='/home'>
+                        to='/'>
                         Home
                     </NavLink>
                     <NavLink
@@ -76,8 +79,12 @@ const Header = () => {
                         News
                     </NavLink>
                 </div>
-                <div className="flex flex-col md:flex-row items-center flex-wrap font-semibold">
-                    <NavLink className="link gradient-text" to='/my-account/profile'>My-Account</NavLink>
+                <div className="menu-wrapper flex-wrap">
+                    <NavLink 
+                        className="link gradient-text" 
+                        to='/my-account/profile'>
+                        My-Account
+                    </NavLink>
                     <div className='hidden md:flex items-center'>
                         {
                             user.email && <div className="text-xl mx-2">
@@ -85,23 +92,39 @@ const Header = () => {
                                     onMouseEnter={() => { setShowCart(true) }}
                                     className="fas fa-shopping-cart">
                                 </i>
-                                <span
-                                    className="text-purple-900 font-semibold ml-1">{addedProduct?.length}
+                                <span className="text-purple-900 font-semibold ml-1">
+                                    {addedProduct?.length}
                                 </span>
                             </div>
                         }
                         {
-                            user.email && user.photoURL && <img onClick={toggleShow} className="w-10 h-10 rounded-full ml-2" src={user.photoURL} alt="" />
+                            user.email && 
+                            <img 
+                                onClick={toggleShow} 
+                                className="w-10 h-10 rounded-full ml-2" 
+                                src={user.photoURL ?
+                                    user.photoURL :
+                                    user.imgUrl ?
+                                    user.imgUrl :
+                                    "https://res.cloudinary.com/dpphyosn4/image/upload/v1642742699/cycle-mart/users/nophoto_elhi6z.png"} alt=""
+                             />
                         }
-                        {
-                            user.email && !user.photoURL && <i onClick={toggleShow} className="fas fa-user text-2xl ml-2"></i>
-                        }
+                        
                     </div>
                     {!user?.email && <>
-                        <NavLink className="link gradient-text" to='/log-in'>Log-In</NavLink>
-                        <NavLink className="link gradient-text" to='/sign-up'>Sign-Up</NavLink>
+                        <NavLink
+                            className="link gradient-text"
+                            to='/log-in'>
+                            Log-In
+                        </NavLink>
+                        <NavLink
+                            className="link gradient-text"
+                            to='/sign-up'>
+                            Sign-Up
+                        </NavLink>
                     </>}
                 </div>
+                
                 {/* user info  */}
                 {hideUserInfo && <UserInfo />}
                 {showCart && addedProduct?.length > 0 && <CartProduct />}

@@ -21,6 +21,25 @@ const Firebase = () => {
         return signInWithPopup(auth, googleProvider)
     }
 
+    //create user to database
+    const makeUser = (name, email) => {
+        const userInfo = {
+            displayName: name,
+            email: email
+        };
+        fetch("https://cycle-mart.herokuapp.com/users", {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem("token", JSON.stringify(`Bearar ${data.token}`));
+            })
+    };
+
     // chect user is admin
     const checkUser = (email) => {
         fetch(`https://cycle-mart.herokuapp.com/users/login/${email}`)
@@ -39,6 +58,25 @@ const Firebase = () => {
                     setUser({});
                     alart.show("an unexpected error ocur");
                 }
+            })
+    }
+
+    const userToken = () => {
+        const gettoken = localStorage.getItem("token");
+        const token = JSON.parse(gettoken);
+        return token;
+    };
+    //get user
+    const getUser = (email, user) => {
+        fetch(`https://cycle-mart.herokuapp.com/users/${email}`, {
+                headers: {
+                    "authorization": userToken()
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                const extendInfo = { ...user, ...data };
+                setUser(extendInfo);
                 setIsLoading(false);
             })
     }
@@ -47,8 +85,8 @@ const Firebase = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUser(user);
                 checkUser(user.email);
+                getUser(user.email, user);
             }
             else {
                 setUser({});;
@@ -56,23 +94,6 @@ const Firebase = () => {
             }
         });
     }, [auth, isAdmin]);
-
-    //create user to database
-    const makeUser = (name, email) => {
-        const userInfo = {
-            displayName: name,
-            email: email
-        };
-        fetch("https://cycle-mart.herokuapp.com/users", {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(res => res.json())
-            .then(data => { })
-    };
 
     //email pass
     const singUPWithEmail = (email, password) => {

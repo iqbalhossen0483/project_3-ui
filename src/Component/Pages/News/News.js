@@ -23,7 +23,10 @@ const News = () => {
             <div className="my-16 md:px-5">
                 <div className="news-container">
                     {
-                        news.map(singleNews => <SingleNews key={singleNews._id} news={singleNews} />)
+                        news.map(singleNews => <SingleNews
+                            key={singleNews._id}
+                            news={singleNews}
+                        />)
                     }
                 </div>
             </div>
