@@ -30,24 +30,46 @@ const Desboard = () => {
                 onClick={handleDsMenu}
                 className={`${dsMenu && "hidden"} togglebar fas fa-caret-square-right`}>
             </i>
-            <div style={{ width: "14.3rem" }}
-                className={`${!dsMenu && "hidden"} menubar menubar-bg`}>
+            <div
+                className={`${!dsMenu && "hidden"} menubar relative menubar-bg`}>
                 <i
                     onClick={handleDsMenu}
                     className={`${!dsMenu && "hidden"} closebtn fas fa-times`}>
                 </i>
-                {
-                    isAdmin && <>
-                        <NavLink className="link gradient-text" to='add-product'>Add-Product</NavLink>
-                        <NavLink className="link gradient-text" to='add-news'>Add-News</NavLink>
-                        <NavLink className="link gradient-text" to='customize'>Customization</NavLink>
-                        <NavLink className="link gradient-text" to='manage-order'>Manage-Order</NavLink>
-                        <NavLink className="link gradient-text" to='manage-product'>Manage-Product</NavLink>
-                        <NavLink className="link gradient-text" to='make-admin'>Make-Admin</NavLink>
-                    </>
-                }
+                
+                <div className='flex flex-col pt-10 fixed top-10'>
+                    <NavLink
+                    className="link gradient-text"
+                    to='add-product'>
+                    Add-Product
+                    </NavLink>
+                    <NavLink
+                        className="link gradient-text"
+                        to='add-news'>
+                        Add-News
+                    </NavLink>
+                    <NavLink
+                        className="link gradient-text"
+                        to='customize'>
+                        Customization
+                    </NavLink>
+                    <NavLink
+                        className="link gradient-text"
+                        to='manage-order'>
+                        Manage-Order
+                    </NavLink>
+                    <NavLink
+                        className="link gradient-text"
+                        to='manage-product'>
+                        Manage-Product
+                    </NavLink>
+                    <NavLink
+                        className="link gradient-text"
+                        to='make-admin'>
+                        Make-Admin
+                    </NavLink>
+                </div>
             </div>
-            <div></div>
             <div className="outlet">
                 <Outlet />
                 <Footer />

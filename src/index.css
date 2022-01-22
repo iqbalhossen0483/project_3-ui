@@ -46,6 +46,9 @@
     @apply md:flex justify-between py-3 px-8 
     sticky top-14 md:top-0 z-10
   }
+  .outlet{
+    @apply col-span-5 flex flex-col justify-between
+  }
 
 
 
@@ -74,6 +77,17 @@
   /* user info container */
   .userInfo-container{
     @apply absolute top-full right-4 shadow-md pt-5 px-3 text-center z-20 bg-white
+  }
+
+  /* profile page */
+  .profile-container{
+    @apply bg-white rounded lg:mx-5 py-10 z-0 text-xl lg:px-20 mb-5 leading-10 grid gap-2 lg:grid-cols-4 lg:border px-4
+  }
+  .profile-img{
+    @apply rounded-full mx-auto my-5 w-40 h-40 hover:opacity-70
+  }
+  .profile-container .item{
+    @apply border rounded px-3 py-1 bg-gray-50 col-span-3
   }
 
   /* home page  */
@@ -115,7 +129,7 @@
     @apply md:hidden text-2xl text-green-500
   }
   .menubar{
-    @apply flex flex-col bg-green-500 pt-10 fixed h-full z-20 
+    @apply bg-green-500 h-full z-0 
     transition-all duration-700
   }
   .closebtn{

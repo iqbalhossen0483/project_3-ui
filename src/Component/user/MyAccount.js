@@ -28,21 +28,41 @@ const MyAccount = () => {
                 onClick={handleAcMenu}
                 className={`${acMenu && "hidden"} togglebar fas fa-caret-square-right`}>
             </i>
-            <div className="md:grid grid-cols-6">
-                <div style={{ width: "14.3rem" }}
-                    className={`${!acMenu && "hidden"} menubar`}>
+            <div className="md:grid grid-cols-6 min-h-full">
+                <div className={`${!acMenu && "hidden"} menubar relative`}>
 
                     <i
                         onClick={handleAcMenu}
                         className={`${!acMenu && "hidden"} closebtn fas fa-times`}>
                     </i>
-                    <NavLink className="link" to='profile'>My-Profile</NavLink>
-                    <NavLink className="link" to='my-order'>My-Order</NavLink>
-                    <NavLink className="link" to='view-cart'>View-Cart</NavLink>
-                    <NavLink className="link" to='my-review'>View-Review</NavLink>
-                    <NavLink className="link" to='payment'>Payment-Method</NavLink>
+                    <div className='flex flex-col pt-10 fixed top-10'>
+                        <NavLink
+                            className="link gradient-text"
+                            to='profile'>
+                            My-Profile
+                        </NavLink>
+                        <NavLink
+                            className="link gradient-text"
+                            to='my-order'>
+                            My-Order
+                        </NavLink>
+                        <NavLink
+                            className="link gradient-text"
+                            to='view-cart'>
+                            View-Cart
+                        </NavLink>
+                        <NavLink
+                            className="link gradient-text"
+                            to='my-review'>
+                            View-Review
+                        </NavLink>
+                        <NavLink
+                            className="link gradient-text"
+                            to='payment'>
+                            Payment-Method
+                        </NavLink>
+                    </div>
                 </div>
-                <p></p>
                 <div className="outlet">
                     <Outlet />
                     <Footer />

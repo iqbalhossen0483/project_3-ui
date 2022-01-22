@@ -56,7 +56,9 @@ const Header = () => {
                         className="w-10 h-10 rounded-full ml-2" 
                             src={user.photoURL ?
                                 user.photoURL :
-                                "https://res.cloudinary.com/dpphyosn4/image/upload/v1642742699/cycle-mart/users/nophoto_elhi6z.png"} alt="" 
+                                user.imgUrl ?
+                                    user.imgUrl :
+                                    "https://res.cloudinary.com/dpphyosn4/image/upload/v1642742699/cycle-mart/users/nophoto_elhi6z.png"} alt="" 
                         />
                     }
                 </div>
