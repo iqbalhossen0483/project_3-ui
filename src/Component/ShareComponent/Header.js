@@ -54,10 +54,10 @@ const Header = () => {
                         user.email &&
                         <img onClick={toggleShow} 
                         className="w-10 h-10 rounded-full ml-2" 
-                            src={user.photoURL ?
-                                user.photoURL :
-                                user.imgUrl ?
-                                    user.imgUrl :
+                            src={user.imgUrl ?
+                                user.imgUrl :
+                                user.photoURL ?
+                                    user.photoURL :
                                     "https://res.cloudinary.com/dpphyosn4/image/upload/v1642742699/cycle-mart/users/nophoto_elhi6z.png"} alt="" 
                         />
                     }
@@ -104,10 +104,10 @@ const Header = () => {
                             <img 
                                 onClick={toggleShow} 
                                 className="w-10 h-10 rounded-full ml-2" 
-                                src={user.photoURL ?
-                                    user.photoURL :
-                                    user.imgUrl ?
+                                src={user.imgUrl ?
                                     user.imgUrl :
+                                    user.photoURL ?
+                                    user.photoURL :
                                     "https://res.cloudinary.com/dpphyosn4/image/upload/v1642742699/cycle-mart/users/nophoto_elhi6z.png"} alt=""
                              />
                         }

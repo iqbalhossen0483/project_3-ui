@@ -9,13 +9,25 @@ const AddProduct = () => {
     const { userToken } = useFunc();
 
     const onSubmit = product => {
+        const formData = new FormData();
+        formData.append("name", product.name);
+        formData.append("category", product.category);
+        formData.append("price", product.price);
+        formData.append("stock", product.stock);
+        formData.append("vendor", product.vendor);
+        formData.append("type", product.type);
+        formData.append("description", product.description);
+        formData.append("img", product.img[0]);
+        if (!product.img.length) {
+            return alert.show("Product image is required");
+        }
+
         fetch("https://cycle-mart.herokuapp.com/products", {
             method: "POST",
             headers: {
-                "content-type": "application/json",
                 "authorization": userToken()
             },
-            body: JSON.stringify(product)
+            body: formData
         })
             .then(res => res.json())
             .then(data => {
@@ -30,10 +42,6 @@ const AddProduct = () => {
             <form className="container lg:w-11/12 lg:grid grid-cols-2 gap-5" onSubmit={handleSubmit(onSubmit)}>
                 <h3 className="header col-span-2">Add a product</h3>
                 <div>
-                    <input
-                        className="input w-full"
-                        {...register("img", { required: true })} placeholder="Enter a img url"
-                    />
                     <input
                         className="input w-full"
                         {...register("name", { required: true })} placeholder="Enter the name"
@@ -57,6 +65,12 @@ const AddProduct = () => {
                     <input
                         className="input w-full"
                         {...register("type", { required: true })} placeholder="Enter the type of cycle"
+                    />
+                    <input
+                        className="input w-full"
+                        {...register("img")}
+                        type="file"
+                        placeholder="Enter a img url"
                     />
                 </div>
                 <textarea

@@ -26,9 +26,11 @@ function UpdateProfile() {
             body: formData
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
                     alert.show("Update successfull");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                     navigate("/my-account/profile");
                 }
             })
@@ -41,28 +43,28 @@ function UpdateProfile() {
             onSubmit={handleSubmit(onSubmit)}>
             <input
                 className="input my-2"
-                {...register("district")}
+                {...register("district", { required: true })}
                 placeholder="Your Dristrict"
             />
             <input
                 className="input my-2"
-                {...register("policeStation")}
+                {...register("policeStation", { required: true })}
                 placeholder="Police Station"
             />
             <input
                 className="input my-2"
-                {...register("rodeOrVillage")}
+                {...register("rodeOrVillage", { required: true })}
                 placeholder="Rode No. / Village name"
             />
             <input
                 className="input my-2"
-                {...register("phone")}
+                {...register("phone", { required: true })}
                 placeholder="Phone number"
                 type="number"
             />
             <input
                 className="input my-2"
-                {...register("profile")}
+                {...register("profile", { required: true })}
                 type="file"
             />
       

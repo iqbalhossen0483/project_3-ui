@@ -173,12 +173,11 @@ function App() {
                 path="manage-product"
                 element={<CheckAdmin
                   element={<ManageProduct />}
-                />}>
-                <Route
-                  path=":id"
+                />} />
+              <Route
+                  path="updateProduct/:id"
                   element={<UpdateProduct />}
                 />
-              </Route>
             </Route>
 
             <Route path="/log-in" element={<LogIn />} />

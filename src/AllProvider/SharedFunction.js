@@ -25,7 +25,7 @@ const SharedFunction = () => {
                 .then(res => res.json())
                 .then(data => {
                     setAddedProduct(data.cart);
-                    setCustomer(data)
+                    setCustomer({ ...user, ...data });
                 })
         }
     }, [user])

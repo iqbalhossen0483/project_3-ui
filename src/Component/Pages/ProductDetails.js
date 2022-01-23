@@ -23,7 +23,7 @@ const ProductDetails = () => {
                 setIsLoading(false);
             })
     }, [id]);
-    const { name, img, price, _id, stock, vendor, type, description, category } = products;
+    const { name, imgUrl, price, _id, stock, vendor, type, description, category } = products;
 
     const handleMinus = () => {
         if (quantity > 1) {
@@ -81,7 +81,7 @@ const ProductDetails = () => {
     return (
         <>
             <div className="md:grid grid-cols-2 bg-white gap-3">
-                <img src={img} alt="" />
+                <img src={imgUrl} alt="" />
                 <div className="px-5 md:px-0 mt-8 text-xl md:text-2xl font-bold leading-10">
                     <h1 className="text-4xl md:text-5xl font-semibold mb-7">{name}</h1>
                     <p>Price: <span className="text-2xl font-semibold text-green-500">BDT {price * quantity}</span></p>

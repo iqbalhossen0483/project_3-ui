@@ -8,7 +8,7 @@ const Product = (props) => {
     const navigate = useNavigate();
     const { user } = useFirebase();
     const { addedProduct, setAddedProduct } = useFunc();
-    const { img, name, _id, price } = props.product;
+    const { imgUrl, name, _id, price } = props.product;
     const alert = useAlert()
 
     const handleCart = (id) => {
@@ -57,7 +57,7 @@ const Product = (props) => {
             <div>
                 <img
                     className="h-52 w-full rounded-t object-cover"
-                    src={img} alt=""
+                    src={imgUrl} alt=""
                 />
                 <p className="text-xl ml-4 font-semibold my-2">
                     {name}

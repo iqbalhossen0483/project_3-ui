@@ -9,7 +9,7 @@
 .menubar{
   width: 13rem;
 }
-.menubar-bg{
+.menubar{
   background-image: linear-gradient(to right, #1aaf85, #28eeb6);
 }
 .gradient-text{
@@ -27,9 +27,6 @@
 
 .App{
   background-color: #928f8f13;
-}
-.background{
-  background-color: #7c777713;
 }
 
 .spinner{
