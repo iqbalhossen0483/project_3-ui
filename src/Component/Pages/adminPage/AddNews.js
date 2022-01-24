@@ -8,22 +8,31 @@ const AddNews = () => {
     const alert = useAlert();
     const { userToken } = useFunc();
 
-
     const onSubmit = news => {
-        const date = new Date().toLocaleDateString("en-US")
-        news.date = date;
+        const date = new Date().toLocaleDateString("en-US");
+        const formData = new FormData();
+        
+        if (!news.img.length) {
+            return alert.show("image is required");
+        }
+
+        formData.append("date", date);
+        formData.append("img", news.img[0]);
+        formData.append("title", news.title);
+        formData.append("description", news.description);
+
         fetch("https://cycle-mart.herokuapp.com/news", {
             method: "POST",
             headers: {
-                "content-type": "application/json",
                 "authorization": userToken()
             },
-            body: JSON.stringify(news)
+            body: formData
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if (data.insertedId) {
-                    alert.show("A product was successfully added");
+                    alert.show("A news was successfully added");
                     reset();
                 }
             })
@@ -34,16 +43,17 @@ const AddNews = () => {
                 <h3 className="header col-span-2">Add news</h3>
                 <input
                     className="input w-full"
-                    {...register("img", { required: true })} placeholder="Enter a img url"
+                    {...register("img")}
+                    type="file"
                 />
                 <input
                     className="input w-full"
-                    {...register("name", { required: true })} placeholder="Enter the name"
+                    {...register("title", { required: true })} placeholder="Title here..."
                 />
                 <textarea
                     className="input w-full"
                     rows={10}
-                    {...register("description", { required: true })} placeholder="Enter short description"
+                    {...register("description", { required: true })} placeholder="Write here..."
                 />
                 <input className="button w-52 h-10" type="submit" />
             </form>

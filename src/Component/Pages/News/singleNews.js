@@ -1,12 +1,12 @@
 import React from 'react';
 
 const SingleNews = ({ news }) => {
-    const { img, name, description, date } = news;
+    const { imgUrl, name, description, date } = news;
     return (
         <div className="m-3 md:m-3 bg-white rounded-md pb-5 border">
             <img
                 className="rounded-t-md"
-                src={img}
+                src={imgUrl}
                 alt=""
             />
             <p className="text-2xl font-semibold my-3 text-center">
