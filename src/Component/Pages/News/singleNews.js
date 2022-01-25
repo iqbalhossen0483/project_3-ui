@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingleNews = ({ news }) => {
-    const { imgUrl, name, description, date } = news;
+    const { imgUrl, title, description, date } = news;
     return (
         <div className="m-3 md:m-3 bg-white rounded-md pb-5 border">
             <img
@@ -10,7 +10,7 @@ const SingleNews = ({ news }) => {
                 alt=""
             />
             <p className="text-2xl font-semibold my-3 text-center">
-                {name}
+                {title}
             </p>
             <p className="px-3 text-xl">
                 {description.length > 100 ?

@@ -37,11 +37,12 @@ const Desboard = () => {
                     className={`${!dsMenu && "hidden"} closebtn fas fa-times`}>
                 </i>
                 
-                <div className='flex flex-col pt-10 fixed top-10'>
+                <div style={{position: "fixed"}}
+                    className='flex flex-col pt-10 top-10'>
                     <NavLink
-                    className="link gradient-text"
-                    to='add-product'>
-                    Add-Product
+                        className="link gradient-text"
+                        to='add-product'>
+                        Add-Product
                     </NavLink>
                     <NavLink
                         className="link gradient-text"

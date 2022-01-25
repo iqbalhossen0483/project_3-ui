@@ -11,6 +11,7 @@ function UpdateProfile() {
 
     const onSubmit = userInfo => {
         const formData = new FormData();
+        formData.append("division", userInfo.division);
         formData.append("district", userInfo.district);
         formData.append("policeStation", userInfo.policeStation);
         formData.append("rodeOrVillage", userInfo.rodeOrVillage);
@@ -41,6 +42,11 @@ function UpdateProfile() {
         <form
             className="container"
             onSubmit={handleSubmit(onSubmit)}>
+            <input
+                className="input my-2"
+                {...register("division", { required: true })}
+                placeholder="Your Division"
+            />
             <input
                 className="input my-2"
                 {...register("district", { required: true })}

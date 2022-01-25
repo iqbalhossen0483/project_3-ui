@@ -7,29 +7,32 @@ import Payment from './Shop/Payment';
 import useFunc from '../Hook/useFunc';
 
 const Purchase = () => {
-    const [singleProduct, setSingleProduct] = useState([]);
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [orders, setOrders] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [cashOnDelivary, setCashOnDelivary] = useState(false);
+    const [sameAsBilling, setSameAsBilling] = useState(null);
+    const [singleProduct, setSingleProduct] = useState([]);
     const [showPayment, setShowPayment] = useState(false);
     const [orderDetails, setOderDetails] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [orders, setOrders] = useState([]);
+    const { setAddedProduct, addedProduct, customer } = useFunc();
+    const { register, handleSubmit, reset } = useForm();
+    const { quantity } = useFirebase();
+    const navigate = useNavigate();
     const { id } = useParams();
     const alert = useAlert();
-    const navigate = useNavigate();
-    const { user, quantity } = useFirebase();
-    const { setAddedProduct, addedProduct } = useFunc();
-
-    const name = user.displayName;
-    const email = user.email;
-    const { register, handleSubmit, reset } = useForm({
-        defaultValues: {
-            name: name,
-            email: email
-        }
-    });
 
     let sipping = 100;
+
+
+    function handleSameAsBilling(e) {
+        if (!e.target.checked) {
+            setSameAsBilling(false);
+        }
+        else {
+            setSameAsBilling(true);
+        }
+    }
 
     //find triger products
     useEffect(() => {
@@ -65,9 +68,21 @@ const Purchase = () => {
     }, [id, addedProduct, quantity]);
 
     // post order
-    const onSubmit = order => {
+    function onSubmit(order) {
         order.date = new Date().toLocaleDateString("en-us");
         order.status = "pending";
+        order.name = customer.displayName;
+        order.email = customer.email;
+
+        //same as billing address
+        if (sameAsBilling) {
+            order.division = customer.division;
+            order.district = customer.district;
+            order.policeStation = customer.policeStation;
+            order.rodeOrVillage = customer.rodeOrVillage;
+            order.phone = customer.phone;
+        }
+
         //single product was ordered
         if (singleProduct.length) {
             let newSingle = [];
@@ -147,7 +162,7 @@ const Purchase = () => {
                             className="grid grid-cols-2 text-xl"
                             key={product._id}>
                             <div className="col-span-2 flex justify-center">
-                                <img className="w-36 h-32" src={product.img} alt="" />
+                                <img className="w-36 h-32" src={product.imgUrl} alt="" />
                             </div>
                             <div>
                                 <p className="text-2xl font-semibold">Product Name: </p>
@@ -178,7 +193,7 @@ const Purchase = () => {
                             totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                             return <div
                                 key={product._id}>
-                                <img className="w-32 h-32" src={product.img} alt="" />
+                                <img className="w-32 h-32" src={product.imgUrl} alt="" />
                             </div>
                         })
                     }
@@ -205,43 +220,69 @@ const Purchase = () => {
                 <form className="container lg:w-4/6"
                     onSubmit={handleSubmit(onSubmit)}>
 
-                    <h3 className="header">Place Order</h3>
+                    <h3 className="header">Shipping Address</h3>
+
+                    {customer?.district &&
+                        customer?.division &&
+                        customer?.policeStation &&
+                        customer?.rodeOrVillage &&
+                        customer?.phone &&
+                        <p className="flex items-center text-xl mb-3">
+                            <input
+                                onClick={e => { handleSameAsBilling(e) }} className='mr-2' type="checkbox"
+                            />
+                            Same as billing address
+                        </p>
+                    }
                     <input
                         className="input"
-                        disabled {...register("name", { required: true })}
+                        disabled
+                        {...register("name")}
                         placeholder="Enter name"
+                        defaultValue={customer.displayName}
                     />
                     <input
                         type="email"
                         disabled
                         className="input"
-                        {...register("email", { required: true })}
+                        {...register("email")}
+                        defaultValue={customer.email}
                         placeholder="Enter email"
                     />
                     <input
                         className="input"
-                        {...register("division", { required: true })}
+                        {...register("division", { required: !sameAsBilling })}
+                        defaultValue={sameAsBilling ?
+                            customer?.division : ""}
                         placeholder="Enter division"
                     />
                     <input
                         className="input"
-                        {...register("district", { required: true })}
+                        {...register("district", { required: !sameAsBilling })}
+                        defaultValue={sameAsBilling ?
+                            customer?.district : ""}
                         placeholder="Enter district"
                     />
                     <input
                         className="input"
-                        {...register("ps", { required: true })}
+                        {...register("policeStation", { required: !sameAsBilling })}
+                        defaultValue={sameAsBilling ?
+                            customer?.policeStation : ""}
                         placeholder="Enter police station"
                     />
                     <input
                         className="input"
-                        {...register("road", { required: true })}
+                        {...register("rodeOrVillage", { required: !sameAsBilling })}
+                        defaultValue={sameAsBilling ?
+                            customer?.rodeOrVillage : ""}
                         placeholder="Enter road name"
                     />
                     <input
                         type="number"
                         className="input"
-                        {...register("number", { required: true })}
+                        {...register("phone", { required: !sameAsBilling })}
+                        defaultValue={sameAsBilling ?
+                            customer?.phone : ""}
                         placeholder="Enter your number"
                     />
                     <p className="flex items-center text-xl">

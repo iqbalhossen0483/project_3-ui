@@ -53,6 +53,10 @@ const Profile = () => {
                         {customer?.phone || "N/A"}
                     </p>
 
+                    <span className='font-semibold'>Division: </span>
+                    <p className='item'>
+                        {customer?.division || "N/A"}
+                    </p>
                     <span className='font-semibold'>District: </span>
                     <p className='item'>
                         {customer?.district || "N/A"}
