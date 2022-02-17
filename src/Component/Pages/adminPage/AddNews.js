@@ -21,7 +21,7 @@ const AddNews = () => {
         formData.append("title", news.title);
         formData.append("description", news.description);
 
-        fetch("https://cycle-mart.herokuapp.com/news", {
+        fetch("http://localhost:5000/news", {
             method: "POST",
             headers: {
                 "authorization": userToken()
@@ -30,12 +30,14 @@ const AddNews = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                console.log("data", data);
+
                 if (data.insertedId) {
                     alert.show("A news was successfully added");
                     reset();
                 }
             })
+            .catch(err=>console.log("err", err))
     }
     return (
         <div className="mx-3 md:mx-0">

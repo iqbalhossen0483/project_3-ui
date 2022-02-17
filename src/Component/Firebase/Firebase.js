@@ -1,4 +1,13 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth"
+import {
+    GoogleAuthProvider,
+    getAuth,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    signInWithEmailAndPassword
+} from "firebase/auth"
 import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Authentication from "./Authentication";
@@ -18,8 +27,32 @@ const Firebase = () => {
 
     //google log in
     const logInWithGoogle = () => {
-        return signInWithPopup(auth, googleProvider)
+    return signInWithPopup(auth, googleProvider)
     }
+    //sign up with email pass
+    const singUPWithEmail = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+    const userName = (name) => {
+        updateProfile(auth.currentUser, {
+            displayName: name
+        })
+    }
+    //log in with email pass
+    const logInWithEmail = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    //sign out
+    const lognOut = () => {
+        signOut(auth)
+            .then(result => {
+                setHideUserInfo(false);
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    };
 
     //create user to database
     const makeUser = (name, email) => {
@@ -94,31 +127,6 @@ const Firebase = () => {
             }
         });
     }, [auth, isAdmin]);
-
-    //email pass
-    const singUPWithEmail = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
-    const userName = (name) => {
-        updateProfile(auth.currentUser, {
-            displayName: name
-        })
-    }
-    //log in
-    const logInWithEmail = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
-    }
-
-    //sign out
-    const lognOut = () => {
-        signOut(auth)
-            .then(result => {
-                setHideUserInfo(false);
-            })
-            .catch(err => {
-                console.log(err.message)
-            })
-    };
 
     return {
         logInWithGoogle,

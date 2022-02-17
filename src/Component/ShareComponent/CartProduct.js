@@ -41,7 +41,7 @@ const CartProduct = () => {
                     return <div
                         key={product?._id}
                         className="grid grid-cols-2 items-center text-center">
-                        <img className="w-32" src={product.img} alt="" />
+                        <img className="w-32" src={product.imgUrl} alt="" />
                         <p className="text-xl">{product.price}</p>
                         < hr className="col-span-2" />
                     </div>

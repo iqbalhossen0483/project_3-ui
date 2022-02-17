@@ -18,11 +18,20 @@ const AddProduct = () => {
         formData.append("type", product.type);
         formData.append("description", product.description);
         formData.append("img", product.img[0]);
+
+        const gallery = Array.from(product.gallery);
+        gallery.map(img => {
+            formData.append("gallery", img);
+        });
+
         if (!product.img.length) {
             return alert.show("Product image is required");
-        }
+        };
+        if (gallery.length > 3) {
+            return alert.show("Gallery image should be less than 4");
+        };
 
-        fetch("https://cycle-mart.herokuapp.com/products", {
+        fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {
                 "authorization": userToken()
@@ -66,12 +75,23 @@ const AddProduct = () => {
                         className="input w-full"
                         {...register("type", { required: true })} placeholder="Enter the type of cycle"
                     />
-                    <input
-                        className="input w-full"
-                        {...register("img")}
-                        type="file"
-                        placeholder="Enter a img url"
-                    />
+                    <label className='text-xl my-2 block'>
+                        Main image: 
+                        <input
+                        className='text-sm ml-2'
+                            {...register("img")}
+                            type="file"
+                        />
+                    </label>
+                    <label className='text-xl my-2 block'>
+                        Gallery images: 
+                        <input
+                        className='text-sm ml-2'
+                            {...register("gallery")}
+                            multiple
+                            type="file"
+                        />
+                    </label>
                 </div>
                 <textarea
                     className="input"

@@ -73,7 +73,7 @@ const Customize = () => {
                         <p>{menu.name}</p>
                         <i
                             onClick={() => { deletMenu(menu._id) }}
-                            class="fas fa-trash-alt customize-delete-icon">
+                            className="fas fa-trash-alt customize-delete-icon">
                         </i>
                     </div>)
                 }

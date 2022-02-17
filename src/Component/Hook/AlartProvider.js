@@ -5,7 +5,7 @@ const AlartProvider = ({ children }) => {
         <div
             className="alart">
             {message}
-            <i class="far fa-check-circle ml-5 text-green-500"></i>
+            <i className="far fa-check-circle ml-5 text-green-500"></i>
         </div>
     )
 

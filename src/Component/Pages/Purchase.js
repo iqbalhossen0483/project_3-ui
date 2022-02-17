@@ -21,7 +21,6 @@ const Purchase = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const alert = useAlert();
-
     let sipping = 100;
 
 

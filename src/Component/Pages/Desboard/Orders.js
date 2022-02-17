@@ -2,7 +2,7 @@ import React from 'react';
 import { useAlert } from 'react-alert'
 
 const Orders = ({ order, children, orders, setOrder }) => {
-    const { name, email, division, district, ps, road, date, status } = order;
+    const { name, email, division, district, policeStation, rodeOrVillage, date, status } = order;
     const alert = useAlert();
 
     const handleDelete = (id) => {
@@ -35,7 +35,7 @@ const Orders = ({ order, children, orders, setOrder }) => {
                                 <p>Quantity: {product.quantity}</p>
                             }
                         </div>
-                        <img className="w-56 h-32 object-cover" src={product.img} alt="" />
+                        <img className="w-56 h-32 object-cover" src={product.imgUrl} alt="" />
                     </div>)
                 }
             </div>
@@ -44,8 +44,8 @@ const Orders = ({ order, children, orders, setOrder }) => {
                 ${email}, 
                 ${division}, 
                 ${district}, 
-                ${ps}, 
-                ${road}, 
+                ${policeStation}, 
+                ${rodeOrVillage}, 
                 ${date}`}
             </p>
             <div>
