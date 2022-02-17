@@ -8,7 +8,7 @@ const Orders = ({ order, children, orders, setOrder }) => {
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");
         if (confirm) {
-            fetch(`https://cycle-mart.herokuapp.com/orders/${id}`, {
+            fetch(`https://cyclemart.herokuapp.com/orders/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

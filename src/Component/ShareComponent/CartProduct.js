@@ -15,7 +15,7 @@ const CartProduct = () => {
         for (const cart of addedProduct) {
             id += "&&" + cart.id;
         }
-        fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+        fetch(`https://cyclemart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 setCartProducts(data);

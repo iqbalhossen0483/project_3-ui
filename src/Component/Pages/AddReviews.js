@@ -23,7 +23,7 @@ const AddReviews = () => {
     const onSubmit = review => {
         review.rating = rating;
         review.img = user.photoURL;
-        fetch("https://cycle-mart.herokuapp.com/reviews", {
+        fetch("https://cyclemart.herokuapp.com/reviews", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

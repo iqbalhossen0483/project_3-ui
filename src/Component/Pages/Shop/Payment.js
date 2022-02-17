@@ -18,7 +18,7 @@ const Payment = (props) => {
     console.log(props.orderDetails)
 
     const confirmOrder = (order) => {
-        fetch("https://cycle-mart.herokuapp.com/orders", {
+        fetch("https://cyclemart.herokuapp.com/orders", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

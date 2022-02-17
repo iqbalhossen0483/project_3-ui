@@ -29,7 +29,7 @@ const Product = (props) => {
                         quantity: 1
                     }];
                 }
-                fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
+                fetch(`https://cyclemart.herokuapp.com/users/carts/${user.email}`, {
                     method: "PUT",
                     headers: {
                         "content-type": "application/json"

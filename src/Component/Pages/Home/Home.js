@@ -25,7 +25,7 @@ const Home = () => {
     const alart = useAlert();
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/products/home")
+        fetch("https://cyclemart.herokuapp.com/products/home")
             .then(res => res.json())
             .then(data => {
                 setProduct(data);
@@ -35,7 +35,7 @@ const Home = () => {
     }, [alart]);
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/reviews")
+        fetch("https://cyclemart.herokuapp.com/reviews")
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
@@ -45,7 +45,7 @@ const Home = () => {
     }, [alart])
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/news")
+        fetch("https://cyclemart.herokuapp.com/news")
             .then(res => res.json())
             .then(data => {
                 setNews(data);

@@ -60,7 +60,7 @@ const Firebase = () => {
             displayName: name,
             email: email
         };
-        fetch("https://cycle-mart.herokuapp.com/users", {
+        fetch("https://cyclemart.herokuapp.com/users", {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -75,7 +75,7 @@ const Firebase = () => {
 
     // chect user is admin
     const checkUser = (email) => {
-        fetch(`https://cycle-mart.herokuapp.com/users/login/${email}`)
+        fetch(`https://cyclemart.herokuapp.com/users/login/${email}`)
             .then(res => res.json())
             .then(data => {
                 if (data.token) {
@@ -101,7 +101,7 @@ const Firebase = () => {
     };
     //get user
     const getUser = (email, user) => {
-        fetch(`https://cycle-mart.herokuapp.com/users/${email}`, {
+        fetch(`https://cyclemart.herokuapp.com/users/${email}`, {
                 headers: {
                     "authorization": userToken()
                 }

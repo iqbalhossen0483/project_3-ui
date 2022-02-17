@@ -13,7 +13,7 @@ const Customize = () => {
     const { userToken } = useFunc();
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/menus", {
+        fetch("https://cyclemart.herokuapp.com/menus", {
             headers: {
                 "authorization": userToken()
             }
@@ -23,7 +23,7 @@ const Customize = () => {
     }, [categoryMenus, userToken])
 
     const onSubmit = menu => {
-        fetch("https://cycle-mart.herokuapp.com/menus", {
+        fetch("https://cyclemart.herokuapp.com/menus", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -42,7 +42,7 @@ const Customize = () => {
     }
 
     const deletMenu = (id) => {
-        fetch(`https://cycle-mart.herokuapp.com/menus/${id}`, {
+        fetch(`https://cyclemart.herokuapp.com/menus/${id}`, {
             method: "DELETE",
             headers: {
                 "authorization": userToken()

@@ -6,7 +6,7 @@ const Menus = () => {
     const [categoryMenus, setCategoryMenus] = useState([]);
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/menus")
+        fetch("https://cyclemart.herokuapp.com/menus")
             .then(res => res.json())
             .then(data => setCategoryMenus(data))
     }, []);

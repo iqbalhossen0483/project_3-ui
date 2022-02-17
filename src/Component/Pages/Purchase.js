@@ -36,7 +36,7 @@ const Purchase = () => {
     //find triger products
     useEffect(() => {
         if (id.startsWith("&&")) {
-            fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+            fetch(`https://cyclemart.herokuapp.com/products/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     let totalPrice = 0;
@@ -56,7 +56,7 @@ const Purchase = () => {
                 })
         }
         else {
-            fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+            fetch(`https://cyclemart.herokuapp.com/products/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     setTotalPrice(data.price * quantity);
@@ -112,7 +112,7 @@ const Purchase = () => {
         }
         //post order
         if (cashOnDelivary) {
-            fetch("https://cycle-mart.herokuapp.com/orders", {
+            fetch("https://cyclemart.herokuapp.com/orders", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"

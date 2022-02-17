@@ -8,7 +8,7 @@ const CategoryProduct = () => {
     const { category } = useParams();
 
     useEffect(() => {
-        fetch(`https://cycle-mart.herokuapp.com/products/category/${category}`)
+        fetch(`https://cyclemart.herokuapp.com/products/category/${category}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

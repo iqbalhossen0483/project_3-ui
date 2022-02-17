@@ -15,7 +15,7 @@ const ProductDetails = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     useEffect(() => {
-        fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+        fetch(`https://cyclemart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
@@ -49,7 +49,7 @@ const ProductDetails = () => {
                         quantity: quantity
                     }];
                 }
-                fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
+                fetch(`https://cyclemart.herokuapp.com/users/carts/${user.email}`, {
                     method: "PUT",
                     headers: {
                         "content-type": "application/json"

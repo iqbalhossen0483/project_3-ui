@@ -12,7 +12,7 @@ const MyOrder = () => {
     const { userToken } = useFunc();
 
     useEffect(() => {
-        fetch(`https://cycle-mart.herokuapp.com/orders/${user.email}`, {
+        fetch(`https://cyclemart.herokuapp.com/orders/${user.email}`, {
             headers: {
                 "authorization": userToken()
             }

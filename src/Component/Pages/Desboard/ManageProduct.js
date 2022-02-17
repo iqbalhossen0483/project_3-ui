@@ -12,7 +12,7 @@ const ManageProduct = () => {
 
     // get data 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/products")
+        fetch("https://cyclemart.herokuapp.com/products")
             .then(res => res.json())
             .then(data => {
                 setProduct(data);
@@ -24,7 +24,7 @@ const ManageProduct = () => {
     const handleDelete = (productId, imgId) => {
         const confirm = window.confirm("Are you sure to delete");
         if (confirm) {
-            fetch(`https://cycle-mart.herokuapp.com/products/${productId}`, {
+            fetch(`https://cyclemart.herokuapp.com/products/${productId}`, {
                 method: "DELETE",
                 headers: {
                     "authorization": userToken(),

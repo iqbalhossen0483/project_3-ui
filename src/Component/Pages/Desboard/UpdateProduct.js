@@ -13,7 +13,7 @@ const UpdateProduct = () => {
     const { userToken } = useFunc();
 
     useEffect(() => {
-        fetch(`https://cycle-mart.herokuapp.com/products/${id}`)
+        fetch(`https://cyclemart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id, done]);
@@ -39,7 +39,7 @@ const UpdateProduct = () => {
             return alert.show("An image is recommanded")
         }
 
-        fetch("https://cycle-mart.herokuapp.com/products", {
+        fetch("https://cyclemart.herokuapp.com/products", {
             method: "PUT",
             headers: {
                 "authorization": userToken()

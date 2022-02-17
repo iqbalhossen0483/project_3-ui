@@ -22,7 +22,7 @@ function UpdateProfile() {
         }
         formData.append("profile", userInfo.profile[0]);
 
-        fetch(`https://cycle-mart.herokuapp.com/users/updateUser`, {
+        fetch(`https://cyclemart.herokuapp.com/users/updateUser`, {
             method: "PUT",
             body: formData
         }).then(res => res.json())

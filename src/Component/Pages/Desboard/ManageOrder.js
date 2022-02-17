@@ -10,7 +10,7 @@ const ManageOrder = () => {
     const { userToken } = useFunc();
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/orders", {
+        fetch("https://cyclemart.herokuapp.com/orders", {
             headers: {
                 "authorization": userToken()
             }
@@ -31,7 +31,7 @@ const ManageOrder = () => {
             status: "Approved",
             id: id
         }
-        fetch(`https://cycle-mart.herokuapp.com/orders`, {
+        fetch(`https://cyclemart.herokuapp.com/orders`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

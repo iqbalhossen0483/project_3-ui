@@ -23,7 +23,7 @@ const ViewCart = () => {
         }
 
         if (allId) {
-            fetch(`https://cycle-mart.herokuapp.com/products/${url}`)
+            fetch(`https://cyclemart.herokuapp.com/products/${url}`)
                 .then(res => res.json())
                 .then(data => {
                     data.forEach(product => {
@@ -86,7 +86,7 @@ const ViewCart = () => {
             const remain = addedProduct.filter(cart => cart.id !== id);
             const remainCartProduct = cartProducts.filter(product => product._id !== id);
 
-            fetch(`https://cycle-mart.herokuapp.com/users/carts/${user.email}`, {
+            fetch(`https://cyclemart.herokuapp.com/users/carts/${user.email}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json"

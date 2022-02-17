@@ -7,7 +7,7 @@ const News = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [news, setNews] = useState([]);
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/news")
+        fetch("https://cyclemart.herokuapp.com/news")
             .then(res => res.json())
             .then(data => {
                 setNews(data);

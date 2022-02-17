@@ -17,7 +17,7 @@ const SharedFunction = () => {
     //check user has token or not
     useEffect(() => {
         if (user.email && userToken()) {
-            fetch(`https://cycle-mart.herokuapp.com/users/${user.email}`, {
+            fetch(`https://cyclemart.herokuapp.com/users/${user.email}`, {
                 headers: {
                     "authorization": userToken()
                 }

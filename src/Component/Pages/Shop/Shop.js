@@ -16,7 +16,7 @@ const Shop = () => {
 
     useEffect(() => {
         if (seller) {
-            fetch(`https://cycle-mart.herokuapp.com/products/brand/${seller}`)
+            fetch(`https://cyclemart.herokuapp.com/products/brand/${seller}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);
@@ -24,7 +24,7 @@ const Shop = () => {
                 })
         }
         else if (type) {
-            fetch(`https://cycle-mart.herokuapp.com/products/type/${type}`)
+            fetch(`https://cyclemart.herokuapp.com/products/type/${type}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);
@@ -32,7 +32,7 @@ const Shop = () => {
                 })
         }
         else {
-            fetch("https://cycle-mart.herokuapp.com/products")
+            fetch("https://cyclemart.herokuapp.com/products")
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);
@@ -75,7 +75,7 @@ const Shop = () => {
     const showProductsByPriceRange = (e) => {
         e.preventDefault();
         if (rangePrice.from > 0 && rangePrice.till > 0) {
-            fetch(`https://cycle-mart.herokuapp.com/products/price/byrange?from=${rangePrice.from}&till=${rangePrice.till}`)
+            fetch(`https://cyclemart.herokuapp.com/products/price/byrange?from=${rangePrice.from}&till=${rangePrice.till}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data);
@@ -83,7 +83,7 @@ const Shop = () => {
         }
     }
     const handleReset = () => {
-        fetch("https://cycle-mart.herokuapp.com/products")
+        fetch("https://cyclemart.herokuapp.com/products")
             .then(res => res.json())
             .then(data => {
                 setProduct(data);
@@ -97,7 +97,7 @@ const Shop = () => {
     useEffect(() => {
         if (products.length) {
             const number = Math.floor(Math.random() * products.length - 1) + 1;
-            fetch(`https://cycle-mart.herokuapp.com/products/rendom/${number}`)
+            fetch(`https://cyclemart.herokuapp.com/products/rendom/${number}`)
                 .then(res => res.json())
                 .then(data => setRandomProduct(data))
         }

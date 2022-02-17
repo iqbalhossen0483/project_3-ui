@@ -12,7 +12,7 @@ const MyReview = () => {
     const { userToken } = useFunc();
 
     useEffect(() => {
-        fetch("https://cycle-mart.herokuapp.com/reviews", {
+        fetch("https://cyclemart.herokuapp.com/reviews", {
             headers: {
                 "authorization": userToken()
             }
