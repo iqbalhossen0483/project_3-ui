@@ -31,7 +31,7 @@ const AddProduct = () => {
             return alert.show("Gallery image should be less than 4");
         };
 
-        fetch("http://localhost:5000/products", {
+        fetch("https://cycle-mart.herokuapp.com/products", {
             method: "POST",
             headers: {
                 "authorization": userToken()
