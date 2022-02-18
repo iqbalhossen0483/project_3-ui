@@ -26,7 +26,9 @@ const Profile = () => {
                     />
                 
                 }
-                <i className={`fas fa-edit profile-edit ${showEdit && "show"}`}></i>
+                <i style={{position: "absolute"}}
+                    className={`fas fa-edit profile-edit ${showEdit && "show"}`}>
+                </i>
             </div>
 
             {customer?.email &&
