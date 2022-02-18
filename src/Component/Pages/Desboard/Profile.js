@@ -26,15 +26,14 @@ const Profile = () => {
                     />
                 
                 }
-                <i style={{position: "absolute"}}
-                    className={`fas fa-edit profile-edit ${showEdit && "show"}`}>
+                <i className={`fas fa-edit profile-edit ${showEdit && "show"}`}>
                 </i>
             </div>
 
             {customer?.email &&
                 <div className="profile-container relative">
                     {/* edit button */}
-                    <div className="text-center absolute top-5 right-2 z-0">
+                    <div style={{position: "absolute"}} className="text-center top-5 right-2 z-0">
                         <Link to="/my-account/update-profile" className="button">
                             <i className="fas fa-edit"></i>
                         </Link>
