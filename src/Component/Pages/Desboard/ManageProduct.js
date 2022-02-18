@@ -63,7 +63,7 @@ const ManageProduct = () => {
                     products.map(product => <div
                         key={product._id}
                         className="grid grid-cols-6 gap-3 border-b py-3 items-center">
-                        <img className="w-full h-32" src={product.imgUrl} alt="" />
+                        <img className="w-full h-32" src={product.productImg?.imgUrl} alt="" />
                         <p>{product.name}</p>
                         <p>{product.category}</p>
                         <p>{product.price}</p>

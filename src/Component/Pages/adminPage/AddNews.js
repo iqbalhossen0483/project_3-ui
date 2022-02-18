@@ -21,7 +21,7 @@ const AddNews = () => {
         formData.append("title", news.title);
         formData.append("description", news.description);
 
-        fetch("http://localhost:5000/news", {
+        fetch("https://cyclemart.herokuapp.com/news", {
             method: "POST",
             headers: {
                 "authorization": userToken()

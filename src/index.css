@@ -9,7 +9,7 @@
     rounded my-10
   }
   .link{
-    @apply text-xl ml-4 hover:text-white
+    @apply text-xl md:ml-4 hover:text-white
   }
   .input{
     @apply border rounded py-1 px-3 my-1 text-xl focus:outline-none
@@ -43,8 +43,7 @@
     py-1 rounded-r-md border-l-8 border-solid border-green-500
   }
   .header-menu{
-    @apply md:flex justify-between py-3 px-8 
-    sticky top-14 md:top-0 z-10
+    @apply w-2/4 justify-between py-3 px-8 top-14 z-20 absolute left-0 md:h-16 md:flex md:w-full md:sticky md:top-0
   }
   .outlet{
     @apply col-span-5 flex flex-col justify-between
@@ -58,7 +57,7 @@
     items-center justify-between py-2 px-6 text-2xl
   }
   .menu-wrapper{
-    @apply flex flex-col md:flex-row items-center font-semibold
+    @apply flex flex-col md:flex-row md:items-center font-semibold
   }
 
   /* slider component */
@@ -76,7 +75,7 @@
 
   /* user info container */
   .userInfo-container{
-    @apply absolute top-full right-4 shadow-md pt-5 px-3 text-center z-20 bg-white
+    @apply shadow-md pt-5 px-3 text-center z-20 bg-white
   }
 
   /* profile page */
@@ -84,7 +83,7 @@
     @apply bg-white rounded lg:mx-5 py-10 z-0 text-xl lg:px-20 mb-5 leading-10 grid gap-2 lg:grid-cols-4 lg:border px-4
   }
   .profile-img{
-    @apply rounded-full mx-auto my-5 w-40 h-40 hover:opacity-70
+    @apply rounded-full mx-auto my-3 md:my-5 w-40 h-40 hover:opacity-70
   }
   .profile-container .item{
     @apply border rounded px-3 py-1 bg-gray-50 col-span-3
@@ -129,8 +128,7 @@
     @apply md:hidden text-2xl text-green-500
   }
   .menubar{
-    @apply bg-green-500 h-full z-0 
-    transition-all duration-700
+    @apply z-20 md:z-10 w-2/4 md:w-full absolute md:static top-14 left-0
   }
   .closebtn{
     @apply text-2xl md:hidden absolute top-3 right-3
@@ -147,7 +145,7 @@
 
   /* cart product */
   .cart-product{
-    @apply absolute top-full right-5 bg-white shadow-md z-20 max-h-96 
+    @apply top-full right-5 bg-white shadow-md z-20 max-h-96 
     overflow-auto
   };
 

@@ -3,20 +3,22 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import { useAlert } from 'react-alert'
 import useFunc from '../../Hook/useFunc';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateProduct = () => {
-    const [product, setProduct] = useState({});
-    const [done, setDone] = useState(false);
-    const { id } = useParams();
+    const [oneProductUpdate, setOneProductUpdate] = useState(false);
     const { register, handleSubmit, reset } = useForm();
-    const alert = useAlert();
+    const [product, setProduct] = useState({});
     const { userToken } = useFunc();
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const alert = useAlert();
 
     useEffect(() => {
         fetch(`https://cyclemart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
-    }, [id, done]);
+    }, [id, oneProductUpdate]);
 
     const onSubmit = newProduct => {
         const formData = new FormData();
@@ -28,15 +30,27 @@ const UpdateProduct = () => {
         formData.append("vendor", newProduct.vendor || product.vendor);
         formData.append("type", newProduct.type || product.type);
         formData.append("description", newProduct.description || product.description);
-        formData.append("existImg", product.imgId);
-        formData.append("img", newProduct.img[0]);
 
-        if (product.imgId && newProduct.img.length === 0) {
-            formData.append("imgId", product.imgId);
-            formData.append("imgUrl", product.imgurl);
+        formData.append("img", newProduct.img[0]);
+        const gallery = Array.from(newProduct.gallery);
+        gallery.map(img => {
+            formData.append("gallery", img);
+        });
+
+        if (gallery.length > 3) {
+            return alert.show("Gallery image should not be more than 3");
+        };
+
+        if (!product.imgGallery?.length && !newProduct.gallery?.length) {
+            return alert.show("Gallery image is recommanded")
         }
-        if (!product.imgId && newProduct.img.length === 0) {
-            return alert.show("An image is recommanded")
+
+        //existing images
+        if (product.productImg && newProduct.img[0]) {
+            formData.append("productImgId", product.productImg.imgId);
+        }
+        if (product.imgGallery?.length && newProduct.gallery?.length) {
+            formData.append("Gallery", product.imgGallery);
         }
 
         fetch("https://cyclemart.herokuapp.com/products", {
@@ -48,14 +62,18 @@ const UpdateProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
                     alert.show("This Product was updated");
+                    if (oneProductUpdate) {
+                        setOneProductUpdate(false);
+                    }
+                    else {
+                        setOneProductUpdate(true);
+                    }
                     reset();
+                    navigate("/desboard/manage-product");
                 } else {
                     alert.show("You didn't update any field");
-                    if (done) return setDone(false);
-                    return setDone(true);
                 }
             })
             .catch(err => alert.show(err.message))
@@ -105,16 +123,26 @@ const UpdateProduct = () => {
                             defaultValue={product.type}
                             placeholder="Enter the type of cycle"
                         />
+                        <label className='text-xl my-2 block'>
+                        Main image: 
                         <input
-                            className="input w-full"
+                        className='text-sm ml-2'
                             {...register("img")}
                             type="file"
-                            defaultValue={product.img}
-                            placeholder="Enter a img url"
                         />
+                        </label>
+                        <label className='text-xl my-2 block'>
+                            Gallery images: 
+                            <input
+                            className='text-sm ml-2'
+                                {...register("gallery")}
+                                multiple
+                                type="file"
+                            />
+                        </label>
                     </div>
                     <textarea
-                        className="input"
+                        className="input text-justify"
                         rows={10}
                         {...register("description")}
                         defaultValue={product.description}

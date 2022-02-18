@@ -63,7 +63,7 @@ const Header = () => {
                     }
                 </div>
             </div>
-            <div className={`${!menu && "hidden"} header-menu header-bg`}>
+            <div className={`${!menu && "close"} header-menu header-bg`}>
                 <div className="menu-wrapper">
                     <NavLink
                         className="link gradient-text"

@@ -28,15 +28,14 @@ const MyAccount = () => {
                 onClick={handleAcMenu}
                 className={`${acMenu && "hidden"} togglebar fas fa-caret-square-right`}>
             </i>
-            <div className="md:grid grid-cols-6 min-h-full">
-                <div className={`${!acMenu && "hidden"} menubar relative`}>
+            <div className="md:grid grid-cols-6 gap-2 min-h-full">
+                <div className={`${!acMenu && "close"}  menubar`}>
 
                     <i
                         onClick={handleAcMenu}
                         className={`${!acMenu && "hidden"} closebtn fas fa-times`}>
                     </i>
-                    <div style={{position: "fixed"}}
-                        className='flex flex-col pt-10 top-10'>
+                    <div className='flex flex-col pt-10'>
                         <NavLink
                             className="link gradient-text"
                             to='profile'>

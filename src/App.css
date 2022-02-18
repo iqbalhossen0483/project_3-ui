@@ -4,13 +4,13 @@
   box-sizing: border-box;
 }
 .header-bg{
-  background-image: linear-gradient(#1aaf85, #28eeb6);
-}
-.menubar{
-  width: 13rem;
-}
-.menubar{
   background-image: linear-gradient(to right, #1aaf85, #28eeb6);
+}
+
+.menubar{
+  transition: all 0.7s linear;
+  background-image: linear-gradient(to right, #1aaf85, #28eeb6);
+  min-height: 88vh;
 }
 .gradient-text{
   background: linear-gradient(to right, #220074, #343740e8);
@@ -27,6 +27,31 @@
 
 .App{
   background-color: #928f8f13;
+}
+.header-menu{
+  height: 88vh;
+  transition: all 0.7s linear;
+}
+
+.userInfo-container, .cart-product{
+  width: 16rem;
+  position: absolute;
+  top: 0px;  
+  right: -50%;
+}
+
+@media (min-width: 768px) {
+    .header-menu{
+      height: 4rem;
+    }
+    .userInfo-container, .cart-product{
+      top: 100%;
+      right: 1rem;
+    }
+}
+
+.close{
+  left: -100%;
 }
 
 .spinner{

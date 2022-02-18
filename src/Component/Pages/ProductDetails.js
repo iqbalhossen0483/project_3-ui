@@ -6,11 +6,12 @@ import { useAlert } from 'react-alert';
 import useFunc from '../Hook/useFunc';
 
 const ProductDetails = () => {
-    const [products, setProducts] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
-    const alert = useAlert();
     const { quantity, setQuantity, user, } = useFirebase();
+    const [productImgUrl, setProductImgUrl] = useState("");
     const { addedProduct, setAddedProduct } = useFunc();
+    const [isLoading, setIsLoading] = useState(true);
+    const [product, setProduct] = useState({});
+    const alert = useAlert();
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -18,12 +19,13 @@ const ProductDetails = () => {
         fetch(`https://cyclemart.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => {
-                setProducts(data);
+                setProductImgUrl(data.productImg.imgUrl);
+                setProduct(data);
                 setQuantity(1);
                 setIsLoading(false);
             })
     }, [id]);
-    const { name, imgUrl, price, _id, stock, vendor, type, description, category } = products;
+    const { name, price, _id, stock, vendor, type, description, category } = product;
 
     const handleMinus = () => {
         if (quantity > 1) {
@@ -73,6 +75,10 @@ const ProductDetails = () => {
         }
     }
 
+    function handleImg(imgUrl) {
+        setProductImgUrl(imgUrl);
+    }
+
     if (isLoading) {
         return <div className="spinner-container">
             <div className="spinner"></div>
@@ -81,7 +87,24 @@ const ProductDetails = () => {
     return (
         <>
             <div className="md:grid grid-cols-2 bg-white gap-3">
-                <img src={imgUrl} alt="" />
+                <div>
+                    <img src={productImgUrl} alt="" />
+                    <div
+                        style={{width: `${176 * product.imgGallery.length}px`}}
+                        className={`grid grid-cols-${product.imgGallery.length}  mx-auto gap-3`}>
+                        {
+                            product.imgGallery &&
+                            product.imgGallery.map(img => <img
+                                key={img.imgId}
+                                onClick={()=>handleImg(img.imgUrl)}
+                                className={`w-44 border rounded`}
+                                src={img.imgUrl}
+                                alt=""
+                            />)
+                        }
+                    </div>
+                </div>
+
                 <div className="px-5 md:px-0 mt-8 text-xl md:text-2xl font-bold leading-10">
                     <h1 className="text-4xl md:text-5xl font-semibold mb-7">{name}</h1>
                     <p>Price: <span className="text-2xl font-semibold text-green-500">BDT {price * quantity}</span></p>
