@@ -25,20 +25,20 @@ const Desboard = () => {
     }, []);
 
     return (
-        <div className="md:grid grid-cols-6">
+        <div className="md:grid grid-cols-6 gap-2">
             <i
                 onClick={handleDsMenu}
                 className={`${dsMenu && "hidden"} togglebar fas fa-caret-square-right`}>
             </i>
             <div
-                className={`${!dsMenu && "hidden"} menubar relative menubar-bg`}>
+                className={`${!dsMenu && "close"} menubar`}>
                 <i
                     onClick={handleDsMenu}
                     className={`${!dsMenu && "hidden"} closebtn fas fa-times`}>
                 </i>
                 
-                <div style={{position: "fixed"}}
-                    className='flex flex-col pt-10 top-10'>
+                <div
+                    className='flex flex-col pt-10 px-5'>
                     <NavLink
                         className="link gradient-text"
                         to='add-product'>
