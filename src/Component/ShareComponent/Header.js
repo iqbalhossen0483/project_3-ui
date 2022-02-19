@@ -117,12 +117,7 @@ const Header = () => {
                         <NavLink
                             className="link gradient-text"
                             to='/log-in'>
-                            Log-In
-                        </NavLink>
-                        <NavLink
-                            className="link gradient-text"
-                            to='/sign-up'>
-                            Sign-Up
+                            Log-In/Sing-Up
                         </NavLink>
                     </>}
                 </div>
