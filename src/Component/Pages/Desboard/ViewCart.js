@@ -127,7 +127,7 @@ const ViewCart = () => {
                         return <div
                             key={product._id}
                             className="view-cart-product">
-                            <img src={product.imgUrl} alt="" />
+                            <img src={product.productImg?.imgUrl} alt="" />
                             <p>{product.name}</p>
                             <p>{product.price * product.quantity} BDT</p>
                             <div className="flex justify-evenly">

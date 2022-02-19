@@ -35,7 +35,7 @@ const Orders = ({ order, children, orders, setOrder }) => {
                                 <p>Quantity: {product.quantity}</p>
                             }
                         </div>
-                        <img className="w-56 h-32 object-cover" src={product.imgUrl} alt="" />
+                        <img className="w-56 h-32 object-cover" src={product.productImg?.imgUrl} alt="" />
                     </div>)
                 }
             </div>

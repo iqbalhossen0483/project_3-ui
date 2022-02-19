@@ -161,7 +161,7 @@ const Purchase = () => {
                             className="grid grid-cols-2 text-xl"
                             key={product._id}>
                             <div className="col-span-2 flex justify-center">
-                                <img className="w-36 h-32" src={product.imgUrl} alt="" />
+                                <img className="w-36 h-32" src={product.productImg?.imgUrl} alt="" />
                             </div>
                             <div>
                                 <p className="text-2xl font-semibold">Product Name: </p>
@@ -192,7 +192,7 @@ const Purchase = () => {
                             totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                             return <div
                                 key={product._id}>
-                                <img className="w-32 h-32" src={product.imgUrl} alt="" />
+                                <img className="w-32 h-32" src={product.productImg?.imgUrl} alt="" />
                             </div>
                         })
                     }
