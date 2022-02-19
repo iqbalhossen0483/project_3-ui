@@ -24,7 +24,7 @@ const PansySlider = () => {
             <Slider {...settings}>
                 {
                     slidersImg.map(item => <div
-                    key={item._id}>
+                        key={item._id}>
                         <Link
                             to={item.
                                 url.

@@ -61,7 +61,7 @@
 
   /* slider component */
   .slider-container{
-    @apply md:pr-10 text-center
+    @apply text-center
   }
   .slider-container .item{
     @apply md:grid grid-cols-4 items-center justify-center
@@ -90,7 +90,7 @@
 
   /* home page  */
   .banner{
-    @apply lg:grid grid-cols-4 gap-10 items-center text-justify 
+    @apply lg:grid grid-cols-4 items-center text-justify 
     bg-white h-1/4 lg:h-96 overflow-hidden border-b
   }
   .flesh-cart{
