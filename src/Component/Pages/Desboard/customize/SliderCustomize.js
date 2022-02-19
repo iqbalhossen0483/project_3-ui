@@ -6,16 +6,17 @@ import useFunc from '../../../Hook/useFunc';
 
 function SliderCustomize() {
     const { register, handleSubmit, reset } = useForm();
-    const [sliders, setSliders] = useState([]);
     const [form, setShowForm] = useState(false);
-    const alart = useAlert();
+    const [sliders, setSliders] = useState([]);
+    const [update, setUpdate] = useState(false)
     const { userToken } = useFunc();
+    const alart = useAlert();
 
     useEffect(() => {
-        fetch("http://localhost:5000/sliders")
+        fetch("https://cyclemart.herokuapp.com/sliders")
             .then(res => res.json())
             .then(data => setSliders(data))
-    }, []);
+    }, [update]);
 
     //post
     const onSubmit = slider => { 
@@ -23,7 +24,7 @@ function SliderCustomize() {
         formData.append("image", slider.image[0]);
         formData.append("url", slider.url);
 
-        fetch("http://localhost:5000/sliders", {
+        fetch("https://cyclemart.herokuapp.com/sliders", {
             method: "POST",
             headers: {
               "authorization": userToken()  
@@ -36,9 +37,32 @@ function SliderCustomize() {
                     reset();
                     alart.show("slider image added successfully")
                     setShowForm(false);
+                    if (update) {
+                        setUpdate(false)
+                    } else {
+                        setUpdate(true);
+                    }
                 }
             })
     };
+
+    //delete 
+    const deletSlider = (id) => {
+        fetch(`https://cyclemart.herokuapp.com/sliders/${id}`, {
+            method: "DELETE",
+            headers: {
+                "authorization": userToken()
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    alart.show("image deleted")
+                    const slider = sliders.filter(item => item._id !== id);
+                    setSliders(slider);
+                }
+            })
+    }
 
     const showForm = (e) => {
         e.stopPropagation();
@@ -49,9 +73,9 @@ function SliderCustomize() {
             onClick={() => { setShowForm(false) }}
             className='border rounded-md pb-10 text-center h-96 overflow-auto'>
             <div
-                className='bg-green-500 sticky top-0 rounded-t text-gray-200 flex justify-evenly'>
-                <p className='text-2xl font-semibold border-b pb-2'>
-                Make The Slider
+                className='bg-green-500 sticky top-0 rounded-t text-gray-200 flex justify-evenly z-10'>
+                <p className='text-2xl font-semibold pb-2'>
+                    Slider
                 </p>
                 <button
                     onClick={(e) => showForm(e)}
@@ -84,8 +108,15 @@ function SliderCustomize() {
             {
                 sliders.map(slide => <div
                     key={slide._id}
-                    className="border-b pb-2">
-                    <img src={slide.imgUrl} alt="" />
+                    className="border-b pb-2 customize-slider">
+                    <img
+                        src={slide.imgUrl}
+                        alt=""
+                    />
+                    <i
+                        onClick={() => { deletSlider(slide._id) }}
+                        className="fas fa-trash-alt customize-slider-icon">
+                    </i>
                     <p>{slide.url}</p>
                 </div>)
             }

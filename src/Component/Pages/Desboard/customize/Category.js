@@ -64,7 +64,7 @@ function Category() {
         <div onClick={() => { setShowForm(false)}} className='border rounded-md pb-10 text-center relative'>
             <div
                 className='bg-green-500 sticky top-0 rounded-t text-gray-200 flex justify-evenly'>
-                <p className='text-2xl font-semibold border-b pb-2'>
+                <p className='text-2xl font-semibold pb-2'>
                     Category Menus
                 </p>
                 <button

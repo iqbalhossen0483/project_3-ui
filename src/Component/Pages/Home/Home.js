@@ -14,14 +14,15 @@ import { NewsSkelator, ProductSkelator, ReviewSkelator } from '../../ShareCompon
 import { useAlert } from 'react-alert';
 
 const Home = () => {
-    const [reviews, setReviews] = useState([]);
-    const [news, setNews] = useState([]);
-    const [products, setProduct] = useState([]);
-    const { setHideUserInfo } = useFirebase();
     const [productLoading, setProductLoading] = useState(true);
     const [reviewLoading, setReviewLoading] = useState(true);
     const [newsLoading, setNewsLoading] = useState(true);
+    const [products, setProduct] = useState([]);
+    const [reviews, setReviews] = useState([]);
+    const { setHideUserInfo } = useFirebase();
+    const [offers, setOffers] = useState([]);
     const [error, setError] = useState(null);
+    const [news, setNews] = useState([]);
     const alart = useAlert();
 
     useEffect(() => {
@@ -53,6 +54,12 @@ const Home = () => {
             })
             .catch(err => setError(err.massege))
     }, [alart]);
+
+    useEffect(() => {
+        fetch("https://cyclemart.herokuapp.com/offers")
+            .then(res => res.json())
+            .then(data => setOffers(data))
+    }, []);
     
     return (
         <>
@@ -70,18 +77,16 @@ const Home = () => {
 
                 {/* flesh cart */}
                 <div className="flesh-cart">
-                    <Link to="/shop">
-                        <p className="item">Free shipping</p>
-                    </Link>
-                    <Link to="/shop">
-                        <p className="item">Winter sales</p>
-                    </Link>
-                    <Link to="/shop">
-                        <p className="item">Best vendors</p>
-                    </Link>
-                    <Link to="/shop">
-                        <p className="item">Hot deals</p>
-                    </Link>
+                    {
+                        offers.map(item => <div key={item._id}>
+                            <Link
+                                to={item.url.
+                                    replace("https://cycle-mart-3ff64.web.app", "")
+                                }>
+                                <p className="item">{item.name}</p>
+                            </Link>    
+                        </div>)
+                    }
                 </div>
 
                 {/* product */}
