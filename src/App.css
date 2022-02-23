@@ -36,7 +36,7 @@
   width: 16rem;
   position: absolute;
   top: 0px;  
-  right: -50%;
+  right: -250%;
 }
 
 @media (min-width: 768px) {
