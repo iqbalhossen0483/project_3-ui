@@ -15,6 +15,7 @@ const Shop = () => {
     const [randomProduct, setRandomProduct] = useState([]);
 
     useEffect(() => {
+
         if (seller) {
             fetch(`https://cyclemart.herokuapp.com/products/brand/${seller}`)
                 .then(res => res.json())

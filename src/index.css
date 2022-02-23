@@ -9,7 +9,7 @@
     rounded my-10
   }
   .link{
-    @apply text-xl md:ml-4 hover:text-white
+    @apply text-xl hover:text-white
   }
   .input{
     @apply border rounded py-1 px-3 my-1 text-xl focus:outline-none
@@ -42,11 +42,15 @@
     @apply bg-green-100 font-semibold text-xl mb-5 mr-3 px-5 md:px-20 
     py-1 rounded-r-md border-l-8 border-solid border-green-500
   }
-  .header-menu{
-    @apply w-2/4 justify-between py-3 px-8 top-14 z-20 absolute left-0 md:h-16 md:flex md:w-full md:sticky md:top-0
-  }
+  
   .outlet{
     @apply col-span-5 flex flex-col justify-between
+  }
+  .logo-wapper{
+    @apply hidden md:flex row-span-2 items-center
+  }
+  .name{
+    @apply font-semibold text-2xl ml-4
   }
 
 
@@ -56,7 +60,16 @@
     items-center justify-between py-2 px-6 text-2xl
   }
   .menu-wrapper{
-    @apply flex flex-col md:flex-row md:items-center font-semibold
+    @apply flex flex-col md:flex-row md:items-center font-semibold col-span-3
+  }
+  .top-contact{
+    @apply hidden md:flex col-span-3 justify-end
+  }
+  .top-contact .icon{
+    @apply mx-2 text-green-400
+  }
+  .header-menu{
+    @apply w-24 py-3 px-8 top-14 z-20 absolute left-0 md:h-16 md:grid grid-cols-4 md:w-full md:sticky md:top-0 bg-white shadow-md md:shadow-none border-b
   }
 
   /* slider component */
@@ -127,7 +140,7 @@
     @apply md:hidden text-2xl text-green-500
   }
   .menubar{
-    @apply z-20 md:z-10 w-2/4 md:w-full absolute md:static top-14 left-0
+    @apply z-20 md:z-10 w-36 md:w-full absolute md:static top-14 left-0 bg-white shadow-lg pl-3
   }
   .closebtn{
     @apply text-2xl md:hidden absolute top-3 right-3
@@ -148,4 +161,8 @@
     overflow-auto
   };
 
+}
+
+@layer utilities{
+  
 }

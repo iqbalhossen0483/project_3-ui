@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Anchor from '../../utilitize/Anchor';
 import Footer from '../ShareComponent/Footer/Footer';
 
 const MyAccount = () => {
@@ -15,6 +16,7 @@ const MyAccount = () => {
         }
     }
     useEffect(() => {
+
         if (window.innerWidth < 480) {
             setAcMenu(false);
         } else {
@@ -36,31 +38,11 @@ const MyAccount = () => {
                         className={`${!acMenu && "hidden"} closebtn fas fa-times`}>
                     </i>
                     <div className='flex flex-col pt-10'>
-                        <NavLink
-                            className="link gradient-text"
-                            to='profile'>
-                            My-Profile
-                        </NavLink>
-                        <NavLink
-                            className="link gradient-text"
-                            to='my-order'>
-                            My-Order
-                        </NavLink>
-                        <NavLink
-                            className="link gradient-text"
-                            to='view-cart'>
-                            View-Cart
-                        </NavLink>
-                        <NavLink
-                            className="link gradient-text"
-                            to='my-review'>
-                            View-Review
-                        </NavLink>
-                        <NavLink
-                            className="link gradient-text"
-                            to='payment'>
-                            Payment-Method
-                        </NavLink>
+                        <Anchor to='profile'>My Profile</Anchor>
+                        <Anchor to='my-order'>My Order</Anchor>
+                        <Anchor to='view-cart'>View Cart</Anchor>
+                        <Anchor to='my-review'>My Review</Anchor>
+                        <Anchor to='payment'>Payment</Anchor>
                     </div>
                 </div>
                 <div className="outlet">

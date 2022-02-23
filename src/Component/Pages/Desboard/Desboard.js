@@ -1,13 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import useFirebase from '../../Hook/useFirebase';
+import { Outlet } from 'react-router-dom';
+import Anchor from '../../../utilitize/Anchor';
 import Footer from '../../ShareComponent/Footer/Footer';
 
 const Desboard = () => {
     const [dsMenu, setDsMenu] = useState(true);
-    const { isAdmin } = useFirebase();
 
     const handleDsMenu = () => {
         if (dsMenu) {
@@ -31,7 +30,7 @@ const Desboard = () => {
                 className={`${dsMenu && "hidden"} togglebar fas fa-caret-square-right`}>
             </i>
             <div
-                className={`${!dsMenu && "close"} menubar`}>
+                className={`${!dsMenu && "close"} menubar w-2/4 md:w-full`}>
                 <i
                     onClick={handleDsMenu}
                     className={`${!dsMenu && "hidden"} closebtn fas fa-times`}>
@@ -39,36 +38,12 @@ const Desboard = () => {
                 
                 <div
                     className='flex flex-col pt-10 px-5'>
-                    <NavLink
-                        className="link gradient-text"
-                        to='add-product'>
-                        Add-Product
-                    </NavLink>
-                    <NavLink
-                        className="link gradient-text"
-                        to='add-news'>
-                        Add-News
-                    </NavLink>
-                    <NavLink
-                        className="link gradient-text"
-                        to='customize'>
-                        Customization
-                    </NavLink>
-                    <NavLink
-                        className="link gradient-text"
-                        to='manage-order'>
-                        Manage-Order
-                    </NavLink>
-                    <NavLink
-                        className="link gradient-text"
-                        to='manage-product'>
-                        Manage-Product
-                    </NavLink>
-                    <NavLink
-                        className="link gradient-text"
-                        to='make-admin'>
-                        Make-Admin
-                    </NavLink>
+                    <Anchor to='add-product'>Add-Product</Anchor>
+                    <Anchor to='add-news'>Add-News</Anchor>
+                    <Anchor to='customize'>Customize</Anchor>
+                    <Anchor to='manage-order'>Manage-Order</Anchor>
+                    <Anchor to='manage-product'>Manage-Product</Anchor>
+                    <Anchor to='make-admin'>Make-Admin</Anchor>
                 </div>
             </div>
             <div className="outlet">

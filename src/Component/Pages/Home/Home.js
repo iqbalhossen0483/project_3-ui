@@ -26,6 +26,7 @@ const Home = () => {
     const alart = useAlert();
 
     useEffect(() => {
+
         fetch("https://cyclemart.herokuapp.com/products/home")
             .then(res => res.json())
             .then(data => {

@@ -3,13 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert'
 import useFunc from '../Hook/useFunc';
+import { useEffect } from 'react';
 
 const Product = (props) => {
     const navigate = useNavigate();
     const { user } = useFirebase();
     const { addedProduct, setAddedProduct } = useFunc();
     const { name, _id, price } = props.product;
-    const alert = useAlert()
+    const alert = useAlert();
+
+    useEffect(() => {
+        const navText = window.location.pathname === '/'
+            ? "cycle mart"
+            :
+            "cycle mart " + window.location.pathname.split("/").join(">> ");
+        document.title = navText;
+    },[])
 
     const handleCart = (id) => {
         if (user.email) {

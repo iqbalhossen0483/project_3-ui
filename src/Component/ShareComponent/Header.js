@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Anchor from '../../utilitize/Anchor';
 import useFirebase from '../Hook/useFirebase';
 import useFunc from '../Hook/useFunc';
 import CartProduct from './CartProduct';
@@ -9,8 +10,14 @@ import UserInfo from './UserInfo';
 
 const Header = () => {
     const [menu, setMenu] = useState(true);
-    const { user, hideUserInfo, setHideUserInfo, showCart, setShowCart } = useFirebase();
     const { addedProduct } = useFunc();
+    const {
+        user,
+        hideUserInfo,
+        setHideUserInfo,
+        showCart,
+        setShowCart
+    } = useFirebase();
 
     const toggleShow = () => {
         if (hideUserInfo) {
@@ -20,6 +27,7 @@ const Header = () => {
             setHideUserInfo(true);
         }
     };
+
     const handleMenu = () => {
         if (menu) {
             setMenu(false);
@@ -33,7 +41,9 @@ const Header = () => {
         } else {
             setMenu(true);
         }
-    }, [])
+    }, []);
+
+    
     return (
         <>
             <div className='header-container header-bg'>
@@ -63,41 +73,65 @@ const Header = () => {
                     }
                 </div>
             </div>
-            <div className={`${!menu && "close"} header-menu header-bg`}>
-                <div className="menu-wrapper">
-                    <NavLink
-                        className="link gradient-text"
-                        to='/'>
-                        Home
-                    </NavLink>
-                    <NavLink
-                        className="link gradient-text"
-                        to='/shop'>
-                        Shop
-                    </NavLink>
-                    <NavLink
-                        className="link gradient-text"
-                        to='/news'>
-                        News
-                    </NavLink>
+            <div className={`${!menu && "close"} header-menu`}>
+
+                <div className='logo-wapper'>
+                    <img
+                        className='w-10 h-10'
+                        src="https://i.ibb.co/ZYgSW6L/IMG-20220218-WA0000-removebg-preview.png"
+                        alt=""
+                    />
+                    <Link to="/">
+                        <span className='name'>CYCLE MART</span>
+                    </Link>
                 </div>
-                <div className="menu-wrapper flex-wrap">
-                    <NavLink 
-                        className="link gradient-text" 
-                        to='/my-account/profile'>
-                        My-Account
-                    </NavLink>
-                    <div className='hidden md:flex items-center'>
+
+                <div className='top-contact'>
+                    <div>
+                        <i className="fas fa-phone icon"></i>
+                        <span>+880 18386-40747</span>
+                    </div>
+                    <div>
+                        <i className="fa fa-envelope icon" aria-hidden="true"></i>
+                        <span>jpishahin07@gmail.com</span>
+                    </div>
+                    <div>
+                        <i className="fa fa-map-marker icon" aria-hidden="true"></i>
+                        <span>Level #7, Shop No: 721, Multiplan Center.</span>
+                    </div>
+                </div>
+
+                <div className="menu-wrapper justify-end items-center">
+
+                    <div className="link md:hidden gradient-text flex flex-col items-center justify-center mb-3 leading-6">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <Anchor to="/">Home</Anchor>
+                    </div>
+                    <div className="link gradient-text flex flex-col items-center justify-center leading-6">
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                        <Anchor to="/shop">Shop</Anchor>
+                    </div>
+
+                    <div className="link gradient-text flex flex-col items-center justify-center mx-3 my-3 md:my-0 leading-4">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <Anchor to="/my-account/profile">Account</Anchor>
+                    </div>
+
+                    <div className='hidden md:flex justify-center items-center'>
                         {
-                            user.email && <div className="text-xl mx-2">
-                                <i
-                                    onMouseEnter={() => { setShowCart(true) }}
-                                    className="fas fa-shopping-cart">
-                                </i>
-                                <span className="text-purple-900 font-semibold ml-1">
-                                    {addedProduct?.length}
-                                </span>
-                            </div>
+                            user.email && <div
+                                className="gradient-text flex flex-col items-center leading-4 cursor-pointer text-xl mx-3">
+                                    <div>
+                                        <i
+                                            onMouseEnter={() => { setShowCart(true) }}
+                                            className="fas fa-shopping-cart">
+                                        </i>
+                                        <span className="text-purple-900 font-semibold ml-1">
+                                            {addedProduct?.length}
+                                        </span>
+                                    </div>
+                                    <span>View Cart</span>
+                                </div>
                         }
                         {
                             user.email && 
@@ -114,11 +148,7 @@ const Header = () => {
                         
                     </div>
                     {!user?.email && <>
-                        <NavLink
-                            className="link gradient-text"
-                            to='/log-in'>
-                            Log-In/Sing-Up
-                        </NavLink>
+                        <Anchor to='/log-in'>LogIn/ SignUp</Anchor>
                     </>}
                 </div>
                 
