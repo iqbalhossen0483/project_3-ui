@@ -55,21 +55,32 @@
 
 
   /* header component */
-  .header-container{
-    @apply md:hidden sticky top-0 z-10 flex 
-    items-center justify-between py-2 px-6 text-2xl
+  .header-mobile{
+    @apply md:hidden sticky top-0 z-10 grid grid-cols-5 items-center py-2 px-6 text-2xl
   }
   .menu-wrapper{
-    @apply flex flex-col md:flex-row md:items-center font-semibold col-span-3
+    @apply flex flex-col col-span-2 md:flex-row md:items-center font-semibold
   }
   .top-contact{
-    @apply hidden md:flex col-span-3 justify-end
+    @apply hidden md:flex col-span-4 justify-end
   }
   .top-contact .icon{
     @apply mx-2 text-green-400
   }
   .header-menu{
-    @apply w-24 py-3 px-8 top-14 z-20 absolute left-0 md:h-16 md:grid grid-cols-4 md:w-full md:sticky md:top-0 bg-white shadow-md md:shadow-none border-b
+    @apply w-24 py-3 px-8 top-14 z-20 absolute left-0 md:h-16 md:grid grid-cols-5 md:w-full md:sticky md:top-0 bg-white shadow-md md:shadow-none border-b
+  }
+  .search-input{
+    @apply w-full hover:border-gray-600
+  }
+  .fa-search{
+    @apply absolute top-2 right-3 text-gray-400 text-xl
+  }
+  .searched-product-wrapper{
+    @apply absolute top-full shadow-md left-0 w-full z-50 bg-white text-center text-xl rounded-b max-h-44 overflow-auto
+  }
+  .searched-product{
+    @apply grid grid-cols-4 px-5 py-4
   }
 
   /* slider component */
@@ -164,5 +175,7 @@
 }
 
 @layer utilities{
-  
+  .searched-product:hover{
+    background-color: #8080801c;
+  }
 }

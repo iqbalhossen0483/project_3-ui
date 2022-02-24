@@ -25,7 +25,7 @@ import Purchase from './Component/Pages/Purchase';
 import Shop from './Component/Pages/Shop/Shop';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import MyAccount from './Component/user/MyAccount';
-import Header from "./Component/ShareComponent/Header"
+import Header from "./Component/ShareComponent/header/Header"
 import { NewsSkelator } from './Component/ShareComponent/SkelatorAll';
 import CategoryProduct from './Component/Pages/Shop/CategoryProduct';
 import Customize from './Component/Pages/Desboard/Customize';
