@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import ProductSkelator from '../../ShareComponent/skelator/ProductSkelator';
+import ProductSideSkelator from '../../ShareComponent/skelator/ProductSideSkelator';
 import Footer from '../../ShareComponent/Footer/Footer';
+import React, { useEffect, useState } from 'react';
 import Product from '../../ShareComponent/Product';
-import { ProductSideSkelator, ProductSkelator } from '../../ShareComponent/SkelatorAll';
 
 const Shop = () => {
     const [isLoading, setIsLoading] = useState(true);

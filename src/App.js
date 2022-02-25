@@ -1,36 +1,35 @@
-import { Route, Routes } from 'react-router';
-import './App.css';
-import FirebaseProvider from './Component/Firebase/FirebaseProvider';
-import LogIn from './Component/Firebase/LogIn';
-import SignUp from './Component/Firebase/SignUp';
-import AddReviews from './Component/Pages/AddReviews';
-import AddNews from './Component/Pages/adminPage/AddNews';
 import AddProduct from './Component/Pages/adminPage/AddProdut/AddProduct';
-import CheckAdmin from './Component/Pages/Desboard/CheckAdmin';
-import Desboard from './Component/Pages/Desboard/Desboard';
-import MakeAdmin from './Component/Pages/Desboard/MakeAdmin';
-import ManageOrder from './Component/Pages/Desboard/ManageOrder';
-import ManageProduct from './Component/Pages/Desboard/ManageProduct';
-import MyOrder from './Component/Pages/Desboard/MyOrder';
-import MyReview from './Component/Pages/Desboard/MyReview';
 import PaymentMathods from './Component/Pages/Desboard/PaymentMathods';
-import Profile from './Component/Pages/Desboard/Profile';
+import FirebaseProvider from './Component/Firebase/FirebaseProvider';
 import UpdateProduct from './Component/Pages/Desboard/UpdateProduct';
+import ManageProduct from './Component/Pages/Desboard/ManageProduct';
+import CategoryProduct from './Component/Pages/Shop/CategoryProduct';
+import UpdateProfile from './Component/Pages/Desboard/UpdateProfile';
+import ManageOrder from './Component/Pages/Desboard/ManageOrder';
+import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
+import CheckAdmin from './Component/Pages/Desboard/CheckAdmin';
+import ProductDetails from './Component/Pages/ProductDetails';
+import Header from "./Component/ShareComponent/header/Header";
+import FunctionProvider from "./AllProvider/FunctionProvider";
+import MakeAdmin from './Component/Pages/Desboard/MakeAdmin';
+import Customize from './Component/Pages/Desboard/Customize';
+import Desboard from './Component/Pages/Desboard/Desboard';
+import MyReview from './Component/Pages/Desboard/MyReview';
 import ViewCart from './Component/Pages/Desboard/ViewCart';
+import AddNews from './Component/Pages/adminPage/AddNews';
+import MyOrder from './Component/Pages/Desboard/MyOrder';
+import Profile from './Component/Pages/Desboard/Profile';
+import AddReviews from './Component/Pages/AddReviews';
+import MyAccount from './Component/user/MyAccount';
+import NotFound from './Component/Pages/NotFound';
+import Purchase from './Component/Pages/Purchase';
+import SignUp from './Component/Firebase/SignUp';
+import LogIn from './Component/Firebase/LogIn';
 import Home from './Component/Pages/Home/Home';
 import News from './Component/Pages/News/News';
-import NotFound from './Component/Pages/NotFound';
-import ProductDetails from './Component/Pages/ProductDetails';
-import Purchase from './Component/Pages/Purchase';
 import Shop from './Component/Pages/Shop/Shop';
-import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
-import MyAccount from './Component/user/MyAccount';
-import Header from "./Component/ShareComponent/header/Header"
-import { NewsSkelator } from './Component/ShareComponent/SkelatorAll';
-import CategoryProduct from './Component/Pages/Shop/CategoryProduct';
-import Customize from './Component/Pages/Desboard/Customize';
-import FunctionProvider from "./AllProvider/FunctionProvider"
-import UpdateProfile from './Component/Pages/Desboard/UpdateProfile';
+import { Route, Routes } from 'react-router';
+import './App.css';
 
 function App() {
 
@@ -49,10 +48,6 @@ function App() {
             <Route
               path="/"
               element={<Home />}
-            />
-            <Route
-              path="/skelator"
-              element={<NewsSkelator />}
             />
             <Route
               path="/shop"

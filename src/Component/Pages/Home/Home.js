@@ -1,17 +1,19 @@
+import ProductSkelator from '../../ShareComponent/skelator/ProductSkelator';
+import ReviewSkelator from '../../ShareComponent/skelator/ReviewSkelator';
+import NewsSkelator from '../../ShareComponent/skelator/NewsSkelator';
+import Footer from "../../ShareComponent/Footer/Footer";
 import React, { useEffect, useState } from 'react';
 import Product from '../../ShareComponent/Product';
-import Reviews from "./Rviews"
-import SingleNews from "../News/singleNews";
 import useFirebase from '../../Hook/useFirebase';
-import Menus from './Menus';
-import Massenger from './Massenger';
+import SingleNews from "../News/singleNews";
 import { Link } from 'react-router-dom';
 import PansySlider from './PansySlider';
-import Slider from "react-slick";
-import Footer from "../../ShareComponent/Footer/Footer";
 import settings from './sliderSetting';
-import { NewsSkelator, ProductSkelator, ReviewSkelator } from '../../ShareComponent/SkelatorAll';
 import { useAlert } from 'react-alert';
+import Massenger from './Massenger';
+import Slider from "react-slick";
+import Reviews from "./Rviews"
+import Menus from './Menus';
 
 const Home = () => {
     const [productLoading, setProductLoading] = useState(true);
