@@ -71,13 +71,13 @@
     @apply w-24 py-3 px-8 top-14 z-20 absolute left-0 md:h-16 md:grid grid-cols-5 md:w-full md:sticky md:top-0 bg-white shadow-md md:shadow-none border-b
   }
   .search-input{
-    @apply w-full hover:border-gray-600
+    @apply w-full hover:border-gray-600 text-base md:text-xl
   }
   .fa-search{
     @apply absolute top-2 right-3 text-gray-400 text-xl
   }
   .searched-product-wrapper{
-    @apply absolute top-full shadow-md left-0 w-full z-50 bg-white text-center text-xl rounded-b max-h-44 overflow-auto
+    @apply absolute top-full shadow-md left-0 w-56 md:w-full z-50 bg-white text-center text-xl rounded-b max-h-44 overflow-auto
   }
   .searched-product{
     @apply grid grid-cols-4 px-5 py-4

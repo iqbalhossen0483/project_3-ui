@@ -14,12 +14,12 @@ const TopMenus = ({setShowCart, toggleShow}) => {
                 <i class="fa fa-home" aria-hidden="true"></i>
                 <Anchor to="/">Home</Anchor>
             </div>
-            <div className="link gradient-text flex flex-col items-center justify-center leading-6">
+            <div className="link gradient-text flex flex-col items-center justify-center mx-2 leading-6">
                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                 <Anchor to="/shop">Shop</Anchor>
             </div>
 
-            <div className="link gradient-text flex flex-col items-center justify-center mx-3 my-3 md:my-0 leading-4">
+            <div className="link gradient-text flex flex-col items-center justify-center mx-2 my-3 md:my-0 leading-4">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <Anchor to="/my-account/profile">Account</Anchor>
             </div>
@@ -27,7 +27,7 @@ const TopMenus = ({setShowCart, toggleShow}) => {
             <div className='hidden md:flex justify-center items-center'>
                 {
                     user.email && <div
-                        className="gradient-text flex flex-col items-center leading-4 cursor-pointer text-xl mx-3">
+                        className="gradient-text flex flex-col items-center leading-4 cursor-pointer text-xl mx-2">
                         <div>
                             <i
                                 onMouseEnter={() => { setShowCart(true) }}
