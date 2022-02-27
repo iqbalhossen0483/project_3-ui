@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
 import useFirebase from '../Hook/useFirebase';
-import { useAlert } from 'react-alert'
-import Payment from './Shop/Payment';
+import { useForm } from 'react-hook-form';
+import { useAlert } from 'react-alert';
 import useFunc from '../Hook/useFunc';
+import Payment from './Shop/Payment';
 
 const Purchase = () => {
+    const { setAddedProduct, addedProduct, customer } = useFunc();
     const [cashOnDelivary, setCashOnDelivary] = useState(false);
     const [sameAsBilling, setSameAsBilling] = useState(null);
     const [singleProduct, setSingleProduct] = useState([]);
     const [showPayment, setShowPayment] = useState(false);
     const [orderDetails, setOderDetails] = useState({});
+    const { register, handleSubmit, reset } = useForm();
     const [isLoading, setIsLoading] = useState(true);
     const [totalPrice, setTotalPrice] = useState(0);
     const [orders, setOrders] = useState([]);
-    const { setAddedProduct, addedProduct, customer } = useFunc();
-    const { register, handleSubmit, reset } = useForm();
     const { quantity } = useFirebase();
     const navigate = useNavigate();
     const { id } = useParams();
@@ -154,7 +154,7 @@ const Purchase = () => {
         <div className="px-3 md:px-0 md:grid grid-cols-2">
             <div className="container lg:w-4/6">
                 <h1 className="header">Order Summary</h1>
-                {singleProduct.length &&
+                {singleProduct.length ?
                     singleProduct.map(product => {
                         totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
                         return <div
@@ -185,32 +185,31 @@ const Purchase = () => {
                             </div>
                         </div>
                     })
-                }
-                {orders.length && <div className="flex flex-wrap">
-                    {
-                        orders.map(product => {
-                            totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
-                            return <div
-                                key={product._id}>
-                                <img className="w-32 h-32" src={product.productImg?.imgUrl} alt="" />
+                    :
+                    <div className="flex flex-wrap">
+                        {
+                            orders.map(product => {
+                                totalPrice > 25000 ? sipping = 250 : sipping = 100 || totalPrice > 15000 ? sipping = 200 : sipping = 100 || totalPrice > 10000 ? sipping = 150 : sipping = 100;
+                                return <div
+                                    key={product._id}>
+                                    <img className="w-32 h-32" src={product.productImg?.imgUrl} alt="" />
+                                </div>
+                            })
+                        }
+                        <div
+                            className="grid grid-cols-2 mt-5 text-xl font-semibold leading-10">
+                            <div>
+                                <p>Sub-total: </p>
+                                <p>Shipping Cost: </p>
+                                <hr className="mt-3" />
+                                <p>Total: </p>
                             </div>
-                        })
-                    }
-                </div>}
-                {
-                    orders.length && <div
-                        className="grid grid-cols-2 mt-5 text-xl font-semibold leading-10">
-                        <div>
-                            <p>Sub-total: </p>
-                            <p>Shipping Cost: </p>
-                            <hr className="mt-3" />
-                            <p>Total: </p>
-                        </div>
-                        <div className="text-green-500">
-                            <p>{totalPrice} BDT</p>
-                            <p>{sipping} BDT</p>
-                            <hr className="mt-3" />
-                            <p>{totalPrice + sipping} BDT</p>
+                            <div className="text-green-500">
+                                <p>{totalPrice} BDT</p>
+                                <p>{sipping} BDT</p>
+                                <hr className="mt-3" />
+                                <p>{totalPrice + sipping} BDT</p>
+                            </div>
                         </div>
                     </div>
                 }
