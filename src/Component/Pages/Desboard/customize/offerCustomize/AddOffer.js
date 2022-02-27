@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useForm } from 'react-hook-form';
-import useFunc from '../../../Hook/useFunc';
+import useFunc from '../../../../Hook/useFunc';
 
 function AddOffer() {
     const { register, handleSubmit, reset } = useForm();

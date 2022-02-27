@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
 import { DebounceInput } from 'react-debounce-input';
 import SearchedProduct from './SearchedProduct';
+import React, { useState } from 'react'
 
 const SearchBar = () => {
     const [showSearchProduct, setShowSearchProduct] = useState(false);
     const [searchedProduct, setSearchedProduct] = useState([]);
-    const [searchText, setSearchText] = useState("");
 
-    if (searchText && showSearchProduct) {
-        fetch(`https://cyclemart.herokuapp.com/products/searchProduct/${searchText}`)
+    function handleSearchText(searchText) {
+        const text = searchText;
+        if (!text) return;
+        fetch(`https://cyclemart.herokuapp.com/products/searchProduct/${text}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length) {
                     setSearchedProduct(data);
+                    console.log(data);
                 }
                 else {
                     setSearchedProduct([]);
@@ -26,13 +28,13 @@ const SearchBar = () => {
                 <DebounceInput
                     type="text"
                     className="input search-input"
-                    onFocus={() => setShowSearchProduct(true)}
                     placeholder='Search Product...'
                     minLength={2}
                     debounceTimeout={500}
-                    onChange={e => setSearchText(e.target.value)}
+                    onMouseEnter={() => setShowSearchProduct(true)}
+                    onChange={e => handleSearchText(e.target.value)}
                 />
-                <i class="fa fa-search hidden md:block" aria-hidden="true"></i>
+                <i className="fa fa-search hidden md:block" aria-hidden="true"></i>
                 {showSearchProduct &&
                     <SearchedProduct
                         searchedProduct={searchedProduct}

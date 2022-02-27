@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useForm } from 'react-hook-form';
-import useFunc from '../../../Hook/useFunc';
+import useFunc from '../../../../Hook/useFunc';
 
 function SliderCustomize() {
     const { register, handleSubmit, reset } = useForm();
@@ -117,7 +117,7 @@ function SliderCustomize() {
                         onClick={() => { deletSlider(slide._id) }}
                         className="fas fa-trash-alt customize-slider-icon">
                     </i>
-                    <p>{slide.url}</p>
+                    <p className='text-base'>{slide.url}</p>
                 </div>)
             }
         </div>

@@ -1,7 +1,7 @@
+import SliderCustomize from './customize/sliderCustomize/SliderCustomize';
+import AddOffer from './customize/offerCustomize/AddOffer';
+import Category from './customize/categoryCutomize/Category';
 import React from 'react';
-import AddOffer from './customize/AddOffer';
-import Category from './customize/Category';
-import SliderCustomize from './customize/SliderCustomize';
 
 const Customize = () => {
     

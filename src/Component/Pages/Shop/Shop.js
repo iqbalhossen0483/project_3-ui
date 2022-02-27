@@ -3,8 +3,10 @@ import ProductSideSkelator from '../../ShareComponent/skelator/ProductSideSkelat
 import Footer from '../../ShareComponent/Footer/Footer';
 import React, { useEffect, useState } from 'react';
 import Product from '../../ShareComponent/Product';
+import SideMenus from './component/SideMenus';
 
 const Shop = () => {
+    const [randomProduct, setRandomProduct] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProduct] = useState([]);
     const [seller, setSeller] = useState("");
@@ -13,7 +15,6 @@ const Shop = () => {
         from: 0,
         till: 0
     });
-    const [randomProduct, setRandomProduct] = useState([]);
 
     useEffect(() => {
 
@@ -53,6 +54,7 @@ const Shop = () => {
             setSeller(e.target.name);
         }
     }
+
     const handleType = e => {
         if (type) {
             if (!type.includes(e.target.name)) {
@@ -127,87 +129,16 @@ const Shop = () => {
         <div
             className="md:pl-2 lg:px-2 lg:grid grid-cols-4">
             <p></p>
-            <div
-                className="sidebar scrollbar">
-                <div className="lg:text-xl leading-8">
-                    <h2 className="side-menu">Sellers</h2>
-                    <form>
-                        <p className="flex items-center">
-                            <input
-                                onClick={(e) => { handleSellers(e) }}
-                                type="checkbox"
-                                name="Rakib"
-                            />
-                            <p className="ml-2">Rakib</p>
-                        </p>
-                        <p className="flex items-center">
-                            <input
-                                onClick={(e) => { handleSellers(e) }}
-                                type="checkbox" name="Rakib-Enterprise"
-                            />
-                            <p className="ml-2">Rakib-Enterprise</p>
-                        </p>
-                        <input type="reset" onClick={() => { setSeller("") }} className="button" />
-                    </form>
-                </div>
-                <div className="mt-5 lg:text-xl">
-                    <h2 className="side-menu">Price</h2>
-                    <form
-                        onSubmit={(e) => { showProductsByPriceRange(e) }}
-                        onReset={handleReset}
-                        className="mt-4">
-                        <div className="grid grid-cols-custom">
-                            <p>From:</p>
-                            <input
-                                onBlur={(e) => { handlePriceRange(e, "from") }}
-                                className="input rounded-xl w-full"
-                                type="number"
-                            />
-                            <p>Till:</p>
-                            <input
-                                onBlur={(e) => { handlePriceRange(e, "till") }}
-                                className="input rounded-xl w-full"
-                                type="number"
-                            />
-                        </div>
-                        <div className="flex">
-                            <input type="submit" className="button"
-                            />
-                            <input type="reset" className="button" />
-                        </div>
-                    </form>
-                </div>
-                <div className="lg:text-xl leading-8 mt-5">
-                    <h2 className="side-menu">Products type</h2>
-                    <form>
-                        <p className="flex items-center">
-                            <input
-                                onClick={(e) => { handleType(e) }}
-                                type="checkbox"
-                                name="Geared"
-                            />
-                            <p className="ml-2">Geared</p>
-                        </p>
-                        <p className="flex items-center">
-                            <input
-                                onClick={(e) => { handleType(e) }}
-                                type="checkbox"
-                                name="Non-Geared"
-                            />
-                            <p className="ml-2">Non-Geared</p>
-                        </p>
-                        <input type="reset" onClick={() => { setType("") }} className="button" />
-                    </form>
-                </div>
-                <div className="hidden lg:block text-xl leading-8 mt-5">
-                    <h2 className="side-menu">Best Products</h2>
-                    {
-                        randomProduct.map(product => <Product
-                            key={product._id}
-                            product={product} />)
-                    }
-                </div>
-            </div>
+            <SideMenus
+                handleSellers={handleSellers}
+                setSeller={setSeller}
+                showProductsByPriceRange={showProductsByPriceRange}
+                handleReset={handleReset}
+                handlePriceRange={handlePriceRange}
+                handleType={handleType}
+                setType={setType}
+                randomProduct={randomProduct}
+            />
             <div className="col-span-3 mt-10">
                 <div className="shop-product">
                     {

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useFirebase from '../../Hook/useFirebase';
+import MobileView from './component/MobileView';
+import TopContact from './component/TopContact';
+import SearchBar from './component/SearchBar';
+import TopMenus from './component/TopMenus';
 import useFunc from '../../Hook/useFunc';
 import CartProduct from '../CartProduct';
-import UserInfo from '../UserInfo';
 import Logo from './component/Logo';
-import MobileView from './component/MobileView';
-import SearchBar from './component/SearchBar';
-import TopContact from './component/TopContact';
-import TopMenus from './component/TopMenus';
+import UserInfo from '../UserInfo';
 
 const Header = () => {
     const [menu, setMenu] = useState(true);

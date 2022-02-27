@@ -1,26 +1,26 @@
-import React from 'react'
-import Anchor from '../../../../utilitize/Anchor';
 import useFirebase from '../../../Hook/useFirebase';
+import Anchor from '../../../../utilitize/Anchor';
 import useFunc from '../../../Hook/useFunc';
+import React from 'react'
 
 const TopMenus = ({setShowCart, toggleShow}) => {
-    const { user } = useFirebase();
     const { addedProduct } = useFunc();
+    const { user } = useFirebase();
 
     return (
         <div className="menu-wrapper justify-end items-center">
 
             <div className="link md:hidden gradient-text flex flex-col items-center justify-center mb-3 leading-6">
-                <i class="fa fa-home" aria-hidden="true"></i>
+                <i className="fa fa-home" aria-hidden="true"></i>
                 <Anchor to="/">Home</Anchor>
             </div>
             <div className="link gradient-text flex flex-col items-center justify-center mx-2 leading-6">
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                <i className="fa fa-shopping-bag" aria-hidden="true"></i>
                 <Anchor to="/shop">Shop</Anchor>
             </div>
 
             <div className="link gradient-text flex flex-col items-center justify-center mx-2 my-3 md:my-0 leading-4">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                <i className="fa fa-user" aria-hidden="true"></i>
                 <Anchor to="/my-account/profile">Account</Anchor>
             </div>
 
