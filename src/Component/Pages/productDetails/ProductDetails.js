@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import useFirebase from '../../Hook/useFirebase';
 import { Link } from 'react-router-dom';
-import useFirebase from '../Hook/useFirebase';
 import { useAlert } from 'react-alert';
-import useFunc from '../Hook/useFunc';
+import useFunc from '../../Hook/useFunc';
 
 const ProductDetails = () => {
     const { quantity, setQuantity, user, } = useFirebase();

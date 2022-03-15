@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import Loader from '../ShareComponent/Loader';
+import useFirebase from '../Hook/useFirebase';
 import { NavLink } from 'react-router-dom';
-import useFirebase from '../../Hook/useFirebase';
-import useFunc from '../../Hook/useFunc';
-import Loader from '../../ShareComponent/Loader';
-import Rviews from '../Home/Rviews';
+import useFunc from '../Hook/useFunc';
+import Rviews from '../Pages/Home/Rviews';
 
 const MyReview = () => {
-    const [reviews, setReview] = useState([]);
-    const { user } = useFirebase();
     const [isLoading, setIsLoading] = useState(true);
+    const [reviews, setReview] = useState([]);
     const { userToken } = useFunc();
+    const { user } = useFirebase();
 
     useEffect(() => {
         fetch("https://cyclemart.herokuapp.com/reviews", {

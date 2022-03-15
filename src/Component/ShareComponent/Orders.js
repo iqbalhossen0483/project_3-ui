@@ -1,9 +1,18 @@
-import React from 'react';
 import { useAlert } from 'react-alert'
+import React from 'react';
 
 const Orders = ({ order, children, orders, setOrder }) => {
-    const { name, email, division, district, policeStation, rodeOrVillage, date, status } = order;
     const alert = useAlert();
+    const {
+        name,
+        email,
+        division,
+        district,
+        policeStation,
+        rodeOrVillage,
+        date,
+        status
+    } = order;
 
     const handleDelete = (id) => {
         const confirm = window.confirm("Are you sure to delete");

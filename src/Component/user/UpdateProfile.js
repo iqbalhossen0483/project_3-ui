@@ -1,13 +1,13 @@
-import { useAlert } from "react-alert";
-import { useForm } from "react-hook-form";
+import useFirebase from "../Hook/useFirebase";
 import { useNavigate } from "react-router-dom";
-import useFirebase from "../../Hook/useFirebase";
+import { useForm } from "react-hook-form";
+import { useAlert } from "react-alert";
 
 function UpdateProfile() {
     const { register, handleSubmit } = useForm();
     const { user } = useFirebase();
-    const alert = useAlert();
     const navigate = useNavigate();
+    const alert = useAlert();
 
     const onSubmit = userInfo => {
         const formData = new FormData();

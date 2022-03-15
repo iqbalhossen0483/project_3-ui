@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useFirebase from '../Hook/useFirebase';
+import useFirebase from '../../Hook/useFirebase';
 import { useAlert } from 'react-alert'
-import useFunc from '../Hook/useFunc';
+import useFunc from '../../Hook/useFunc';
 import { useEffect } from 'react';
 
 const Product = (props) => {

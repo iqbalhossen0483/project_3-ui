@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import useFirebase from '../../../Hook/useFirebase';
 import { Link } from 'react-router-dom';
-import useFirebase from '../Hook/useFirebase';
-import useFunc from '../Hook/useFunc';
+import useFunc from '../../../Hook/useFunc';
 
 const CartProduct = () => {
     const [cartProducts, setCartProducts] = useState([]);

@@ -1,20 +1,20 @@
 import ProductSkelator from '../../ShareComponent/skelator/ProductSkelator';
 import ProductSideSkelator from '../../ShareComponent/skelator/ProductSideSkelator';
+import Product from '../../ShareComponent/prooduct/Product';
 import Footer from '../../ShareComponent/Footer/Footer';
 import React, { useEffect, useState } from 'react';
-import Product from '../../ShareComponent/Product';
 import SideMenus from './component/SideMenus';
 
 const Shop = () => {
     const [randomProduct, setRandomProduct] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [products, setProduct] = useState([]);
-    const [seller, setSeller] = useState("");
-    const [type, setType] = useState("");
     const [rangePrice, setRangePrice] = useState({
         from: 0,
         till: 0
     });
+    const [products, setProduct] = useState([]);
+    const [seller, setSeller] = useState("");
+    const [type, setType] = useState("");
 
     useEffect(() => {
 
@@ -44,15 +44,14 @@ const Shop = () => {
         }
     }, [seller, type, rangePrice]);
 
+
     const handleSellers = e => {
         if (seller) {
             if (!seller.includes(e.target.name)) {
                 setSeller(seller + "&&" + e.target.name);
             }
         }
-        else {
-            setSeller(e.target.name);
-        }
+        else setSeller(e.target.name);
     }
 
     const handleType = e => {
@@ -61,10 +60,9 @@ const Shop = () => {
                 setType(type + "&&" + e.target.name);
             }
         }
-        else {
-            setType(e.target.name);
-        }
+        else setType(e.target.name);
     }
+
     const handlePriceRange = (e, whereTo) => {
         const previous = rangePrice;
         if (whereTo === "from") {
@@ -76,6 +74,7 @@ const Shop = () => {
             setRangePrice(previous);
         }
     }
+
     const showProductsByPriceRange = (e) => {
         e.preventDefault();
         if (rangePrice.from > 0 && rangePrice.till > 0) {
@@ -85,7 +84,7 @@ const Shop = () => {
                     setProduct(data);
                 })
         }
-    }
+    };
     const handleReset = () => {
         fetch("https://cyclemart.herokuapp.com/products")
             .then(res => res.json())
@@ -98,6 +97,7 @@ const Shop = () => {
         setRangePrice(previous);
     }
 
+    //get random product
     useEffect(() => {
         if (products.length) {
             const number = Math.floor(Math.random() * products.length - 1) + 1;

@@ -1,51 +1,20 @@
-import React from 'react';
 import { useForm } from "react-hook-form";
-import { useAlert } from 'react-alert'
 import useFunc from '../../../Hook/useFunc';
+import { useAlert } from 'react-alert';
+import addProduct from "./controller";
+import React from 'react';
+import { useState } from "react";
 
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
-    const alert = useAlert();
+    const [loading, setLoading] = useState(false);
     const { userToken } = useFunc();
+    const alert = useAlert();
 
     const onSubmit = product => {
-        const formData = new FormData();
-        formData.append("name", product.name);
-        formData.append("category", product.category);
-        formData.append("price", product.price);
-        formData.append("stock", product.stock);
-        formData.append("vendor", product.vendor);
-        formData.append("type", product.type);
-        formData.append("description", product.description);
-        formData.append("img", product.img[0]);
-
-        const gallery = Array.from(product.gallery);
-        gallery.map(img => {
-            formData.append("gallery", img);
-        });
-
-        if (!product.img.length) {
-            return alert.show("Product image is required");
-        };
-        if (gallery.length > 3) {
-            return alert.show("Gallery image should be less than 4");
-        };
-
-        fetch("https://cyclemart.herokuapp.com/products", {
-            method: "POST",
-            headers: {
-                "authorization": userToken()
-            },
-            body: formData
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    alert.show("A product was successfully added");
-                    reset();
-                }
-            })
+        addProduct(product, userToken, alert, reset, setLoading);
     }
+
     return (
         <div className="mx-3 md:mx-0">
             <form className="container lg:w-11/12 lg:grid grid-cols-2 gap-5" onSubmit={handleSubmit(onSubmit)}>
@@ -61,19 +30,15 @@ const AddProduct = () => {
                     />
                     <input
                         className="input w-full"
+                        {...register("subCategory", { required: true })} placeholder="Enter the sub-category"
+                    />
+                    <input
+                        className="input w-full"
                         {...register("price", { required: true })} placeholder="Enter the price"
                     />
                     <input
                         className="input w-full"
                         {...register("stock", { required: true })} placeholder="Enter the stock"
-                    />
-                    <input
-                        className="input w-full"
-                        {...register("vendor", { required: true })} placeholder="Enter the vendor name"
-                    />
-                    <input
-                        className="input w-full"
-                        {...register("type", { required: true })} placeholder="Enter the type of cycle"
                     />
                     <label className='text-xl my-2 block'>
                         Main image: 
@@ -99,7 +64,12 @@ const AddProduct = () => {
                     {...register("description", { required: true })} placeholder="Enter short description"
                 />
                 <div className='col-span-2 flex justify-center'>
-                    <input className="button w-52" type="submit" />
+                    <button
+                        className="button w-52"
+                        disabled={loading}
+                        type="submit">
+                        Submit
+                    </button>
                 </div>
             </form>
         </div>

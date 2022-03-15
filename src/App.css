@@ -93,6 +93,14 @@
   outline: 0;
   box-shadow: 0 0 40px 40px #10b981 inset;
 }
+.button:disabled{
+  color: #10b981a2;
+}
+.button:disabled .button:hover{
+  color: #ffffff88;
+  box-shadow: 0 0 40px 40px #10b981a2 inset;
+}
+
 .product-color > p{
   width: 25px;
   height: 25px;

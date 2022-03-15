@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import useFirebase from '../../Hook/useFirebase';
 import { useForm } from 'react-hook-form';
-import Rating from 'react-rating';
-import useFirebase from '../Hook/useFirebase';
+import React, { useState } from 'react';
 import { useAlert } from 'react-alert'
-import useFunc from '../Hook/useFunc';
+import useFunc from '../../Hook/useFunc';
+import Rating from 'react-rating';
 
 const AddReviews = () => {
-    const [rating, setRating] = useState(0);
-    const { user } = useFirebase();
-    const alert = useAlert();
-    const { userToken } = useFunc();
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
             name: user.displayName,
             email: user.email
         }
     });
+    const [rating, setRating] = useState(0);
+    const { userToken } = useFunc();
+    const { user } = useFirebase();
+    const alert = useAlert();
 
     const handleRating = e => {
         setRating(e)

@@ -3,7 +3,7 @@ import ReviewSkelator from '../../ShareComponent/skelator/ReviewSkelator';
 import NewsSkelator from '../../ShareComponent/skelator/NewsSkelator';
 import Footer from "../../ShareComponent/Footer/Footer";
 import React, { useEffect, useState } from 'react';
-import Product from '../../ShareComponent/Product';
+import Product from '../../ShareComponent/prooduct/Product';
 import useFirebase from '../../Hook/useFirebase';
 import SingleNews from "../News/singleNews";
 import { Link } from 'react-router-dom';

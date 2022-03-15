@@ -1,6 +1,6 @@
-import React from 'react';
+import useFirebase from '../../../Hook/useFirebase';
 import { NavLink } from 'react-router-dom';
-import useFirebase from '../Hook/useFirebase';
+import React from 'react';
 
 const UserInfo = () => {
     const { user, isAdmin, lognOut, setHideUserInfo } = useFirebase();

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import useFirebase from '../../Hook/useFirebase';
-import Orders from './Orders';
+import useFirebase from '../Hook/useFirebase';
+import Orders from '../ShareComponent/Orders';
 import { useAlert } from "react-alert";
-import useFunc from '../../Hook/useFunc';
+import useFunc from '../Hook/useFunc';
 
 const MyOrder = () => {
     const [orders, setOrder] = useState([]);

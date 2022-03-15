@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
+import useFunc from '../Hook/useFunc';
 import { Link } from 'react-router-dom';
-import useFunc from '../../Hook/useFunc';
+import React, { useState } from 'react';
 
 const Profile = () => {
     const [showEdit, setShowEdit] = useState(false);

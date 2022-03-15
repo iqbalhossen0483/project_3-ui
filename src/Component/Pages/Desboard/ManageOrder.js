@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Orders from './Orders';
+import Orders from '../../ShareComponent/Orders';
 import { useAlert } from 'react-alert'
 import useFunc from '../../Hook/useFunc';
 

@@ -1,10 +1,10 @@
+import Product from '../../ShareComponent/prooduct/Product';
 import React, { useEffect, useState } from 'react';
-import Product from '../../ShareComponent/Product';
 import { useParams } from 'react-router';
 
 const CategoryProduct = () => {
-    const [products, setProducts] = useState([]);
     const [isProduct, setIsProduct] = useState(true);
+    const [products, setProducts] = useState([]);
     const { category } = useParams();
 
     useEffect(() => {

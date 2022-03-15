@@ -1,8 +1,8 @@
-import React from 'react'
-import Product from '../../../ShareComponent/Product';
+import Product from '../../../ShareComponent/prooduct/Product';
 import PriceFilter from './PriceFilter';
-import Sellers from './Sellers';
 import TypeFilter from './TypeFilter';
+import Sellers from './Sellers';
+import React from 'react'
 
 const SideMenus = (props) => {
     const {

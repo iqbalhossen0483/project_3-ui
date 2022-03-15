@@ -5,9 +5,9 @@ import TopContact from './component/TopContact';
 import SearchBar from './component/SearchBar';
 import TopMenus from './component/TopMenus';
 import useFunc from '../../Hook/useFunc';
-import CartProduct from '../CartProduct';
+import CartProduct from './component/CartProduct';
 import Logo from './component/Logo';
-import UserInfo from '../UserInfo';
+import UserInfo from './component/UserInfo';
 
 const Header = () => {
     const [menu, setMenu] = useState(true);

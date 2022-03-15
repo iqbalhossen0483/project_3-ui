@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import React from 'react'
 
-const SearchedProduct = ({ searchedProduct,setShowSearchProduct }) => {
+const SearchedProduct = ({ searchedProduct }) => {
     return (
-        <div
-            onMouseLeave={() => setShowSearchProduct(false)}
-            className='searched-product-wrapper'>
+        <div className='searched-product-wrapper'>
             {searchedProduct?.length ?
                 searchedProduct?.map(product => {
                     return (

@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router';
 import React, { useEffect, useState } from 'react';
-import useFirebase from '../Hook/useFirebase';
+import useFirebase from '../../Hook/useFirebase';
 import { useForm } from 'react-hook-form';
 import { useAlert } from 'react-alert';
-import useFunc from '../Hook/useFunc';
-import Payment from './Shop/Payment';
+import useFunc from '../../Hook/useFunc';
+import Payment from '../Shop/Payment';
 
 const Purchase = () => {
     const { setAddedProduct, addedProduct, customer } = useFunc();
