@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        "custom": "60px 1fr"
+        "custom": "60px 1fr",
       }
     },
   },
@@ -12,4 +12,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};
